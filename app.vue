@@ -1,0 +1,35 @@
+<template>
+  <nuxt-layout class="tw-bg-base">
+    <nuxt-loading-indicator />
+
+    <nuxt-page v-if="isOnline" />
+    <div v-else>
+      {{ $t('errors.noConnection') }}.
+    </div>
+  </nuxt-layout>
+</template>
+
+<script setup>
+import '~/assets/scss/tailwind.scss'
+
+const isOnline = useNetwork()
+
+const pageName = useRouteBaseName()
+const { t, te } = useI18n()
+
+const head = te(`pages.${pageName}`)
+  ? {
+      titleTemplate: 'tokenpass %s',
+      title: ` / ${t(`pages.${pageName}.title`)}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: t(`pages.${pageName}.description`),
+        },
+      ],
+    }
+  : {}
+
+useHead(head)
+</script>

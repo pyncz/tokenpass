@@ -1,0 +1,43 @@
+logo: "{name} logo"
+
+# meta
+pages:
+  index:
+    title: Setup
+  check:
+    title: 'Check #{id}'
+  about:
+    title: About
+  settings:
+    title: Settings
+
+theme:
+  system: System
+  light: Light
+  dark: Dark
+  black: Black
+
+colorMode: Color mode
+locale: Localization
+
+# buttons' actions
+actions:
+  setup: Setup
+
+# by pages
+setup:
+  title: Setup address
+  submit: '@:actions.setup'
+  fields:
+    chainId:
+      label: Chain
+      placeholder: Select chain ID
+    address:
+      label: Collection’s contract address
+      placeholder: 0xABC...123
+    tokenId:
+      label: Look for a specific token
+      placeholder: Token ID
+    amount:
+      label: Look for a specific amount
+      placeholder: Amount
