@@ -24,6 +24,7 @@
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@vee-validate/rules": "^4.6.10",
+    "@voire/eth-validation-rules": "^1.0.0",
     "@voire/nuxt-vuerest": "^1.0.0",
     "@voire/type-utils": "^1.1.1",
     "@vueuse/core": "^9.2.0",
@@ -51,9 +52,7 @@
     "nuxt": "^3.0.0-rc.10",
     "nuxt-icon": "^0.1.6",
     "simple-git": "^2.47.0",
-    "simple-git-hooks": "^2.7.0",
-    "stylelint": "^14.8.2",
-    "stylelint-config-standard": "^28.0.0"
+    "simple-git-hooks": "^2.7.0"
   },
   "simple-git-hooks": {
     "pre-commit": "nr lint-staged"

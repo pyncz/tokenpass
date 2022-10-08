@@ -3,7 +3,11 @@
     <vee-field v-slot="fieldScope" v-bind="$attrs" :name="props.name">
       <slot v-bind="fieldScope" />
     </vee-field>
-    <vee-error-message :name="props.name" />
+    <vee-error-message v-slot="{ message }" :name="props.name">
+      <p class="tw-text-sm">
+        {{ message }}
+      </p>
+    </vee-error-message>
   </div>
 </template>
 

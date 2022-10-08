@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from 'nuxt'
-import postcssOptions from './postcss.config'
 
 const isProduction = !!process.env.IS_PRODUCTION
 
