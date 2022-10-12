@@ -1,0 +1,14 @@
+@layer base {
+  html {
+    font-size: 16px; // 1rem
+    @apply tw-font-sans tw-bg-base tw-text-base tw-leading-sm;
+  }
+  ::selection {
+    @apply tw-bg-dim-2 tw-text-accent-primary;
+  }
+
+  hr {
+    width: 100%;
+    borderColor: theme('borderColor.separator.DEFAULT');
+  }
+}

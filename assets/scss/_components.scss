@@ -1,0 +1,40 @@
+@layer components {
+  .tw-form {
+    @apply tw-m-auto;
+    max-width: 24rem;
+  }
+  .tw-form-group {
+    @apply tw-flex tw-gap-y-2 tw-gap-x-3;
+  }
+
+  .tw-article {
+    @apply tw-m-auto;
+    max-width: 40rem;
+  }
+  .tw-section {
+    @apply tw-py-8;
+    @screen md {
+      @apply tw-py-24;
+    }
+  }
+
+  // Buttons
+  .tw-button {
+    @apply tw-bg-opacity-10 tw-relative tw-cursor-pointer tw-flex-center tw-inline-flex tw-duration-normal tw-font-medium;
+    @apply tw-py-2 tw-px-3 tw-gap-1 tw-rounded;
+    @apply before:tw-absolute before:tw-inset-0 before:tw-border before:tw-border-solid before:tw-border-text-dim-1 before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
+    @apply hover:tw-bg-opacity-20 hover:tw-duration-fast hover:before:tw-opacity-soft;
+    @apply active:tw-scale-click;
+    &::before {
+      mask-image: linear-gradient(to right, rgba(white, 0.2), rgba(white, 0.5), rgba(white, 0.2));
+    }
+  }
+  .tw-button-primary {
+    @apply tw-bg-button-primary tw-text-button-primary;
+    @apply tw-button;
+  }
+  .tw-button-secondary {
+    @apply tw-bg-button-secondary tw-text-button-secondary;
+    @apply tw-button;
+  }
+}

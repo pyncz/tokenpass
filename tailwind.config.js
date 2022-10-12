@@ -1,6 +1,5 @@
 const plugin = require('tailwindcss/plugin')
 const addHeaders = require('./tailwind/headers')
-const addLayouts = require('./tailwind/layouts')
 
 function c(color, opacityValue) {
   return opacityValue === undefined
@@ -37,21 +36,9 @@ const sansSerif = [
 const textColors = {
   base: co('--c-color-base'),
   dim: fill(3, i => co(`--c-color-dim-${i}`)),
-  navlink: co('--c-navlink-color'),
-  radio: {
-    option: {
-      active: co('--c-radio-option-checked-text'),
-    },
-  },
-}
-
-const illustrationColors = {
-  base: co('--c-i-base'),
-  accent: fill(6, i => co(`--c-i-accent-${i}`)),
 }
 
 // Read more about tailwindcss configuration: https://tailwindcss.com/docs/configuration
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   mode: 'jit',
   content: ['**/*.{vue,js}'],
@@ -59,7 +46,6 @@ module.exports = {
   safelist: [
     'light-mode',
     'dark-mode',
-    'black-mode',
     { pattern: /^tw-h-logo-.+$/ },
   ],
   theme: {
@@ -110,36 +96,34 @@ module.exports = {
     textColor: theme => ({
       ...theme('colors'),
       ...textColors,
+      button: {
+        primary: co('--c-button-primary-color'),
+        secondary: co('--c-button-secondary-color'),
+      },
     }),
     backgroundColor: theme => ({
       ...theme('colors'),
-      'base': co('--c-bg-base'),
-      'radio': {
-        group: co('--c-radio-bg'),
-        option: {
-          active: co('--c-radio-option-checked-bg'),
-        },
+      text: textColors,
+      base: co('--c-bg-base'),
+      card: co('--c-bg-card'),
+      dim: fill(2, i => co(`--c-bg-dim-${i}`)),
+      button: {
+        primary: co('--c-button-primary-bg'),
+        secondary: co('--c-button-secondary-bg'),
       },
-      'illustration-el': co('--c-illustration-el'),
-      'illustration-bg': co('--c-illustration-bg'),
-      'card': co('--c-bg-card'),
-      'dim': fill(2, i => co(`--c-bg-dim-${i}`)),
-      'text': textColors,
-      'navlink': co('--c-navlink'),
     }),
     borderColor: theme => ({
       ...theme('colors'),
+      text: textColors,
       separator: {
         DEFAULT: co('--c-separator'),
         muted: co('--c-separator-muted'),
         vivid: co('--c-separator-vivid'),
       },
-      navlink: co('--c-navlink'),
     }),
     borderRadius: {
       sm: '0.125rem',
       DEFAULT: '0.25rem',
-      navlink: '0.5rem',
       lg: '0.5rem',
       xl: '0.75rem',
       full: '9999px',
@@ -152,33 +136,29 @@ module.exports = {
     },
     fill: theme => ({
       ...theme('backgroundColor'),
-      illustration: illustrationColors,
     }),
     stroke: theme => ({
       ...theme('borderColor'),
-      illustration: illustrationColors,
     }),
     opacity: {
       0: '0',
       10: '0.1',
       20: '0.2',
-      soft: '0.5',
+      muted: '0.5',
+      soft: '0.8',
       full: '1',
     },
     backgroundOpacity: theme => ({
       ...theme('opacity'),
-      'radio-option-active': 'var(--o-radio-option-checked-bg)',
-      'modal': 'var(--o-modal-overlay)',
+      modal: 'var(--o-modal-overlay)',
     }),
-    boxShadow: {
-      card: 'var(--s-card)',
-    },
     dropShadow: {
       title: 'var(--s-title)',
     },
     transitionDuration: {
       fast: '150ms',
       normal: '300ms',
+      slow: '500ms',
     },
     zIndex: {
       muted: '-1',
@@ -191,92 +171,20 @@ module.exports = {
         'xs': '400px',
       },
       height: {
-        'logo-icon': '1.25em',
-        'logo-xs': '1.5rem',
-        'logo-sm': '2.25rem',
-        'logo-md': '3rem',
-        'logo-lg': '3.75rem',
-        'logo-xl': '4.5rem',
+        'logo-xs': '1.25rem',
+        'logo-sm': '2rem',
+        'logo-md': '2.5rem',
+        'logo-lg': '3rem',
+        'logo-xl': '3.75rem',
       },
-      minWidth: theme => ({
-        radio: theme('space.20'),
-      }),
     },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
     plugin(addHeaders),
-    plugin(addLayouts),
-    ({ addUtilities, addComponents, addBase, theme }) => {
-      addBase({
-        hr: {
-          width: '100%',
-          borderColor: theme('borderColor.separator.DEFAULT'),
-        },
-      })
-
-      addUtilities({
-        '.b': {
-          borderWidth: theme('borderWidth.DEFAULT'),
-          borderStyle: 'solid',
-        },
-        '.article': {
-          maxWidth: '40rem',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        },
-        '.navlink-bg': {
-          background: 'radial-gradient(50% 50% at center, rgb(var(--c-navlink)), transparent)',
-        },
-        '.transition-nobg-fast': {
-          transition: 'all 150ms, background 0s',
-        },
-        '.transition-nobg-normal': {
-          transition: 'all 300ms, background 0s',
-        },
-        '.section': {
-          paddingTop: '6rem',
-          paddingBottom: '6rem',
-        },
-        '.bg-accent': {
-          backgroundImage: 'linear-gradient(135deg, #56FF47 8%, #00FFE0 88%)',
-        },
-        '.shadow-separator': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.DEFAULT')}`,
-        },
-        '.shadow-separator-muted': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.muted')}`,
-        },
-        '.shadow-separator-vivid': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.vivid')}`,
-        },
-      })
-
-      const buttonComponent = {
-        'cursor': 'pointer',
-        'gap': theme('gap.1'),
-        'display': 'inline-flex',
-        'justifyContent': 'center',
-        'alignItems': 'center',
-        'padding': `${theme('padding.2')} ${theme('padding.3')}`,
-        'fontWeight': theme('fontWeight.medium'),
-        'transitionDuration': theme('transitionDuration.normal'),
-        'borderRadius': theme('borderRadius.DEFAULT'),
-        '&:hover': {
-          transitionDuration: theme('transitionDuration.fast'),
-        },
-        '&:active': {
-          transform: `scale(${theme('scale.click')})`,
-        },
-      }
+    ({ addComponents, theme }) => {
       addComponents({
-        '.form-group': {
-          display: 'flex',
-          flexWrap: 'wrap',
-          gapY: theme('space.2'),
-          gapX: theme('space.3'),
-        },
         '.link-primary': {
           'cursor': 'pointer',
           'color': c('--c-link-primary'),
@@ -285,25 +193,6 @@ module.exports = {
           '&:hover': {
             color: c('--c-link-primary-vivid'),
             transitionDuration: theme('transitionDuration.fast'),
-          },
-        },
-        '.button': buttonComponent,
-        '.button-primary': {
-          ...buttonComponent,
-          'color': c('--c-button-primary-color'),
-          'background': c('--c-button-primary-bg'),
-          '&:hover': {
-            ...buttonComponent['&:hover'],
-            background: c('--c-button-primary-bg-vivid'),
-          },
-        },
-        '.button-secondary': {
-          ...buttonComponent,
-          'color': c('--c-button-secondary-color'),
-          'background': c('--c-button-secondary-bg'),
-          '&:hover': {
-            ...buttonComponent['&:hover'],
-            background: c('--c-button-secondary-bg-vivid'),
           },
         },
       })
