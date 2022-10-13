@@ -6,7 +6,7 @@
           class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
         >
           <combobox-input
-            class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
+            class="tw-input w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
             :display-value="(option) => option ? (option as SelectOption).label ?? (option as SelectOption).value : ''"
             @change="query = $event.target.value"
           />
@@ -28,12 +28,10 @@
           <combobox-options
             class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
           >
-            <div
-              v-if="filteredOptions.length === 0 && query !== ''"
-              class="relative cursor-default select-none py-2 px-4 text-gray-700"
-            >
-              Nothing found.
-            </div>
+            <!-- if query is valid? -->
+            <combobox-option :value="queryOption">
+              Use "{{ query }}"
+            </combobox-option>
 
             <combobox-option
               v-for="option of filteredOptions"
@@ -95,6 +93,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const value = ref(props.options[0])
 const query = ref('')
+
+const queryOption = computed<SelectOption>(() => ({
+  value: query.value,
+}))
 
 const filteredOptions = computed(() =>
   query.value === ''

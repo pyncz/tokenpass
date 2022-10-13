@@ -12,6 +12,9 @@
 
   --c-bg-card: var(--c-white);
 
+  --c-state-error: 255, 62, 80;
+
+  --c-overlay-bg: var(--c-color-dim-1);
   
   /* elements */
   // separator
@@ -23,8 +26,13 @@
   // button
   --c-button-primary-bg: var(--c-accent-primary);
   --c-button-primary-color: var(--c-accent-primary);
-  --c-button-secondary-bg: 219, 238, 254;
+  --o-button-primary-bg: 0.1;
+  --o-button-primary-bg--hover: 0.2;
+
+  --c-button-secondary-bg: var(--c-white);
   --c-button-secondary-color: var(--c-accent-primary);
+  --o-button-secondary-bg: 0.5;
+  --o-button-secondary-bg--hover: 1;
 
   /* shadows */
   --s-title: none;

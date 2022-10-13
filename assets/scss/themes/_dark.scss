@@ -7,10 +7,14 @@
 
   /* bg */
   --c-bg-base: 8, 8, 19;
-  --c-bg-dim-1: 11, 11, 20;
-  --c-bg-dim-2: 20, 20, 25;
+  --c-bg-dim-1: 21, 21, 30;
+  --c-bg-dim-2: 32, 32, 40;
   
   --c-bg-card: var(--c-bg-dim-1);
+
+  --c-state-error: 255, 129, 143;
+
+  --c-overlay-bg: var(--c-black);
   
   /* elements */
   // separator
@@ -22,8 +26,13 @@
   // button
   --c-button-primary-bg: var(--c-accent-primary);
   --c-button-primary-color: var(--c-white);
-  --c-button-secondary-bg: 25, 25, 31;
+  --o-button-primary-bg: 0.1;
+  --o-button-primary-bg--hover: 0.2;
+
+  --c-button-secondary-bg: var(--c-black);
   --c-button-secondary-color: var(--c-white);
+  --o-button-secondary-bg: 0.5;
+  --o-button-secondary-bg--hover: 1;
 
   /* shadows */
   --s-title: none;

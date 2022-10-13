@@ -1,5 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 const addHeaders = require('./tailwind/headers')
+const addLayouts = require('./tailwind/layouts')
 
 function c(color, opacityValue) {
   return opacityValue === undefined
@@ -78,10 +79,14 @@ module.exports = {
     colors: {
       black: co('--c-black'),
       white: co('--c-white'),
+      state: {
+        error: co('--c-state-error'),
+      },
       accent: {
         primary: co('--c-accent-primary'),
         secondary: co('--c-accent-secondary'),
       },
+      text: textColors,
     },
     fontFamily: {
       header: ['Mulish', ...sansSerif],
@@ -104,6 +109,7 @@ module.exports = {
     backgroundColor: theme => ({
       ...theme('colors'),
       text: textColors,
+      overlay: co('--c-overlay-bg'),
       base: co('--c-bg-base'),
       card: co('--c-bg-card'),
       dim: fill(2, i => co(`--c-bg-dim-${i}`)),
@@ -125,13 +131,14 @@ module.exports = {
       sm: '0.125rem',
       DEFAULT: '0.25rem',
       lg: '0.5rem',
-      xl: '0.75rem',
+      xl: '1rem',
       full: '9999px',
     },
     scale: {
       0: '0',
       50: '0.5',
       click: '0.975',
+      zoom: '1.1',
       normal: '1',
     },
     fill: theme => ({
@@ -150,7 +157,11 @@ module.exports = {
     },
     backgroundOpacity: theme => ({
       ...theme('opacity'),
-      modal: 'var(--o-modal-overlay)',
+      'modal': 'var(--o-modal-overlay)',
+      'button-primary': 'var(--o-button-primary-bg)',
+      'button-primary-hover': 'var(--o-button-primary-bg--hover)',
+      'button-secondary': 'var(--o-button-secondary-bg)',
+      'button-secondary-hover': 'var(--o-button-secondary-bg--hover)',
     }),
     dropShadow: {
       title: 'var(--s-title)',
@@ -177,13 +188,61 @@ module.exports = {
         'logo-lg': '3rem',
         'logo-xl': '3.75rem',
       },
+      backdropBlur: {
+        xs: '2px',
+      },
+      boxShadow: {
+        accent: '0 0 1rem -0.5rem rgb(var(--c-accent-secondary))',
+      },
     },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
     plugin(addHeaders),
-    ({ addComponents, theme }) => {
+    plugin(addLayouts),
+    ({ addComponents, addUtilities, theme }) => {
+      addUtilities({
+        '.transition-nobg-fast': {
+          transition: `all ${theme('transitionDuration.fast')}, background 0s`,
+        },
+        '.transition-nobg-normal': {
+          transition: `all ${theme('transitionDuration.normal')}, background 0s`,
+        },
+        '.shadow-separator': {
+          boxShadow: `0 0 0 1px ${theme('borderColor.separator.DEFAULT')}`,
+        },
+        '.shadow-separator-muted': {
+          boxShadow: `0 0 0 1px ${theme('borderColor.separator.muted')}`,
+        },
+        '.shadow-separator-vivid': {
+          boxShadow: `0 0 0 1px ${theme('borderColor.separator.vivid')}`,
+        },
+        '.bordered': {
+          'position': 'relative',
+          '&::before': {
+            position: 'absolute',
+            inset: 0,
+            border: `1px solid ${theme('borderColor.text.dim.2')}`,
+          },
+        },
+        '.transition-hover': {
+          'transitionDuration': theme('transitionDuration.normal'),
+          '&:hover': {
+            transitionDuration: theme('transitionDuration.fast'),
+          },
+        },
+        '.width-dialog': {
+          width: '25rem',
+        },
+        '.modal-container': {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+        },
+      })
       addComponents({
         '.link-primary': {
           'cursor': 'pointer',
@@ -191,8 +250,8 @@ module.exports = {
           'fontWeight': theme('fontWeight.medium'),
           'transitionDuration': theme('transitionDuration.normal'),
           '&:hover': {
-            color: c('--c-link-primary-vivid'),
             transitionDuration: theme('transitionDuration.fast'),
+            color: c('--c-link-primary-vivid'),
           },
         },
       })

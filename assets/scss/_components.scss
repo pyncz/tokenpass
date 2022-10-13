@@ -6,35 +6,57 @@
   .tw-form-group {
     @apply tw-flex tw-gap-y-2 tw-gap-x-3;
   }
+  .tw-form-error {
+    @apply tw-text-xs tw-text-state-error tw-px-0.5;
+  }
 
   .tw-article {
     @apply tw-m-auto;
     max-width: 40rem;
   }
   .tw-section {
-    @apply tw-py-8;
+    @apply tw-py-12;
     @screen md {
       @apply tw-py-24;
     }
   }
 
+  // Dialog
+  .tw-dialog {
+    @apply tw-pt-8 tw-pb-12 tw-px-6 tw-rounded-xl tw-bg-card;
+    box-shadow: 0 0 2rem -1.75rem rgb(var(--c-color-base));
+    @screen sm {
+      @apply tw-py-5 tw-pb-7 tw-rounded-lg;
+    }
+  }
+  
+  .tw-input {
+    @apply tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-bg-card;
+    @apply tw-h-9 tw-transition-hover tw-border tw-border-solid tw-border-separator hover:tw-border-separator-vivid focus:tw-border-accent-primary;
+    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-20 focus:tw-shadow-accent;
+    @apply disabled:tw-text-dim-2 disabled:tw-bg-opacity-20 disabled:tw-placeholder-opacity-muted disabled:tw-border-separator-muted;
+  }
+
   // Buttons
   .tw-button {
-    @apply tw-bg-opacity-10 tw-relative tw-cursor-pointer tw-flex-center tw-inline-flex tw-duration-normal tw-font-medium;
+    @apply tw-h-9 tw-bordered tw-bg-opacity-10 tw-cursor-pointer tw-flex-center tw-inline-flex tw-transition-hover tw-font-medium;
     @apply tw-py-2 tw-px-3 tw-gap-1 tw-rounded;
-    @apply before:tw-absolute before:tw-inset-0 before:tw-border before:tw-border-solid before:tw-border-text-dim-1 before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
-    @apply hover:tw-bg-opacity-20 hover:tw-duration-fast hover:before:tw-opacity-soft;
+    @apply before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
+    @apply hover:tw-bg-opacity-20 hover:before:tw-opacity-soft;
+    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-shadow-accent;
     @apply active:tw-scale-click;
     &::before {
-      mask-image: linear-gradient(to right, rgba(white, 0.2), rgba(white, 0.5), rgba(white, 0.2));
+      mask-image: linear-gradient(to right, rgba(white, 0.4), rgba(white, 1), rgba(white, 0.4));
     }
   }
   .tw-button-primary {
     @apply tw-bg-button-primary tw-text-button-primary;
-    @apply tw-button;
+    @apply tw-button before:tw-border-accent-primary;
+    @apply tw-bg-opacity-button-primary hover:tw-bg-opacity-button-primary-hover;
   }
   .tw-button-secondary {
     @apply tw-bg-button-secondary tw-text-button-secondary;
     @apply tw-button;
+    @apply tw-bg-opacity-button-secondary hover:tw-bg-opacity-button-secondary-hover;
   }
 }

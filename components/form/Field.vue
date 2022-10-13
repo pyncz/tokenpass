@@ -1,10 +1,10 @@
 <template>
-  <div class="tw-space-y-2">
+  <div class="field">
     <vee-field v-slot="fieldScope" v-bind="$attrs" :name="props.name">
       <slot v-bind="fieldScope" />
     </vee-field>
     <vee-error-message v-slot="{ message }" :name="props.name">
-      <p class="tw-text-sm">
+      <p class="tw-form-error">
         {{ message }}
       </p>
     </vee-error-message>
@@ -24,3 +24,12 @@ export default {
   inheritAttrs: false,
 }
 </script>
+
+<style lang="scss">
+  .field {
+    @apply tw-space-y-1.5;
+    input {
+      @apply tw-w-full;
+    }
+  }
+</style>

@@ -11,4 +11,9 @@
     width: 100%;
     borderColor: theme('borderColor.separator.DEFAULT');
   }
+
+  input,
+  button {
+    outline: none !important;
+  }
 }
