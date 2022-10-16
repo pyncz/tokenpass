@@ -8,35 +8,65 @@
   /* bg */
   --c-bg-base: 249, 249, 255;
   --c-bg-dim-1: 240, 245, 252;
-  --c-bg-dim-2: 231, 241, 249;
+  --c-bg-dim-2: 230, 235, 241;
 
   --c-bg-card: var(--c-white);
 
   --c-state-error: 255, 62, 80;
 
   --c-overlay-bg: var(--c-color-dim-1);
-  
+
   /* elements */
   // separator
-  --c-separator: 222, 230, 237;
-  --c-separator-vivid: 200, 210, 212;
-  --c-separator-muted: 236, 240, 246;
+  --c-separator: 210, 220, 222;
+  --c-separator-vivid: 190, 200, 197;
+  --c-separator-muted: 232, 240, 247;
+  
   // link
   --c-link-primary: var(--c-accent-primary);
+  
+  // input
+  --c-input: var(--c-bg-card);
+  --c-input-disabled: var(--c-bg-card);
+  --o-input-bg: 1;
+  --o-input-bg-disabled: 0.2;
+  --c-input-text: var(--c-color-base);
+  --c-input-text-disabled: var(--c-color-dim-2);
+
   // button
+  // - primary
   --c-button-primary-bg: var(--c-accent-primary);
-  --c-button-primary-color: var(--c-accent-primary);
   --o-button-primary-bg: 0.1;
   --o-button-primary-bg--hover: 0.2;
-
+  --c-button-primary-color: var(--c-accent-primary);
+  // - secondary
   --c-button-secondary-bg: var(--c-white);
-  --c-button-secondary-color: var(--c-accent-primary);
   --o-button-secondary-bg: 0.5;
   --o-button-secondary-bg--hover: 1;
+  --c-button-secondary-color: var(--c-accent-primary);
+
+  // switcher
+  // - container
+  --c-switcher-off: var(--c-bg-dim-2);
+  --c-switcher-off-disabled: var(--c-bg-card);
+  --c-switcher-on: var(--c-accent-primary);
+  --c-switcher-on-disabled: var(--c-bg-card);
+  --o-switcher-bg: 1;
+  --o-switcher-bg-hover: 1;
+  --o-switcher-bg-disabled: 0.2;
+  // - indicator
+  --c-switcher-indicator-off: var(--c-white);
+  --c-switcher-indicator-off-disabled: var(--c-color-dim-3);
+  --c-switcher-indicator-on: var(--c-white);
+  --c-switcher-indicator-on-disabled: var(--c-color-dim-3);
+  --o-switcher-indicator-bg: 1;
+  --o-switcher-indicator-bg-hover: 1;
+  --o-switcher-indicator-bg-disabled: 1;
 
   /* shadows */
   --s-title: none;
 
   /* opacities */
   --o-modal-overlay: 0.5;
+  --o-outline: 1;
 }

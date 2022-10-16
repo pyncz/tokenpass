@@ -18,25 +18,55 @@
   
   /* elements */
   // separator
-  --c-separator: 35, 35, 38;
-  --c-separator-vivid: 45, 45, 49;
-  --c-separator-muted: 28, 28, 30;
+  --c-separator: 55, 55, 59;
+  --c-separator-vivid: 65, 65, 70;
+  --c-separator-muted: 45, 45, 48;
+
   // link
   --c-link-primary: var(--c-accent-secondary);
-  // button
-  --c-button-primary-bg: var(--c-accent-primary);
-  --c-button-primary-color: var(--c-white);
-  --o-button-primary-bg: 0.1;
-  --o-button-primary-bg--hover: 0.2;
+  
+  // input
+  --c-input: var(--c-bg-card);
+  --c-input-disabled: var(--c-bg-card);
+  --o-input-bg: 1;
+  --o-input-bg-disabled: 0.2;
+  --c-input-text: var(--c-color-base);
+  --c-input-text-disabled: var(--c-color-dim-2);
 
+  // button
+  // - primary
+  --c-button-primary-bg: var(--c-accent-primary);
+  --o-button-primary-bg: 0.1;
+  --o-button-primary-bg-hover: 0.2;
+  --c-button-primary-color: var(--c-white);
+  // - secondary
   --c-button-secondary-bg: var(--c-black);
-  --c-button-secondary-color: var(--c-white);
   --o-button-secondary-bg: 0.5;
-  --o-button-secondary-bg--hover: 1;
+  --o-button-secondary-bg-hover: 1;
+  --c-button-secondary-color: var(--c-white);
+
+  // switcher
+  // - container
+  --c-switcher-off: var(--c-bg-card);
+  --c-switcher-off-disabled: var(--c-bg-card);
+  --c-switcher-on: var(--c-bg-card);
+  --c-switcher-on-disabled: var(--c-bg-card);
+  --o-switcher-bg: 1;
+  --o-switcher-bg-hover: 1;
+  --o-switcher-bg-disabled: 0.2;
+  // - indicator
+  --c-switcher-indicator-off: var(--c-color-dim-1);
+  --c-switcher-indicator-off-disabled: var(--c-color-dim-3);
+  --c-switcher-indicator-on: var(--c-color-base);
+  --c-switcher-indicator-on-disabled: var(--c-color-dim-2);
+  --o-switcher-indicator-bg: 0.9;
+  --o-switcher-indicator-bg-hover: 1;
+  --o-switcher-indicator-bg-disabled: 1;
 
   /* shadows */
   --s-title: none;
 
   /* opacities */
   --o-modal-overlay: 0.75;
+  --o-outline: 0.3;
 }

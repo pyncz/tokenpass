@@ -24,6 +24,12 @@ locale: Localization
 actions:
   setup: Setup
 
+fields:
+  chainId: Chain ID
+  collectionAddress: Collection’s contract address
+  tokenId: Token ID
+  amount: Amount
+
 # by pages
 setup:
   title: Setup address
@@ -33,7 +39,7 @@ setup:
       label: Chain
       placeholder: Select chain ID
     address:
-      label: Collection’s contract address
+      label: '@:fields.collectionAddress'
       placeholder: 0xABC...123
     tokenId:
       label: Look for a specific token

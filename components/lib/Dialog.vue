@@ -15,7 +15,12 @@
         <slot v-bind="{ close, open }" />
       </div>
 
-      <slot name="controls" v-bind="{ close, open }" />
+      <div class="tw-flex tw-flex-col tw-gap-3">
+        <button class="close-control tw-button-secondary" @click="close()">
+          Close
+        </button>
+        <slot name="controls" v-bind="{ close, open }" />
+      </div>
     </dialog-panel>
   </lib-modal>
 </template>
@@ -45,11 +50,15 @@ const props = defineProps<{
     }
 
     .close-button {
-      @apply tw-absolute tw-flex tw-right-3 tw-top-3 tw-text-dim-2 tw-transition-hover tw-opacity-soft hover:tw-opacity-full;
+      @apply tw-absolute tw-hidden sm:tw-flex tw-right-3 tw-top-3 tw-text-dim-2 tw-transition-hover tw-opacity-soft hover:tw-opacity-full;
       @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-2 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
       &:hover {
         @apply before:tw-scale-zoom;
       }
+    }
+
+    .close-control {
+      @apply tw-w-full sm:tw-hidden;
     }
   }
 </style>

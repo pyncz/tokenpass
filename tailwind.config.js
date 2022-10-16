@@ -100,26 +100,21 @@ module.exports = {
     // skins
     textColor: theme => ({
       ...theme('colors'),
+      custom: co('--text-color'),
       ...textColors,
-      button: {
-        primary: co('--c-button-primary-color'),
-        secondary: co('--c-button-secondary-color'),
-      },
     }),
     backgroundColor: theme => ({
       ...theme('colors'),
+      custom: co('--bg-color'),
       text: textColors,
       overlay: co('--c-overlay-bg'),
       base: co('--c-bg-base'),
       card: co('--c-bg-card'),
       dim: fill(2, i => co(`--c-bg-dim-${i}`)),
-      button: {
-        primary: co('--c-button-primary-bg'),
-        secondary: co('--c-button-secondary-bg'),
-      },
     }),
     borderColor: theme => ({
       ...theme('colors'),
+      custom: co('--border-color'),
       text: textColors,
       separator: {
         DEFAULT: co('--c-separator'),
@@ -154,14 +149,20 @@ module.exports = {
       muted: '0.5',
       soft: '0.8',
       full: '1',
+      outline: 'var(--o-outline)',
     },
+    textOpacity: theme => ({
+      ...theme('opacity'),
+      custom: 'var(--text-opacity)',
+    }),
+    borderOpacity: theme => ({
+      ...theme('opacity'),
+      custom: 'var(--border-opacity)',
+    }),
     backgroundOpacity: theme => ({
       ...theme('opacity'),
-      'modal': 'var(--o-modal-overlay)',
-      'button-primary': 'var(--o-button-primary-bg)',
-      'button-primary-hover': 'var(--o-button-primary-bg--hover)',
-      'button-secondary': 'var(--o-button-secondary-bg)',
-      'button-secondary-hover': 'var(--o-button-secondary-bg--hover)',
+      custom: 'var(--bg-opacity)',
+      modal: 'var(--o-modal-overlay)',
     }),
     dropShadow: {
       title: 'var(--s-title)',
@@ -181,7 +182,11 @@ module.exports = {
         '2xs': '320px',
         'xs': '400px',
       },
+      spacing: {
+        'switcher-offset': '0.25rem',
+      },
       height: {
+        'switcher-indicator': '1rem',
         'logo-xs': '1.25rem',
         'logo-sm': '2rem',
         'logo-md': '2.5rem',
@@ -192,7 +197,7 @@ module.exports = {
         xs: '2px',
       },
       boxShadow: {
-        accent: '0 0 1rem -0.5rem rgb(var(--c-accent-secondary))',
+        accent: '0 0 1rem -0.5rem rgb(var(--c-accent-primary))',
       },
     },
   },
@@ -201,7 +206,17 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     plugin(addHeaders),
     plugin(addLayouts),
-    ({ addComponents, addUtilities, theme }) => {
+    ({ addUtilities, matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          circle: value => ({
+            height: value,
+            width: value,
+            borderRadius: theme('borderRadius.full'),
+          }),
+        },
+        { values: theme('height') },
+      )
       addUtilities({
         '.transition-nobg-fast': {
           transition: `all ${theme('transitionDuration.fast')}, background 0s`,
@@ -241,18 +256,6 @@ module.exports = {
           left: 0,
           right: 0,
           bottom: 0,
-        },
-      })
-      addComponents({
-        '.link-primary': {
-          'cursor': 'pointer',
-          'color': c('--c-link-primary'),
-          'fontWeight': theme('fontWeight.medium'),
-          'transitionDuration': theme('transitionDuration.normal'),
-          '&:hover': {
-            transitionDuration: theme('transitionDuration.fast'),
-            color: c('--c-link-primary-vivid'),
-          },
         },
       })
     },

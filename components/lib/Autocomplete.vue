@@ -1,72 +1,61 @@
 <template>
-  <div class="fixed top-16 w-72">
-    <combobox v-model="value">
-      <div class="relative mt-1">
-        <div
-          class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+  <combobox v-model="value">
+    <div class="tw-relative tw-mt-1">
+      {{ value }}
+      <div
+        class="tw-relative tw-w-full tw-cursor-default tw-overflow-hidden tw-rounded-lg tw-bg-white tw-text-left tw-shadow-md focus:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-white focus-visible:tw-ring-opacity-75 focus-visible:tw-ring-offset-2 focus-visible:tw-ring-offset-teal-300 sm:tw-text-sm"
+      >
+        <combobox-input
+          v-model="query"
+          class="tw-input tw-w-full tw-py-2 tw-pl-3 tw-pr-10 tw-text-sm tw-leading-5 tw-text-gray-900 focus:tw-ring-0"
+        />
+        <combobox-button
+          class="tw-absolute tw-z-1 tw-inset-y-0 tw-right-0 tw-flex tw-items-center tw-pr-2"
         >
-          <combobox-input
-            class="tw-input w-full py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-            :display-value="(option) => option ? (option as SelectOption).label ?? (option as SelectOption).value : ''"
-            @change="query = $event.target.value"
-          />
-          <combobox-button
-            class="absolute inset-y-0 right-0 flex items-center pr-2"
-          >
-            <chevron-up-down-icon
-              class="h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
-          </combobox-button>
-        </div>
-        <transition-root
-          leave="transition ease-in duration-100"
-          leave-from="opacity-100"
-          leave-to="opacity-0"
-          @after-leave="query = ''"
-        >
-          <combobox-options
-            class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-          >
-            <!-- if query is valid? -->
-            <combobox-option :value="queryOption">
-              Use "{{ query }}"
-            </combobox-option>
-
-            <combobox-option
-              v-for="option of filteredOptions"
-              :key="option.value"
-              v-slot="{ selected, active }"
-              as="template"
-              :value="option"
-            >
-              <li
-                class="relative cursor-default select-none py-2 pl-10 pr-4"
-                :class="{
-                  'bg-teal-600 text-white': active,
-                  'text-gray-900': !active,
-                }"
-              >
-                <span
-                  class="block truncate"
-                  :class="selected ? 'font-medium' : 'font-normal'"
-                >
-                  {{ option.label ?? option.value }}
-                </span>
-                <span
-                  v-if="selected"
-                  class="absolute inset-y-0 left-0 flex items-center pl-3"
-                  :class="active ? 'text-white' : 'text-teal-600'"
-                >
-                  yea
-                </span>
-              </li>
-            </combobox-option>
-          </combobox-options>
-        </transition-root>
+          ...
+        </combobox-button>
       </div>
-    </combobox>
-  </div>
+
+      <combobox-options
+        class="tw-mt-1 tw-max-h-60 tw-w-full tw-overflow-auto tw-rounded-md tw-bg-white tw-py-1 tw-text-base tw-shadow-lg tw-ring-1 tw-ring-black tw-ring-opacity-5 focus:tw-outline-none sm:tw-text-sm"
+      >
+        <!-- if query is valid? -->
+        <combobox-option :value="query">
+          Use "{{ query }}"
+        </combobox-option>
+
+        <combobox-option
+          v-for="option of filteredOptions"
+          :key="option.value"
+          v-slot="{ selected, active }"
+          as="template"
+          :value="option.value"
+        >
+          <li
+            class="tw-relative tw-cursor-default tw-select-none tw-py-2 tw-pl-10 tw-pr-4"
+            :class="{
+              'tw-bg-teal-600 tw-text-white': active,
+              'tw-text-gray-900': !active,
+            }"
+          >
+            <span
+              class="tw-block tw-truncate"
+              :class="selected ? 'tw-font-medium' : 'tw-font-normal'"
+            >
+              {{ option.label ?? option.value }}
+            </span>
+            <span
+              v-if="selected"
+              class="tw-absolute tw-inset-y-0 tw-left-0 tw-flex tw-items-center tw-pl-3"
+              :class="active ? 'tw-text-white' : 'tw-text-teal-600'"
+            >
+              yea
+            </span>
+          </li>
+        </combobox-option>
+      </combobox-options>
+    </div>
+  </combobox>
 </template>
 
 <script setup lang="ts">
@@ -76,9 +65,8 @@ import {
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-  TransitionRoot,
 } from '@headlessui/vue'
-import { SelectOption } from '../../models'
+import type { SelectOption } from '../../models'
 import { squeeze } from '../../utils'
 
 interface Props {
@@ -91,12 +79,8 @@ const props = withDefaults(defineProps<Props>(), {
   lookup: () => ['value', 'label'],
 })
 
-const value = ref(props.options[0])
+const value = ref(props.options[0].value)
 const query = ref('')
-
-const queryOption = computed<SelectOption>(() => ({
-  value: query.value,
-}))
 
 const filteredOptions = computed(() =>
   query.value === ''

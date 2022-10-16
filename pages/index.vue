@@ -14,6 +14,9 @@
         </button>
       </template>
     </lib-dialog>
+
+    <qr-code value="don't be angry" />
+
     <button class="tw-button" @click="openDialog = true">
       Open
     </button>
@@ -21,5 +24,7 @@
 </template>
 
 <script setup lang="ts">
+import QrCode from 'qrcode.vue'
+
 const openDialog = ref(false)
 </script>

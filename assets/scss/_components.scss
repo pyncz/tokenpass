@@ -3,11 +3,22 @@
     @apply tw-m-auto;
     max-width: 24rem;
   }
-  .tw-form-group {
-    @apply tw-flex tw-gap-y-2 tw-gap-x-3;
-  }
   .tw-form-error {
     @apply tw-text-xs tw-text-state-error tw-px-0.5;
+  }
+  .tw-label {
+    @apply tw-text-xs tw-text-dim-1 tw-font-medium tw-px-0.5;
+  }
+  .tw-field {
+    @apply tw-space-y-1.5;
+    .field-meta {
+      @apply tw-duration-slow tw-text-opacity-muted;
+    }
+    &:focus-within {
+      .field-meta {
+        @apply tw-text-opacity-full;
+      }
+    }
   }
 
   .tw-article {
@@ -29,34 +40,114 @@
       @apply tw-py-5 tw-pb-7 tw-rounded-lg;
     }
   }
+
+  .tw-input-border {
+    @apply tw-border tw-border-solid tw-border-separator-muted hover:tw-border-separator;
+    @apply focus:tw-border-separator-vivid;
+    @apply disabled:tw-border-separator-muted;
+  }
   
   .tw-input {
-    @apply tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-bg-card;
-    @apply tw-h-9 tw-transition-hover tw-border tw-border-solid tw-border-separator hover:tw-border-separator-vivid focus:tw-border-accent-primary;
-    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-20 focus:tw-shadow-accent;
-    @apply disabled:tw-text-dim-2 disabled:tw-bg-opacity-20 disabled:tw-placeholder-opacity-muted disabled:tw-border-separator-muted;
+    @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-9 tw-transition-hover;
+    @apply tw-bg-custom tw-bg-opacity-custom tw-text-custom;
+    @apply focus:tw-shadow-accent;
+    @apply disabled:tw-placeholder-opacity-muted;
+    --bg-color: var(--c-input);
+    --bg-opacity: var(--o-input-bg);
+    --text-color: var(--c-input-text);
+    &:disabled {
+      --bg-color: var(--c-input-disabled);
+      --bg-opacity: var(--o-input-bg-disabled);
+      --text-color: var(--c-input-text-disabled);
+    }
+  }
+
+  .tw-switcher {
+    @apply tw-input-border tw-relative tw-inline-flex tw-rounded-full tw-transition-hover;
+    @apply tw-bg-custom tw-bg-opacity-custom;
+    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
+    --switcher-width: 2.5rem;
+    width: var(--switcher-width);
+    height: calc(theme('height.switcher-indicator') + 2 * theme('spacing.switcher-offset') + 2px);
+    // Enabled
+    --bg-color: var(--c-switcher-off);
+    --bg-opacity: var(--o-switcher-bg);
+    .indicator {
+      @apply tw-circle-switcher-indicator tw-inline-block tw-absolute tw-top-switcher-offset tw-left-switcher-offset tw-duration-fast;
+      @apply tw-bg-custom tw-bg-opacity-custom;
+      --bg-color: var(--c-switcher-indicator-off);
+      --bg-opacity: var(--o-switcher-indicator-bg);
+    }
+    &.enabled {
+      --bg-color: var(--c-switcher-on);
+      .indicator {
+        left: calc(var(--switcher-width) - theme('height.switcher-indicator') - theme('spacing.switcher-offset') - 2px);
+        --bg-color: var(--c-switcher-indicator-on);
+        --bg-opacity: var(--o-switcher-indicator-bg);
+      }
+    }
+    &:hover {
+      --bg-opacity: var(--o-switcher-bg-hover);
+      .indicator {
+        --bg-opacity: var(--o-switcher-indicator-bg-hover);
+      }
+    }
+    // Disabled
+    &:disabled {
+      --bg-color: var(--c-switcher-off-disabled);
+      --bg-opacity: var(--o-switcher-bg-disabled);
+      .indicator {
+        --bg-color: var(--c-switcher-indicator-off-disabled);
+        --bg-opacity: var(--o-switcher-indicator-bg-disabled);
+      }
+      &.enabled {
+        --bg-color: var(--c-switcher-on-disabled);
+        .indicator {
+          --bg-color: var(--c-switcher-indicator-on-disabled);
+          --bg-opacity: var(--o-switcher-indicator-bg-disabled);
+        }
+      }
+    }
   }
 
   // Buttons
   .tw-button {
-    @apply tw-h-9 tw-bordered tw-bg-opacity-10 tw-cursor-pointer tw-flex-center tw-inline-flex tw-transition-hover tw-font-medium;
+    @apply tw-text-custom tw-bg-custom tw-bg-opacity-custom;
+    @apply tw-text-sm tw-h-9 tw-bordered tw-cursor-pointer tw-flex-center tw-inline-flex tw-transition-hover tw-font-medium;
     @apply tw-py-2 tw-px-3 tw-gap-1 tw-rounded;
     @apply before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
-    @apply hover:tw-bg-opacity-20 hover:before:tw-opacity-soft;
-    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-shadow-accent;
+    @apply hover:before:tw-opacity-soft;
+    @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
     @apply active:tw-scale-click;
+    --text-color: var(--c-color-base);
     &::before {
       mask-image: linear-gradient(to right, rgba(white, 0.4), rgba(white, 1), rgba(white, 0.4));
     }
   }
   .tw-button-primary {
-    @apply tw-bg-button-primary tw-text-button-primary;
     @apply tw-button before:tw-border-accent-primary;
-    @apply tw-bg-opacity-button-primary hover:tw-bg-opacity-button-primary-hover;
+    --text-color: var(--c-button-primary-color);
+    --bg-color: var(--c-button-primary-bg);
+    --bg-opacity: var(--o-button-primary-bg);
+    &:hover {
+      --bg-opacity: var(--o-button-primary-bg-hover);
+    }
   }
   .tw-button-secondary {
-    @apply tw-bg-button-secondary tw-text-button-secondary;
     @apply tw-button;
-    @apply tw-bg-opacity-button-secondary hover:tw-bg-opacity-button-secondary-hover;
+    --text-color: var(--c-button-secondary-color);
+    --bg-color: var(--c-button-secondary-bg);
+    --bg-opacity: var(--o-button-secondary-bg);
+    &:hover {
+      --bg-opacity: var(--o-button-secondary-bg-hover);
+    }
+  }
+
+  .tw-link-primary {
+    @apply tw-cursor-pointer tw-text-custom tw-font-medium tw-transition-hover;
+    --text-color: var(--c-link-primary);
+    &:hover {
+      --text-color: var(--c-link-primary-vivid);
+    }
   }
 }
