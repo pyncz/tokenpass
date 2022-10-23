@@ -112,20 +112,23 @@
 
   // Buttons
   .tw-button {
+    @apply tw-cursor-pointer tw-gap-1 tw-rounded tw-font-medium tw-flex-center tw-inline-flex tw-transition-hover;
+    @apply active:tw-scale-click;
+  }
+  .tw-action {
+    @apply tw-button;
     @apply tw-text-custom tw-bg-custom tw-bg-opacity-custom;
-    @apply tw-text-sm tw-h-9 tw-bordered tw-cursor-pointer tw-flex-center tw-inline-flex tw-transition-hover tw-font-medium;
-    @apply tw-py-2 tw-px-3 tw-gap-1 tw-rounded;
+    @apply tw-text-sm tw-h-9 tw-bordered tw-py-2 tw-px-3;
     @apply before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
     @apply hover:before:tw-opacity-soft;
     @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
-    @apply active:tw-scale-click;
     --text-color: var(--c-color-base);
     &::before {
       mask-image: linear-gradient(to right, rgba(white, 0.4), rgba(white, 1), rgba(white, 0.4));
     }
   }
   .tw-button-primary {
-    @apply tw-button before:tw-border-accent-primary;
+    @apply tw-action before:tw-border-accent-primary;
     --text-color: var(--c-button-primary-color);
     --bg-color: var(--c-button-primary-bg);
     --bg-opacity: var(--o-button-primary-bg);
@@ -134,7 +137,7 @@
     }
   }
   .tw-button-secondary {
-    @apply tw-button;
+    @apply tw-action;
     --text-color: var(--c-button-secondary-color);
     --bg-color: var(--c-button-secondary-bg);
     --bg-opacity: var(--o-button-secondary-bg);

@@ -1,5 +1,5 @@
 <template>
-  <nuxt-layout class="tw-bg-base">
+  <nuxt-layout>
     <nuxt-loading-indicator />
 
     <nuxt-page v-if="isOnline" />

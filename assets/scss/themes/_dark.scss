@@ -63,6 +63,19 @@
   --o-switcher-indicator-bg-hover: 1;
   --o-switcher-indicator-bg-disabled: 1;
 
+  // radio
+  --c-radio-bg: var(--c-bg-base);
+  --o-radio-bg: 0;
+  // - option
+  --c-radio-option-text: var(--c-color-dim-2);
+  --c-radio-option-text-hover: var(--c-color-dim-1);
+  --c-radio-option-bg: var(--c-bg-card);
+  --o-radio-option-bg: 0;
+  --c-radio-option-checked-text: var(--c-color-base);
+  --c-radio-option-checked-text-hover: var(--c-color-base);
+  --c-radio-option-checked-bg: var(--c-bg-card);
+  --o-radio-option-checked-bg: 1;
+
   /* shadows */
   --s-title: none;
 

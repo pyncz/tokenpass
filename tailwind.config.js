@@ -184,6 +184,8 @@ module.exports = {
       },
       spacing: {
         'switcher-offset': '0.25rem',
+        'form': '1.5rem',
+        'form-fields': '1rem',
       },
       height: {
         'switcher-indicator': '1rem',
@@ -193,8 +195,15 @@ module.exports = {
         'logo-lg': '3rem',
         'logo-xl': '3.75rem',
       },
+      minWidth: theme => ({
+        radio: theme('space.20'),
+      }),
       backdropBlur: {
         xs: '2px',
+      },
+      fontSize: {
+        '1/2': '0.5em',
+        '3/4': '0.75em',
       },
       boxShadow: {
         accent: '0 0 1rem -0.5rem rgb(var(--c-accent-primary))',

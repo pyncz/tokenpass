@@ -37,12 +37,12 @@
   // - primary
   --c-button-primary-bg: var(--c-accent-primary);
   --o-button-primary-bg: 0.1;
-  --o-button-primary-bg--hover: 0.2;
+  --o-button-primary-bg-hover: 0.2;
   --c-button-primary-color: var(--c-accent-primary);
   // - secondary
   --c-button-secondary-bg: var(--c-white);
   --o-button-secondary-bg: 0.5;
-  --o-button-secondary-bg--hover: 1;
+  --o-button-secondary-bg-hover: 1;
   --c-button-secondary-color: var(--c-accent-primary);
 
   // switcher
@@ -62,6 +62,19 @@
   --o-switcher-indicator-bg: 1;
   --o-switcher-indicator-bg-hover: 1;
   --o-switcher-indicator-bg-disabled: 1;
+
+  // radio
+  --c-radio-bg: var(--c-white);
+  --o-radio-bg: 1;
+  // - option
+  --c-radio-option-text: var(--c-color-dim-2);
+  --c-radio-option-text-hover: var(--c-color-dim-1);
+  --c-radio-option-bg: var(--c-accent-primary);
+  --o-radio-option-bg: 0;
+  --c-radio-option-checked-text: var(--c-accent-primary);
+  --c-radio-option-checked-text-hover: var(--c-accent-primary);
+  --c-radio-option-checked-bg: var(--c-accent-primary);
+  --o-radio-option-checked-bg: 0.1;
 
   /* shadows */
   --s-title: none;

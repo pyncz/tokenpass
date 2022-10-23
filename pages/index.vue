@@ -9,7 +9,7 @@
       Content
 
       <template #controls>
-        <button class="tw-button tw-button-primary">
+        <button class="tw-button-primary">
           Open
         </button>
       </template>

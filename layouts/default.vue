@@ -3,6 +3,8 @@
     <a class="main-link" role="button" @click="redirectOrRefresh({ name: 'index' })">
       <logo-main />
     </a>
+    <switch-locale />
+    <switch-theme />
     <slot />
   </div>
 </template>

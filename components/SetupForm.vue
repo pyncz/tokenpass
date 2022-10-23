@@ -1,6 +1,6 @@
 <template>
-  <vee-form @submit="submit">
-    <div class="tw-space-y-4">
+  <vee-form class="tw-space-y-form" @submit="submit">
+    <div class="tw-space-y-form-fields">
       <form-field
         v-slot="{ field }"
         name="chainId"
@@ -28,47 +28,51 @@
         />
       </form-field>
 
-      <form-field
-        v-slot="{ field }"
-        name="tokenId"
-        :rules="setupTokenId ? { required: setupTokenId, integer: true, min_value: 1 } : undefined"
-        :label="$t('setup.fields.tokenId.label')"
-        :visible-name="$t('fields.tokenId')"
-      >
-        <div class="field-row">
-          <lib-switch v-model="setupTokenId" class="tw-mt-1" />
-          <lib-switch v-model="setupTokenId" disabled class="tw-mt-1" />
-          <lib-input
-            v-bind="field"
-            class="tw-flex-1"
-            :placeholder="$t('setup.fields.tokenId.placeholder')"
-            :disabled="!setupTokenId"
-          />
-        </div>
-      </form-field>
+      <lib-disclosure :message="$t('setup.disclosure')">
+        <div class="tw-space-y-4">
+          <form-field
+            v-slot="{ field }"
+            name="tokenId"
+            :rules="setupTokenId ? { required: setupTokenId, integer: true, min_value: 1 } : undefined"
+            :label="$t('setup.fields.tokenId.label')"
+            :visible-name="$t('fields.tokenId')"
+          >
+            <div class="field-row">
+              <lib-switch v-model="setupTokenId" class="tw-mt-1" />
+              <lib-input
+                v-bind="field"
+                class="tw-flex-1"
+                :placeholder="$t('setup.fields.tokenId.placeholder')"
+                :disabled="!setupTokenId"
+              />
+            </div>
+          </form-field>
 
-      <form-field
-        v-slot="{ field }"
-        name="amount"
-        :rules="setupAmount ? { required: setupAmount, integer: true, min_value: 1 } : undefined"
-        :label="$t('setup.fields.amount.label')"
-        :visible-name="$t('fields.amount')"
-      >
-        <div class="field-row">
-          <lib-switch v-model="setupAmount" class="tw-mt-1" />
-          <lib-input
-            v-bind="field"
-            class="tw-flex-1"
-            :placeholder="$t('setup.fields.amount.placeholder')"
-            :disabled="!setupAmount"
-          />
+          <form-field
+            v-slot="{ field }"
+            name="amount"
+            :rules="setupAmount ? { required: setupAmount, integer: true, min_value: 1 } : undefined"
+            :label="$t('setup.fields.amount.label')"
+            :visible-name="$t('fields.amount')"
+          >
+            <div class="field-row">
+              <lib-switch v-model="setupAmount" class="tw-mt-1" />
+              <lib-input
+                v-bind="field"
+                class="tw-flex-1"
+                :placeholder="$t('setup.fields.amount.placeholder')"
+                :disabled="!setupAmount"
+              />
+            </div>
+          </form-field>
         </div>
-      </form-field>
+      </lib-disclosure>
     </div>
-    <button class="tw-button tw-button-primary">
+
+    <button class="tw-button-primary tw-w-full">
       {{ $t('setup.submit') }}
     </button>
-    <button class="tw-button tw-button-secondary">
+    <button class="tw-button-secondary tw-w-full">
       {{ $t('setup.submit') }}
     </button>
   </vee-form>
