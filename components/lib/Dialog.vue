@@ -2,13 +2,13 @@
   <lib-modal v-slot="{ close, open }">
     <dialog-panel class="tw-dialog dialog">
       <button tabindex="-1" class="close-button" @click="close()">
-        <icon name="ion:close-outline" class="tw-z-1" />
+        <icon name="close" class="tw-z-1" />
       </button>
-      <dialog-title v-if="props.title">
-        {{ props.title }}
+      <dialog-title v-if="title">
+        {{ title }}
       </dialog-title>
-      <dialog-description v-if="props.description">
-        {{ props.description }}
+      <dialog-description v-if="description">
+        {{ description }}
       </dialog-description>
 
       <div class="tw-pb-6 tw-flex-1">

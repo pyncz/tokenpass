@@ -1,26 +1,25 @@
 <template>
-  <div class="tw-space-8">
-    <h1>
-      {{ $t('setup.title') }}
-    </h1>
-    <setup-form />
+  <layout-checker :title="$t('setup.title')">
+    <div class="tw-form tw-space-8">
+      <setup-form />
 
-    <lib-dialog v-model:opened="openDialog" title="yo sup">
-      Content
+      <lib-dialog v-model:opened="openDialog" title="yo sup">
+        Content
 
-      <template #controls>
-        <button class="tw-button-primary">
-          Open
-        </button>
-      </template>
-    </lib-dialog>
+        <template #controls>
+          <button class="tw-button-primary">
+            Open
+          </button>
+        </template>
+      </lib-dialog>
 
-    <qr-code value="don't be angry" />
+      <qr-code value="don't be angry" />
 
-    <button class="tw-button" @click="openDialog = true">
-      Open
-    </button>
-  </div>
+      <button class="tw-button" @click="openDialog = true">
+        Open
+      </button>
+    </div>
+  </layout-checker>
 </template>
 
 <script setup lang="ts">

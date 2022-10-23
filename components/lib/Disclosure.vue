@@ -8,12 +8,12 @@
     <disclosure-button class="disclosure-toggle" :class="{ open }">
       <slot name="toggle" v-bind="{ open, close }">
         <div class="toggle-message">
-          {{ props.message }}
+          {{ message }}
         </div>
 
         <transition appear name="v-fade" mode="out-in">
           <i class="toggle-icon" :class="{ open }">
-            <icon name="ion:chevron-down-outline" />
+            <icon name="ion:chevron-down" />
           </i>
         </transition>
       </slot>

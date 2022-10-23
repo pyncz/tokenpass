@@ -1,14 +1,14 @@
 <template>
-  <div class="tw-field field" :class="props.class">
+  <div class="tw-field field" :class="classes">
     <vee-field
       v-slot="scope"
       v-bind="$attrs"
-      :label="props.visibleName ?? props.label"
-      :name="props.name"
+      :label="visibleName ?? label"
+      :name="name"
     >
       <div class="tw-flex">
-        <label v-if="props.label" :for="id" class="field-meta tw-label">
-          {{ props.label }}
+        <label v-if="label" :for="id" class="field-meta tw-label">
+          {{ label }}
         </label>
       </div>
       <slot
@@ -18,7 +18,7 @@
         }"
       />
     </vee-field>
-    <vee-error-message v-slot="{ message }" :name="props.name">
+    <vee-error-message v-slot="{ message }" :name="name">
       <p class="field-meta tw-form-error">
         {{ message }}
       </p>
@@ -36,6 +36,9 @@ const props = defineProps<{
   visibleName?: string
   class?: any
 }>()
+
+// move in separated ref not to use `props.class` (since just `class` is a reserved word)
+const classes = toRef(props, 'class')
 
 const id = uuid4()
 </script>

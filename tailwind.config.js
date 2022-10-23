@@ -123,6 +123,7 @@ module.exports = {
       },
     }),
     borderRadius: {
+      0: '0',
       sm: '0.125rem',
       DEFAULT: '0.25rem',
       lg: '0.5rem',
@@ -222,6 +223,10 @@ module.exports = {
             height: value,
             width: value,
             borderRadius: theme('borderRadius.full'),
+          }),
+          size: value => ({
+            height: value,
+            width: value,
           }),
         },
         { values: theme('height') },

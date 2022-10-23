@@ -2,8 +2,36 @@
   <lib-radio
     v-model="colorMode.preference"
     :options="themeOptions"
-    :label="t('colorMode')"
-  />
+    direction="x"
+    thin
+  >
+    <template #option="{ option, checked }">
+      <a
+        v-if="option.value === 'system'"
+        role="button"
+        class="tw-radio-option-thin"
+        :class="{ checked }"
+      >
+        <icon name="desktop" />
+      </a>
+      <a
+        v-else-if="option.value === 'light'"
+        role="button"
+        class="tw-radio-option-thin"
+        :class="{ checked }"
+      >
+        <icon name="sun" class="tw-scale-[1.2]" />
+      </a>
+      <a
+        v-else-if="option.value === 'dark'"
+        role="button"
+        class="tw-radio-option-thin"
+        :class="{ checked }"
+      >
+        <icon name="moon" />
+      </a>
+    </template>
+  </lib-radio>
 </template>
 
 <script setup lang="ts">

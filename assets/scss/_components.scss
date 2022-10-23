@@ -26,7 +26,7 @@
     max-width: 40rem;
   }
   .tw-section {
-    @apply tw-py-12;
+    @apply tw-py-16;
     @screen md {
       @apply tw-py-24;
     }
@@ -151,6 +151,14 @@
     --text-color: var(--c-link-primary);
     &:hover {
       --text-color: var(--c-link-primary-vivid);
+    }
+  }
+
+  // radio
+  .tw-radio-option-thin {
+    @apply tw-size-6 tw-flex-center tw-text-dim-3 hover:tw-text-dim-2 tw-transition-hover;
+    &.checked {
+      @apply tw-text-dim-1;
     }
   }
 }

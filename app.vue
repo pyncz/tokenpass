@@ -6,6 +6,11 @@
     <div v-else>
       {{ $t('errors.noConnection') }}.
     </div>
+
+    <div class="preferences">
+      <switch-locale />
+      <switch-theme />
+    </div>
   </nuxt-layout>
 </template>
 
@@ -33,3 +38,13 @@ const head = te(`pages.${pageName}`)
 
 useHead(head)
 </script>
+
+<style lang="scss">
+  .preferences {
+    @apply tw-fixed tw-top-2 tw-right-4 tw-py-1;
+    @apply tw-flex tw-gap-4;
+    @screen sm {
+      @apply tw-top-4 tw-right-8;
+    }
+  }
+</style>

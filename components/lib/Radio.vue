@@ -2,10 +2,11 @@
   <radio-group
     v-model="model"
     class="radio"
-    :disabled="props.disabled"
+    :class="[direction ? `dir-${direction}` : undefined, { thin }]"
+    :disabled="disabled"
   >
-    <radio-group-label v-if="props.label" class="tw-h5">
-      {{ props.label }}
+    <radio-group-label v-if="label" class="tw-h5">
+      {{ label }}
     </radio-group-label>
 
     <div class="radio-group tw-input-border">
@@ -16,7 +17,7 @@
         :value="option.value"
       >
         <slot name="option" v-bind="{ option, checked }">
-          <div class="radio-option-button tw-button" :class="{ checked, disabled: props.disabled }">
+          <div class="radio-option-button tw-button" :class="{ checked, disabled }">
             <div class="radio-option-content">
               <radio-group-label as="template">
                 <span class="radio-option-label">
@@ -41,13 +42,15 @@ import {
   RadioGroupLabel,
   RadioGroupOption,
 } from '@headlessui/vue'
-import type { SelectOption } from '../../models'
+import type { Direction, SelectOption } from '../../models'
 
 const props = defineProps<{
   modelValue: string
   options: SelectOption[]
   label?: string
   disabled?: boolean
+  thin?: boolean
+  direction?: Direction
 }>()
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -64,6 +67,16 @@ const model = useVModel(props, 'modelValue', emit)
       @apply tw-transition-hover tw-p-1 tw-rounded tw-flex tw-flex-col sm:tw-flex-row tw-gap-1;
       --bg-color: var(--c-radio-bg);
       --bg-opacity: var(--o-radio-bg);
+    }
+    &.dir-x &-group {
+      @apply tw-flex-row;
+    }
+    &.dir-y &-group {
+      @apply tw-flex-col;
+    }
+    &.thin &-group {
+      @apply tw-border-0 tw-border-b tw-rounded-0 tw-border-opacity-muted;
+      --bg-opacity: 0;
     }
     &-option {
       &-button {
