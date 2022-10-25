@@ -66,50 +66,11 @@
     "vue/require-explicit-emits": "off",
     "vue/no-deprecated-destroyed-lifecycle": "off",
     "vue/component-name-in-template-casing": ["error", "kebab-case"],
+    "vue/multiline-html-element-content-newline": ["error", {
+      "ignores": ["pre", "textarea", "nuxt-link", "a", "abbr", "audio", "b", "bdi", "bdo", "canvas", "cite", "code", "data", "del", "dfn", "em", "i", "iframe", "ins", "kbd", "label", "map", "mark", "noscript", "object", "output", "picture", "q", "ruby", "s", "samp", "small", "span", "strong", "sub", "sup", "svg", "time", "u", "var", "video", "a-link"]
+    }],
     "vue/singleline-html-element-content-newline": ["error", {
-      "ignores": [
-        "pre",
-        "textarea",
-        "nuxt-link",
-        "a",
-        "abbr",
-        "audio",
-        "b",
-        "bdi",
-        "bdo",
-        "canvas",
-        "cite",
-        "code",
-        "data",
-        "del",
-        "dfn",
-        "em",
-        "i",
-        "iframe",
-        "ins",
-        "kbd",
-        "label",
-        "map",
-        "mark",
-        "noscript",
-        "object",
-        "output",
-        "picture",
-        "q",
-        "ruby",
-        "s",
-        "samp",
-        "small",
-        "span",
-        "strong",
-        "sub",
-        "sup",
-        "svg",
-        "time",
-        "u",
-        "var",
-        "video"
-      ]
+      "ignores": ["pre", "textarea", "nuxt-link", "a", "abbr", "audio", "b", "bdi", "bdo", "canvas", "cite", "code", "data", "del", "dfn", "em", "i", "iframe", "ins", "kbd", "label", "map", "mark", "noscript", "object", "output", "picture", "q", "ruby", "s", "samp", "small", "span", "strong", "sub", "sup", "svg", "time", "u", "var", "video", "a-link"]
     }]
   }
 }

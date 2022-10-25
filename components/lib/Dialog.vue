@@ -32,7 +32,7 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 
-const props = defineProps<{
+defineProps<{
   title?: string
   description?: string
 }>()

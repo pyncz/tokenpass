@@ -33,7 +33,7 @@ interface Props {
   size?: SizeExta
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   short: false,
   size: 'md',
 })

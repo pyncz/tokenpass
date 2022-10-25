@@ -26,10 +26,20 @@
     max-width: 40rem;
   }
   .tw-section {
-    @apply tw-py-16;
+    @apply tw-py-20;
     @screen md {
-      @apply tw-py-24;
+      @apply tw-py-28;
     }
+  }
+
+  .tw-info {
+    @apply tw-py-4 tw-px-6 tw-rounded-lg;
+    @apply tw-border tw-border-solid tw-border-separator-muted;
+  }
+
+  .tw-card {
+    @apply tw-py-4 tw-px-6 tw-rounded-lg tw-bg-card;
+    @apply tw-border tw-border-solid tw-border-separator-muted;
   }
 
   // Dialog
@@ -144,6 +154,10 @@
     &:hover {
       --bg-opacity: var(--o-button-secondary-bg-hover);
     }
+  }
+
+  .tw-link-muted {
+    @apply tw-cursor-pointer tw-text-dim-3 hover:tw-text-dim-2 tw-transition-hover;
   }
 
   .tw-link-primary {

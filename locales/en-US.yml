@@ -19,6 +19,8 @@ theme:
 
 colorMode: Color mode
 locale: Localization
+madeBy: Made by
+home: Home
 
 # buttons' actions
 actions:
@@ -48,3 +50,6 @@ setup:
     amount:
       label: Look for a specific amount
       placeholder: Amount
+
+about:
+  title: About

@@ -31,7 +31,7 @@ import {
   DisclosurePanel,
 } from '@headlessui/vue'
 
-const props = defineProps<{
+defineProps<{
   message?: string
   initialOpened?: boolean
 }>()

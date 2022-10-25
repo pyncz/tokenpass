@@ -41,10 +41,11 @@ useHead(head)
 
 <style lang="scss">
   .preferences {
-    @apply tw-fixed tw-top-2 tw-right-4 tw-py-1;
-    @apply tw-flex tw-gap-4;
+    @apply tw-fixed tw-top-0 tw-right-0 tw-left-0 tw-py-4 tw-px-4;
+    @apply tw-flex tw-justify-end tw-gap-4 tw-backdrop-blur-sm tw-bg-base tw-bg-opacity-muted;
+    box-shadow: 0 0 1rem rgb(var(--c-bg-base));
     @screen sm {
-      @apply tw-top-4 tw-right-8;
+      @apply tw-pt-8 tw-px-8;
     }
   }
 </style>

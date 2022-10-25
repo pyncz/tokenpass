@@ -7,6 +7,10 @@
     @apply tw-bg-dim-2 tw-text-accent-primary;
   }
 
+  a {
+    @apply tw-cursor-pointer;
+  }
+
   hr {
     width: 100%;
     borderColor: theme('borderColor.separator.DEFAULT');
