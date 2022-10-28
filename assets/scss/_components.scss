@@ -32,7 +32,7 @@
     }
   }
 
-  .tw-info {
+  .tw-callout {
     @apply tw-py-4 tw-px-6 tw-rounded-lg;
     @apply tw-border tw-border-solid tw-border-separator-muted;
   }
@@ -53,14 +53,14 @@
 
   .tw-input-border {
     @apply tw-border tw-border-solid tw-border-separator-muted hover:tw-border-separator;
-    @apply focus:tw-border-separator-vivid;
+    @apply focus:tw-border-separator-vivid focus-within:tw-border-separator-vivid;
     @apply disabled:tw-border-separator-muted;
   }
   
   .tw-input {
     @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-9 tw-transition-hover;
     @apply tw-bg-custom tw-bg-opacity-custom tw-text-custom;
-    @apply focus:tw-shadow-accent;
+    @apply focus:tw-shadow-accent focus-within:tw-shadow-accent;
     @apply disabled:tw-placeholder-opacity-muted;
     --bg-color: var(--c-input);
     --bg-opacity: var(--o-input-bg);
@@ -124,6 +124,13 @@
   .tw-button {
     @apply tw-cursor-pointer tw-gap-1 tw-rounded tw-font-medium tw-flex-center tw-inline-flex tw-transition-hover;
     @apply active:tw-scale-click;
+  }
+  .tw-icon-button {
+    @apply tw-relative tw-text-dim-2 tw-transition-hover tw-opacity-soft hover:tw-opacity-full;
+    @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-2 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
+    &:hover {
+      @apply before:tw-scale-zoom;
+    }
   }
   .tw-action {
     @apply tw-button;
