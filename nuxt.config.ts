@@ -46,6 +46,7 @@ export default defineNuxtConfig({
       API_BASE_WS: process.env.API_BASE_WS ?? '/',
       INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',
+      MORALIS_API_KEY: process.env.MORALIS_API_KEY ?? '',
     },
   },
 

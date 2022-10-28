@@ -91,6 +91,7 @@ module.exports = {
     fontFamily: {
       header: ['Mulish', ...sansSerif],
       sans: ['Roboto', ...sansSerif],
+      mono: ['monospace'],
     },
     lineHeight: {
       none: 1,
@@ -221,17 +222,24 @@ module.exports = {
         {
           circle: value => ({
             height: value,
+            minHeight: value,
             width: value,
+            minWidth: value,
             borderRadius: theme('borderRadius.full'),
           }),
           size: value => ({
             height: value,
+            minHeight: value,
             width: value,
+            minWidth: value,
           }),
         },
         { values: theme('height') },
       )
       addUtilities({
+        '.bg-placeholder': {
+          backgroundImage: 'radial-gradient(100% 100% at 90% 70%, rgb(var(--c-accent-primary)), transparent), radial-gradient(60% 60% at 20% 30%, rgb(var(--c-accent-secondary)), transparent), linear-gradient(rgb(var(--c-bg-dim-2)), rgb(var(--c-bg-dim-2)))',
+        },
         '.transition-nobg-fast': {
           transition: `all ${theme('transitionDuration.fast')}, background 0s`,
         },
@@ -250,6 +258,7 @@ module.exports = {
         '.bordered': {
           'position': 'relative',
           '&::before': {
+            content: '" "',
             position: 'absolute',
             inset: 0,
             border: `1px solid ${theme('borderColor.text.dim.2')}`,
