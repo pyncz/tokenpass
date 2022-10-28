@@ -1,65 +1,54 @@
 <template>
   <div class="layout">
     <div class="layout-grid">
-      <div class="tw--m-1">
-        <a
-          class="main-link"
-          role="button"
-          @click="redirectOrRefresh({ name: 'index' })"
-        >
-          <logo-main />
-        </a>
+      <div class="tw-sticky tw-top-3 md:tw-top-7 tw-z-[2]">
+        <logo-main-link />
       </div>
 
-      <h1 class="md:tw-col-[2] tw--mt-0.5">
+      <h1 class="md:tw-col-[2] tw--mt-0.5 tw-opacity-soft">
         {{ title }}
       </h1>
 
-      <section class="tw-info md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]">
-        Adds?
+      <section v-if="ads.length" class="tw-callout md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]">
+        Ads?
       </section>
 
-      <div class="md:tw-row-[2/span_2] lg:tw-row-[2/span_1]">
-        <div class="tw-info tw-text-sm tw-text-dim-2">
-          Here will be current setup
-        </div>
+      <div class="md:tw-row-[2/4]">
+        <setup-state />
       </div>
 
-      <div class="md:tw-col-[2] md:tw-row-[3/span_2] lg:tw-row-[2/span_3]">
-        Content...
+      <div class="md:tw-col-[2] md:tw-row-[3/5] lg:tw-row-[2/5]" :class="{ 'md:tw-row-[2/5]': !ads.length }">
         <slot />
       </div>
 
-      <footer-info class="tw-mt-8 md:tw-col-1 md:tw-row-[4] md:tw-mt-auto" />
+      <footer-info class="tw-mt-8 md:tw-pb-1 md:tw-col-1 md:tw-row-[4] md:tw-mt-auto" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useAdsStore } from '~~/stores'
+
 defineProps<{
   title: string
 }>()
-const localeRoute = useLocaleRoute()
-const redirectOrRefresh = useRedirectOrRefresh(localeRoute)
+const { ads } = useAdsStore()
 </script>
 
 <style scoped lang="scss">
-.main-link {
-  @apply tw-inline-flex tw--mx-1.5 tw-duration-normal tw-opacity-soft hover:tw-opacity-full;
-}
-
 .layout {
   @apply tw-flex-center;
   &-grid {
     @apply tw-grid tw-w-full tw-gap-y-4 tw-gap-x-8 tw-justify-center tw-items-start;
     grid-template-columns: minmax(0, 1fr);
+    max-width: 24rem;
     @screen xs {
       width: 80vw;
-      max-width: 56rem;
     }
     @screen md {
       // right sidebar
       grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
+      max-width: 56rem;
     }
     @screen lg {
       // symmetric sidebars
