@@ -50,11 +50,8 @@ defineProps<{
     }
 
     .close-button {
-      @apply tw-absolute tw-hidden sm:tw-flex tw-right-3 tw-top-3 tw-text-dim-2 tw-transition-hover tw-opacity-soft hover:tw-opacity-full;
-      @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-2 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
-      &:hover {
-        @apply before:tw-scale-zoom;
-      }
+      @apply tw-icon-button;
+      @apply tw-absolute tw-hidden sm:tw-flex tw-right-3 tw-top-3;
     }
 
     .close-control {

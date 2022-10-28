@@ -2,30 +2,60 @@
   <vee-form class="tw-space-y-form" @submit="submit">
     <div class="tw-space-y-form-fields">
       <form-field
-        v-slot="{ field }"
+        v-model="chainId"
         name="chainId"
         rules="required|integer|min_value:1"
-        :label="$t('setup.fields.chainId.label')"
         :visible-name="$t('fields.chainId')"
       >
-        <lib-autocomplete
-          v-bind="field"
-          :options="networks"
-          :placeholder="$t('setup.fields.chainId.placeholder')"
-        />
+        <template #label="{ id, meta: { valid } }">
+          <div class="tw-flex">
+            <label :for="id" class="field-meta tw-label">
+              {{ $t('setup.fields.chainId.label') }}
+            </label>
+          </div>
+          <lazy-chain-representation v-if="valid" :chain-id="chainId" />
+        </template>
+        <template #default="{ handleChange, value, id }">
+          <lib-autocomplete
+            :id="id"
+            :model-value="value"
+            :options="networks"
+            :placeholder="$t('setup.fields.chainId.placeholder')"
+            @update:model-value="handleChange"
+          >
+            <template #option="{ option, selected }">
+              <div class="tw-relative">
+                <span v-if="selected" class="tw-top-1/2 tw--translate-y-1/2 tw-absolute tw--left-6 tw-flex"><icon name="ion:checkmark-circle" /></span>
+                <chain-representation :chain-id="option.value" />
+              </div>
+            </template>
+          </lib-autocomplete>
+        </template>
       </form-field>
 
       <form-field
-        v-slot="{ field }"
         name="address"
         rules="required|eth_address"
-        :label="$t('setup.fields.address.label')"
         :visible-name="$t('fields.collectionAddress')"
       >
-        <lib-input
-          v-bind="field"
-          :placeholder="$t('setup.fields.address.placeholder')"
-        />
+        <template #label="{ id, value, meta: { valid } }">
+          <div class="tw-flex">
+            <label :for="id" class="field-meta tw-label">
+              {{ $t('setup.fields.address.label') }}
+            </label>
+          </div>
+          <lazy-collection-representation
+            v-if="chainId && valid"
+            :address="value"
+            :chain-id="chainId"
+          />
+        </template>
+        <template #default="{ field }">
+          <lib-input
+            v-bind="field"
+            :placeholder="$t('setup.fields.address.placeholder')"
+          />
+        </template>
       </form-field>
 
       <lib-disclosure :message="$t('setup.disclosure')">
@@ -72,39 +102,36 @@
     <button class="tw-button-primary tw-w-full">
       {{ $t('setup.submit') }}
     </button>
-    <button class="tw-button-secondary tw-w-full">
-      {{ $t('setup.submit') }}
-    </button>
   </vee-form>
 </template>
 
 <script setup lang="ts">
 import { Form as VeeForm } from 'vee-validate'
-import type { SetupForm } from '../models'
-// import { useSetupStore } from '../stores'
+import type { SetupForm } from '../../models'
+import { useSetupStore } from '../../stores'
 
-const networks = [
-  {
-    value: 1,
-    label: 'Ethereum Mainnet',
-  },
-  {
-    value: 5,
-    label: 'Goerli Testnet',
-  },
-]
+const networks = Object.entries(chainNamesMap).map(([id, info]) => ({
+  value: +id,
+  info,
+}))
 
 const setupTokenId = ref(false)
 const setupAmount = ref(false)
 
-const submit = (payload: Partial<SetupForm>) => {
-  console.log({
-    ...payload,
-    tokenId: setupTokenId.value ? payload.tokenId : undefined,
-    amount: setupAmount.value ? payload.amount : undefined,
-  })
-  // const setupStore = useSetupStore()
-  // setupStore.setSetupForm()
+const chainId = ref(networks[0].value)
+
+const submit = (payload: unknown) => {
+  let form = payload as SetupForm
+  form = {
+    ...form,
+    tokenId: setupTokenId.value ? form.tokenId : undefined,
+    amount: setupAmount.value ? form.amount : undefined,
+  }
+
+  const setupStore = useSetupStore()
+  setupStore.setSetupForm(form)
+
+  // move to qr generation
 }
 </script>
 

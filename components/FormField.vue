@@ -6,14 +6,17 @@
       :label="visibleName ?? label"
       :name="name"
     >
-      <div class="tw-flex">
-        <label v-if="label" :for="id" class="field-meta tw-label">
-          {{ label }}
-        </label>
-      </div>
+      <slot name="label" v-bind="{ ...scope, id }">
+        <div v-if="label" class="tw-flex">
+          <label :for="id" class="field-meta tw-label">
+            {{ label }}
+          </label>
+        </div>
+      </slot>
       <slot
         v-bind="{
           ...scope,
+          id,
           field: { ...scope.field, id },
         }"
       />
