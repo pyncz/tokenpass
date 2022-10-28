@@ -10,7 +10,6 @@ import { Switch as ToggleSwitcher } from '@headlessui/vue'
 const props = defineProps<{
   modelValue: boolean
 }>()
-const emit = defineEmits(['update:modelValue'])
 
-const enabled = useVModel(props, 'modelValue', emit)
+const enabled = useVModel(props)
 </script>

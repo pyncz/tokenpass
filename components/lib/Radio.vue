@@ -52,11 +52,8 @@ const props = defineProps<{
   thin?: boolean
   direction?: Direction
 }>()
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
 
-const model = useVModel(props, 'modelValue', emit)
+const model = useVModel(props)
 </script>
 
 <style lang="scss">
