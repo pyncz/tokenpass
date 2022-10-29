@@ -205,7 +205,12 @@ module.exports = {
       },
       fontSize: {
         '1/2': '0.5em',
+        '5/8': '0.625em',
         '3/4': '0.75em',
+        '7/8': '0.875em',
+        '9/8': '1.125em',
+        '5/4': '1.25em',
+        '3/2': '1.5em',
       },
       boxShadow: {
         accent: '0 0 1rem -0.5rem rgb(var(--c-accent-primary))',

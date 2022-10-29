@@ -1,7 +1,7 @@
 <template>
   <div v-if="collectionMeta" class="collection">
     <icon name="gem" class="tw-text-accent-secondary" />
-    <span class="tw-text-sm tw-truncate tw-flex-1 tw-text-dim-1" :class="{ 'tw-font-mono': !collectionMeta.name }">
+    <span class="tw-text-7/8 tw-truncate tw-flex-1 tw-text-dim-1" :class="{ 'tw-font-mono': !collectionMeta.name }">
       {{ collectionMeta.name ?? address }}
     </span>
   </div>
