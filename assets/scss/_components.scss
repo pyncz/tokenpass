@@ -44,8 +44,7 @@
 
   // Dialog
   .tw-dialog {
-    @apply tw-pt-8 tw-pb-12 tw-px-6 tw-rounded-xl tw-bg-card;
-    box-shadow: 0 0 2rem -1.75rem rgb(var(--c-color-base));
+    @apply tw-pt-8 tw-pb-12 tw-px-6 tw-rounded-xl tw-bg-card tw-shadow-modal;
     @screen sm {
       @apply tw-py-5 tw-pb-7 tw-rounded-lg;
     }
@@ -58,7 +57,7 @@
   }
   
   .tw-input {
-    @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-9 tw-transition-hover;
+    @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-9 tw-duration-onhover-fast;
     @apply tw-bg-custom tw-bg-opacity-custom tw-text-custom;
     @apply focus:tw-shadow-accent focus-within:tw-shadow-accent;
     @apply disabled:tw-placeholder-opacity-muted;
@@ -73,7 +72,7 @@
   }
 
   .tw-switcher {
-    @apply tw-input-border tw-relative tw-inline-flex tw-rounded-full tw-transition-hover;
+    @apply tw-input-border tw-relative tw-inline-flex tw-rounded-full tw-duration-onhover-fast;
     @apply tw-bg-custom tw-bg-opacity-custom;
     @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
     --switcher-width: 2.5rem;
@@ -122,11 +121,11 @@
 
   // Buttons
   .tw-button {
-    @apply tw-cursor-pointer tw-gap-1 tw-rounded tw-font-medium tw-flex-center tw-inline-flex tw-transition-hover;
+    @apply tw-cursor-pointer tw-gap-1 tw-rounded tw-font-medium tw-flex-center tw-inline-flex tw-duration-onhover-fast;
     @apply active:tw-scale-click;
   }
   .tw-icon-button {
-    @apply tw-relative tw-text-dim-2 tw-transition-hover tw-opacity-soft hover:tw-opacity-full;
+    @apply tw-relative tw-text-dim-2 tw-duration-onhover-fast tw-opacity-soft hover:tw-opacity-full;
     @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-2 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
     &:hover {
       @apply before:tw-scale-zoom;
@@ -164,11 +163,11 @@
   }
 
   .tw-link-muted {
-    @apply tw-cursor-pointer tw-text-dim-3 hover:tw-text-dim-2 tw-transition-hover;
+    @apply tw-cursor-pointer tw-text-dim-3 hover:tw-text-dim-2 tw-duration-onhover-fast;
   }
 
   .tw-link-primary {
-    @apply tw-cursor-pointer tw-text-custom tw-font-medium tw-transition-hover;
+    @apply tw-cursor-pointer tw-text-custom tw-font-medium tw-duration-onhover-fast;
     --text-color: var(--c-link-primary);
     &:hover {
       --text-color: var(--c-link-primary-vivid);
@@ -177,9 +176,28 @@
 
   // radio
   .tw-radio-option-thin {
-    @apply tw-size-6 tw-flex-center tw-text-dim-3 hover:tw-text-dim-2 tw-transition-hover;
+    @apply tw-size-6 tw-flex-center tw-text-dim-3 hover:tw-text-dim-2 tw-duration-onhover-fast;
     &.checked {
       @apply tw-text-dim-1;
+    }
+  }
+
+  // combo
+  .tw-options {
+    @apply tw-absolute tw-z-1 tw-mt-1 tw-max-h-60 tw-w-full tw-p-1 tw-overflow-auto;
+    @apply tw-backdrop-blur-sm tw-rounded tw-text-base sm:tw-text-sm;
+    @apply tw-border tw-border-solid tw-border-separator-muted tw-ring-accent-primary tw-ring-opacity-10 focus:tw-outline-none;
+    @apply tw-bg-custom tw-bg-opacity-custom tw-shadow-popup;
+    --bg-color: var(--c-combo-bg);
+    --bg-opacity: var(--o-combo-bg);
+  }
+  .tw-combo-option {
+    @apply tw-text-ellipsis tw-cursor-pointer tw-px-2 sm:tw-px-4 md:tw-px-8 tw-py-2 tw-rounded tw-duration-fast;
+    @apply tw-bg-custom tw-bg-opacity-custom;
+    --bg-color: var(--c-combo-option-bg);
+    --bg-opacity: var(--o-combo-option-bg);
+    &:hover {
+      --bg-opacity: var(--o-combo-option-bg-hover);
     }
   }
 }

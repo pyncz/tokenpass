@@ -1,28 +1,34 @@
 import type { MaybeRef } from '@vueuse/core'
 import { chainNamesMap } from './useChains'
-import type { HexString } from '~~/models'
+import type { ChainID, HexString } from '~~/models'
 
 /**
  * Returns set of details for a chain by provided chainID
  *
  * @param id ChainID (string, hex-string or a number)
  *
- * @returns hexId, intId, chainName
+ * @returns hexId, intId, chainInfo
  */
-export function useChainById(id: MaybeRef<string | number>) {
+export function useChainById(id: MaybeRef<ChainID>) {
   const intId = computed(() => {
-    const idValue = unref(id)
-    return typeof idValue === 'number'
-      ? idValue
-      : +idValue
+    let idValue = unref(id)
+    if (typeof idValue === 'number') {
+      return idValue
+    } else {
+      // string
+      idValue = +idValue
+      if (!isNaN(idValue)) {
+        return idValue
+      }
+    }
   })
 
-  const hexId = computed<HexString>(() => `0x${intId.value.toString(16)}`)
-  const chainName = computed(() => chainNamesMap[intId.value])
+  const hexId = computed(() => intId.value ? `0x${intId.value.toString(16)}` : undefined)
+  const chainInfo = computed(() => intId.value ? chainNamesMap[intId.value] : undefined)
 
   return {
     hexId,
     intId,
-    chainName,
+    chainInfo,
   }
 }

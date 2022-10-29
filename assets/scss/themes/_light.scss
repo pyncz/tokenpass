@@ -76,16 +76,26 @@
   --c-radio-option-checked-bg: var(--c-accent-primary);
   --o-radio-option-checked-bg: 0.1;
 
+  // combo
+  --c-combo-bg: var(--c-bg-card);
+  --o-combo-bg: 0.9;
+  // - option
+  --c-combo-option-bg: var(--c-bg-dim-1);
+  --o-combo-option-bg: 0;
+  --o-combo-option-bg-hover: 1;
+
   // chains
   --c-chain-ethereum: 94, 94, 142;
   --c-chain-polygon: 115, 48, 226;
   --c-chain-bsc: 243, 186, 47;
   --c-chain-avalanche: 233, 63, 64;
 
+  --c-test: 255, 160, 36;
+
   /* shadows */
   --s-title: none;
 
   /* opacities */
   --o-modal-overlay: 0.5;
-  --o-outline: 1;
+  --o-outline: 0.1;
 }

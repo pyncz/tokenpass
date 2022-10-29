@@ -19,14 +19,15 @@
           <lib-autocomplete
             :id="id"
             :model-value="value"
+            :get-value="(o: ChainInfo) => o.id"
             :options="networks"
+            :filter="filterNetworks"
             :placeholder="$t('setup.fields.chainId.placeholder')"
             @update:model-value="handleChange"
           >
-            <template #option="{ option, selected }">
-              <div class="tw-relative">
-                <span v-if="selected" class="tw-top-1/2 tw--translate-y-1/2 tw-absolute tw--left-6 tw-flex"><icon name="ion:checkmark-circle" /></span>
-                <chain-representation :chain-id="option.value" />
+            <template #option="{ option }">
+              <div class="tw-combo-option tw-relative">
+                <chain-representation :chain-id="option.id" />
               </div>
             </template>
           </lib-autocomplete>
@@ -44,6 +45,8 @@
               {{ $t('setup.fields.address.label') }}
             </label>
           </div>
+
+          <!-- TODO: Render only if the chain is valid -->
           <lazy-collection-representation
             v-if="chainId && valid"
             :address="value"
@@ -107,18 +110,24 @@
 
 <script setup lang="ts">
 import { Form as VeeForm } from 'vee-validate'
-import type { SetupForm } from '../../models'
+import type { ChainInfo, SetupForm } from '../../models'
 import { useSetupStore } from '../../stores'
+import { squeeze } from '../../utils'
 
-const networks = Object.entries(chainNamesMap).map(([id, info]) => ({
-  value: +id,
-  info,
+const networks: ChainInfo[] = Object.entries(chainNamesMap).map(([id, info]) => ({
+  id: +id,
+  ...info,
 }))
+
+const filterNetworks = (options: ChainInfo[], q: string) => options.filter((option) => {
+  const squeezedQuery = squeeze(q)
+  return option.id.toString().includes(squeezedQuery) || squeeze(option.label).includes(squeezedQuery)
+})
 
 const setupTokenId = ref(false)
 const setupAmount = ref(false)
 
-const chainId = ref(networks[0].value)
+const chainId = ref(networks[0].id)
 
 const submit = (payload: unknown) => {
   let form = payload as SetupForm

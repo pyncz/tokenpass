@@ -25,12 +25,16 @@ home: Home
 # buttons' actions
 actions:
   setup: Setup
+  use: Use
 
 fields:
   chainId: Chain ID
   collectionAddress: Collection’s contract address
   tokenId: Token ID
   amount: Amount
+
+tooltips:
+  test: Test network
 
 # by pages
 setup:

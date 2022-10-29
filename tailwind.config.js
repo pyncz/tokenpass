@@ -86,6 +86,7 @@ module.exports = {
         primary: co('--c-accent-primary'),
         secondary: co('--c-accent-secondary'),
       },
+      test: co('--c-test'),
       text: textColors,
     },
     fontFamily: {
@@ -179,6 +180,15 @@ module.exports = {
       1: '1',
       modal: '100',
     },
+    boxShadow: {
+      // emphasize for inputs / controls
+      accent: '0 0 1rem -0.5rem rgb(var(--c-accent-primary))',
+
+      // shadows for dialogs, popups etc
+      popup: '0 0.75rem 1.75rem -1.75rem rgba(var(--c-color-base), 0.5)',
+      modal: '0 0 2rem -1.75rem rgb(var(--c-color-base))',
+    },
+
     extend: {
       screens: {
         '2xs': '320px',
@@ -211,9 +221,6 @@ module.exports = {
         '9/8': '1.125em',
         '5/4': '1.25em',
         '3/2': '1.5em',
-      },
-      boxShadow: {
-        accent: '0 0 1rem -0.5rem rgb(var(--c-accent-primary))',
       },
     },
   },
@@ -251,15 +258,6 @@ module.exports = {
         '.transition-nobg-normal': {
           transition: `all ${theme('transitionDuration.normal')}, background 0s`,
         },
-        '.shadow-separator': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.DEFAULT')}`,
-        },
-        '.shadow-separator-muted': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.muted')}`,
-        },
-        '.shadow-separator-vivid': {
-          boxShadow: `0 0 0 1px ${theme('borderColor.separator.vivid')}`,
-        },
         '.bordered': {
           'position': 'relative',
           '&::before': {
@@ -269,7 +267,7 @@ module.exports = {
             border: `1px solid ${theme('borderColor.text.dim.2')}`,
           },
         },
-        '.transition-hover': {
+        '.duration-onhover-fast': {
           'transitionDuration': theme('transitionDuration.normal'),
           '&:hover': {
             transitionDuration: theme('transitionDuration.fast'),

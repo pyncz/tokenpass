@@ -61,7 +61,7 @@ const model = useVModel(props)
     @apply tw-flex tw-text-sm tw-flex-col sm:tw-items-start;
     &-group {
       @apply tw-bg-custom tw-bg-opacity-custom;
-      @apply tw-transition-hover tw-p-1 tw-rounded tw-flex tw-flex-col sm:tw-flex-row tw-gap-1;
+      @apply tw-duration-onhover-fast tw-p-1 tw-rounded tw-flex tw-flex-col sm:tw-flex-row tw-gap-1;
       --bg-color: var(--c-radio-bg);
       --bg-opacity: var(--o-radio-bg);
     }

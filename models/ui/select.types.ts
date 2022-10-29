@@ -1,4 +1,4 @@
-export interface SelectOption<TValue extends string | number = string> {
+export interface SelectOption<TValue = any> {
   value: TValue
   label?: string
   description?: string

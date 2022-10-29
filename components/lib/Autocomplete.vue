@@ -1,60 +1,46 @@
 <template>
-  <combobox v-model="value">
-    <div class="tw-relative tw-mt-1">
-      {{ value }}
-      <div
-        class="tw-relative tw-w-full tw-cursor-default tw-overflow-hidden tw-rounded-lg tw-bg-white tw-text-left tw-shadow-md focus:tw-outline-none focus-visible:tw-ring-2 focus-visible:tw-ring-white focus-visible:tw-ring-opacity-75 focus-visible:tw-ring-offset-2 focus-visible:tw-ring-offset-teal-300 sm:tw-text-sm"
-      >
-        <combobox-input
-          v-model="query"
-          class="tw-input tw-w-full tw-py-2 tw-pl-3 tw-pr-10 tw-text-sm tw-leading-5 tw-text-gray-900 focus:tw-ring-0"
-        />
-        <combobox-button
-          class="tw-absolute tw-z-1 tw-inset-y-0 tw-right-0 tw-flex tw-items-center tw-pr-2"
-        >
-          ...
-        </combobox-button>
-      </div>
-
-      <combobox-options
-        class="tw-mt-1 tw-max-h-60 tw-w-full tw-overflow-auto tw-rounded-md tw-bg-white tw-py-1 tw-text-base tw-shadow-lg tw-ring-1 tw-ring-black tw-ring-opacity-5 focus:tw-outline-none sm:tw-text-sm"
-      >
-        <!-- if query is valid? -->
-        <combobox-option :value="query">
-          Use "{{ query }}"
-        </combobox-option>
-
-        <combobox-option
-          v-for="option of filteredOptions"
-          :key="option.value"
-          v-slot="{ selected, active }"
-          as="template"
-          :value="option.value"
-        >
-          <li
-            class="tw-relative tw-cursor-default tw-select-none tw-py-2 tw-pl-10 tw-pr-4"
-            :class="{
-              'tw-bg-teal-600 tw-text-white': active,
-              'tw-text-gray-900': !active,
-            }"
-          >
-            <span
-              class="tw-block tw-truncate"
-              :class="selected ? 'tw-font-medium' : 'tw-font-normal'"
-            >
-              {{ option.label ?? option.value }}
-            </span>
-            <span
-              v-if="selected"
-              class="tw-absolute tw-inset-y-0 tw-left-0 tw-flex tw-items-center tw-pl-3"
-              :class="active ? 'tw-text-white' : 'tw-text-teal-600'"
-            >
-              yea
-            </span>
-          </li>
-        </combobox-option>
-      </combobox-options>
+  <combobox v-model="model" as="div" class="tw-relative">
+    <div class="tw-relative">
+      <combobox-input
+        :id="id"
+        :display-value="getDisplay"
+        class="tw-input tw-w-full tw-pr-10"
+        @change="(q) => query = q.target.value"
+      />
+      <combobox-button class="tw-absolute tw-z-1 tw-inset-y-0 tw-right-0 tw-flex-center tw-px-2">
+        <div class="tw-icon-button tw-flex">
+          <icon name="chevron-down" class="tw-relative" />
+        </div>
+      </combobox-button>
     </div>
+
+    <combobox-options class="tw-options">
+      <combobox-option v-if="query && !forbidCustom" :value="query" class="tw-cursor-pointer">
+        <slot name="custom-option" v-bind="{ query }">
+          <div class="tw-combo-option">
+            {{ $t('actions.use') }}
+            <code>{{ query }}</code>
+          </div>
+        </slot>
+      </combobox-option>
+
+      <combobox-option
+        v-for="option, index of filteredOptions"
+        :key="getKey(option, index)"
+        v-slot="{ selected, active }"
+        :value="getValue(option)"
+        class="tw-cursor-pointer tw-relative tw-select-none"
+      >
+        <slot name="option" v-bind="{ option, selected, active }">
+          <div
+            class="tw-combo-option"
+            :class="{ 'tw-text-accent-primary': selected }"
+          >
+            {{ option }}
+          </div>
+        </slot>
+      </combobox-option>
+    </combobox-options>
   </combobox>
 </template>
 
@@ -66,34 +52,45 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/vue'
-import type { SelectOption } from '../../models'
-import { squeeze } from '../../utils'
+import type { Numeric } from '@voire/type-utils'
+
+type Value = any
+type Option = any
 
 interface Props {
-  options: SelectOption[]
-  lookup: (keyof SelectOption)[]
+  id?: string
+  modelValue: Value
+  options?: Option[]
+  forbidCustom?: boolean
+
+  // How to render list of the options
+  filter?: (_options: Option[], _query: string) => Option[]
+  getKey?: (_option: Option, _index: number) => Numeric
+
+  // Getter to a value to use as a model
+  getValue?: (_option: Option) => Value
+
+  // What to display in the input
+  getDisplay?: (_value?: Value) => string
 }
 
 const props = withDefaults(defineProps<Props>(), {
   options: () => [],
-  lookup: () => ['value', 'label'],
+  forbidCustom: false,
+  filter: (options: Option[]) => options,
+  getValue: (option: Option) => option,
+  getKey: (_option: Option, index: number) => index,
+  getDisplay: (value?: Value) => value?.toString(),
 })
 
-const value = ref(props.options[0].value)
-const query = ref('')
+const model = useVModel(props)
+const query = ref<string>(model.value?.toString() ?? '')
+const { options, filter } = toRefs(props)
 
-const filteredOptions = computed(() =>
-  query.value === ''
-    ? props.options
-    : props.options.filter(
-      option => props.lookup.some(
-        (lookupKey) => {
-          const valueToCompare = option[lookupKey]
-          return valueToCompare
-            ? squeeze(valueToCompare).includes(squeeze(query.value))
-            : false
-        },
-      ),
-    ),
-)
+const filteredOptions = computed(() => {
+  const q = query.value
+  return q
+    ? filter.value(options.value, q)
+    : options.value
+})
 </script>

@@ -44,7 +44,7 @@ defineProps<{
       @apply tw-py-3;
     }
     &-toggle {
-      @apply tw-text-dim-2 tw-text-opacity-soft hover:tw-text-opacity-full tw-transition-hover tw-font-medium;
+      @apply tw-text-dim-2 tw-text-opacity-soft hover:tw-text-opacity-full tw-duration-onhover-fast tw-font-medium;
       @apply tw-border-b tw-border-dashed tw-border-b-separator-muted hover:tw-border-b-separator-vivid tw-pb-0.5;
       .toggle-message {
         @apply tw-duration-normal tw-inline;

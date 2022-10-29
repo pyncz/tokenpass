@@ -1,9 +1,6 @@
-interface ChainInfo {
-  label: string
-  test?: boolean
-}
+import type { ChainID, ChainInfoById } from '../models'
 
-export const chainNamesMap: Record<number, ChainInfo> = {
+export const chainNamesMap: Record<ChainID, ChainInfoById> = {
   1: {
     label: 'Ethereum Mainnet',
   },

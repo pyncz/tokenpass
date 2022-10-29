@@ -76,11 +76,21 @@
   --c-radio-option-checked-bg: var(--c-bg-card);
   --o-radio-option-checked-bg: 1;
 
+  // combo
+  --c-combo-bg: var(--c-bg-card);
+  --o-combo-bg: 0.8;
+  // - option
+  --c-combo-option-bg: var(--c-bg-dim-2);
+  --o-combo-option-bg: 0;
+  --o-combo-option-bg-hover: 1;
+
   // chains
   --c-chain-ethereum: 231, 231, 245;
   --c-chain-polygon: 171, 129, 238;
   --c-chain-bsc: 243, 186, 47;
   --c-chain-avalanche: 233, 63, 64;
+
+  --c-test: 255, 160, 36;
 
   /* shadows */
   --s-title: none;
