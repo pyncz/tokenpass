@@ -4,7 +4,7 @@
       <form-field
         v-model="chainId"
         name="chainId"
-        rules="required|integer|min_value:1"
+        :rules="chainIdValidationRules"
         :visible-name="$t('fields.chainId')"
       >
         <template #label="{ id, meta: { valid } }">
@@ -46,9 +46,8 @@
             </label>
           </div>
 
-          <!-- TODO: Render only if the chain is valid -->
           <lazy-collection-representation
-            v-if="chainId && valid"
+            v-if="chainId && validChainId && valid"
             :address="value"
             :chain-id="chainId"
           />
@@ -109,7 +108,7 @@
 </template>
 
 <script setup lang="ts">
-import { Form as VeeForm } from 'vee-validate'
+import { Form as VeeForm, validate } from 'vee-validate'
 import type { ChainInfo, SetupForm } from '../../models'
 import { useSetupStore } from '../../stores'
 import { squeeze } from '../../utils'
@@ -127,7 +126,11 @@ const filterNetworks = (options: ChainInfo[], q: string) => options.filter((opti
 const setupTokenId = ref(false)
 const setupAmount = ref(false)
 
+const chainIdValidationRules = 'required|integer|min_value:1'
 const chainId = ref(networks[0].id)
+const validChainId = computedAsync(async () => {
+  return (await validate(chainId.value, chainIdValidationRules)).valid
+}, false)
 
 const submit = (payload: unknown) => {
   let form = payload as SetupForm
