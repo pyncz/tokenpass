@@ -22,7 +22,7 @@
   }
 
   .tw-article {
-    @apply tw-m-auto;
+    @apply tw-mx-auto;
     max-width: 40rem;
   }
   .tw-section {
@@ -198,6 +198,24 @@
     --bg-opacity: var(--o-combo-option-bg);
     &:hover {
       --bg-opacity: var(--o-combo-option-bg-hover);
+    }
+  }
+
+  .tw-warning {
+    @apply tw-text-xs tw-rounded tw-px-4 tw-py-3;
+    @apply tw-border tw-border-solid tw-border-state-warning tw-border-opacity-10;
+    @apply tw-bg-state-warning tw-bg-opacity-10;
+    @apply tw-text-state-warning tw-text-opacity-soft;
+  }
+
+  .tw-layout-container {
+    @apply tw-mx-auto tw-px-4;
+    max-width: 24rem;
+    @screen xs {
+      width: 80vw;
+    }
+    @screen md {
+      max-width: 56rem;
     }
   }
 }

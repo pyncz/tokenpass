@@ -5,9 +5,9 @@
       {{ collectionMeta.name ?? address }}
     </span>
   </div>
-  <div v-else-if="!evaluating">
-    There's no such collection. Check the address / chain
-  </div>
+  <p v-else-if="!evaluating" class="tw-warning">
+    {{ $t('errors.noCollection') }}
+  </p>
 </template>
 
 <script setup lang="ts">

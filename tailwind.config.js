@@ -81,6 +81,7 @@ module.exports = {
       white: co('--c-white'),
       state: {
         error: co('--c-state-error'),
+        warning: co('--c-state-warning'),
       },
       accent: {
         primary: co('--c-accent-primary'),

@@ -36,6 +36,10 @@ fields:
 tooltips:
   test: Test network
 
+errors:
+  noConnection: No connection
+  noCollection: There's no such collection. Check the selected address / chain
+
 # by pages
 setup:
   title: Setup address
