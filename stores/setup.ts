@@ -1,15 +1,17 @@
 import type { Nullable } from '@voire/type-utils'
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import type { SetupForm } from '~~/models'
+import type { SetupForm } from '../models'
 
 export const useSetupStore = defineStore('setup', () => {
-  const setupForm = useLocalStorage<Nullable<SetupForm>>('setup', null)
+  const setupState = useLocalStorage<Nullable<SetupForm>>('setup', null)
 
-  const setSetupForm = (form: Nullable<SetupForm>): void => {
-    setupForm.value = form
+  const setSetupState = (form: Nullable<SetupForm>): void => {
+    setupState.value = form
   }
 
-  return { setupForm, setSetupForm }
+  const resetSetupState = () => setSetupState(null)
+
+  return { setupState, setSetupState, resetSetupState }
 })
 
 if (import.meta.hot) {

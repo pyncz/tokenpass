@@ -10,7 +10,7 @@
         <template #label="{ id, meta: { valid } }">
           <div class="tw-flex">
             <label :for="id" class="field-meta tw-label">
-              {{ $t('setup.fields.chainId.label') }}
+              {{ $t('index.fields.chainId.label') }}
             </label>
           </div>
           <lazy-chain-representation v-if="valid" :chain-id="chainId" />
@@ -22,7 +22,7 @@
             :get-value="(o: ChainInfo) => o.id"
             :options="networks"
             :filter="filterNetworks"
-            :placeholder="$t('setup.fields.chainId.placeholder')"
+            :placeholder="$t('index.fields.chainId.placeholder')"
             @update:model-value="handleChange"
           >
             <template #option="{ option }">
@@ -42,7 +42,7 @@
         <template #label="{ id, value, meta: { valid } }">
           <div class="tw-flex">
             <label :for="id" class="field-meta tw-label">
-              {{ $t('setup.fields.address.label') }}
+              {{ $t('index.fields.address.label') }}
             </label>
           </div>
 
@@ -55,18 +55,18 @@
         <template #default="{ field }">
           <lib-input
             v-bind="field"
-            :placeholder="$t('setup.fields.address.placeholder')"
+            :placeholder="$t('index.fields.address.placeholder')"
           />
         </template>
       </form-field>
 
-      <lib-disclosure :message="$t('setup.disclosure')">
+      <lib-disclosure :message="$t('index.disclosure')">
         <div class="tw-space-y-4">
           <form-field
             v-slot="{ field }"
             name="tokenId"
             :rules="setupTokenId ? { required: setupTokenId, integer: true, min_value: 1 } : undefined"
-            :label="$t('setup.fields.tokenId.label')"
+            :label="$t('index.fields.tokenId.label')"
             :visible-name="$t('fields.tokenId')"
           >
             <div class="field-row">
@@ -74,7 +74,7 @@
               <lib-input
                 v-bind="field"
                 class="tw-flex-1"
-                :placeholder="$t('setup.fields.tokenId.placeholder')"
+                :placeholder="$t('index.fields.tokenId.placeholder')"
                 :disabled="!setupTokenId"
               />
             </div>
@@ -84,7 +84,7 @@
             v-slot="{ field }"
             name="amount"
             :rules="setupAmount ? { required: setupAmount, integer: true, min_value: 1 } : undefined"
-            :label="$t('setup.fields.amount.label')"
+            :label="$t('index.fields.amount.label')"
             :visible-name="$t('fields.amount')"
           >
             <div class="field-row">
@@ -92,7 +92,7 @@
               <lib-input
                 v-bind="field"
                 class="tw-flex-1"
-                :placeholder="$t('setup.fields.amount.placeholder')"
+                :placeholder="$t('index.fields.amount.placeholder')"
                 :disabled="!setupAmount"
               />
             </div>
@@ -102,7 +102,7 @@
     </div>
 
     <button class="tw-button-primary tw-w-full">
-      {{ $t('setup.submit') }}
+      {{ $t('index.submit') }}
     </button>
   </vee-form>
 </template>
@@ -140,8 +140,8 @@ const submit = (payload: unknown) => {
     amount: setupAmount.value ? form.amount : undefined,
   }
 
-  const setupStore = useSetupStore()
-  setupStore.setSetupForm(form)
+  const { setSetupState } = useSetupStore()
+  setSetupState(form)
 
   // move to qr generation
 }

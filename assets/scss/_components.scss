@@ -22,7 +22,7 @@
   }
 
   .tw-article {
-    @apply tw-mx-auto;
+    @apply tw-mx-auto tw-w-full;
     max-width: 40rem;
   }
   .tw-section {
@@ -209,8 +209,8 @@
   }
 
   .tw-layout-container {
-    @apply tw-mx-auto tw-px-4;
-    max-width: 24rem;
+    @apply tw-mx-auto tw-px-4 tw-w-full;
+    max-width: 26rem;
     @screen xs {
       width: 80vw;
     }

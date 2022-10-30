@@ -195,6 +195,10 @@ module.exports = {
         '2xs': '320px',
         'xs': '400px',
       },
+      blur: {
+        px: '1px',
+        xs: '2px',
+      },
       spacing: {
         'switcher-offset': '0.25rem',
         'form': '1.5rem',

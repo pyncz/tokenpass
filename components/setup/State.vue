@@ -1,13 +1,14 @@
 <template>
-  <div v-if="setupForm" class="tw-callout tw-text-sm tw-text-dim-2">
+  <div v-if="setupState" class="tw-callout tw-text-sm tw-text-dim-2">
     <pre>
-      {{ setupForm }}
+      {{ JSON.stringify(setupState) }}
     </pre>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useSetupStore } from '~~/stores'
+import { storeToRefs } from 'pinia'
+import { useSetupStore } from '../../stores'
 
-const { setupForm } = useSetupStore()
+const { setupState } = storeToRefs(useSetupStore())
 </script>

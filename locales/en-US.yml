@@ -39,10 +39,13 @@ tooltips:
 errors:
   noConnection: No connection
   noCollection: There's no such collection. Check the selected address / chain
+  notFound: Not found
 
 # by pages
-setup:
-  title: Setup address
+index:
+  title:
+    setup: Setup address
+    share: Share link
   submit: '@:actions.setup'
   disclosure: Additional config
   fields:

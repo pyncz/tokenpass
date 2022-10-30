@@ -28,7 +28,10 @@ const years = useYearsFrom(2022)
   @apply tw-text-sm tw-text-dim-3 tw-space-y-1.5;
   @apply tw-border-t tw-border-solid tw-border-separator-muted tw-pt-8;
   @screen md {
-    @apply tw-border-none tw-pt-0;
+    @apply tw-border-none tw-pt-0 tw-fixed tw-bottom-12 tw-backdrop-blur-sm tw-p-3 tw--m-3 tw-rounded;
+  }
+  @screen xl {
+    @apply tw-left-20;
   }
 }
 .author-link {

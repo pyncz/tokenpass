@@ -6,6 +6,6 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'article',
+  layout: 'side',
 })
 </script>

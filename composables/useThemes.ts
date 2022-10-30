@@ -1,5 +1,9 @@
-export const themes = [
+export enum Theme {
+  light = 'light',
+  dark = 'dark',
+}
+
+export const themeModes = [
+  ...Object.values(Theme),
   'system',
-  'light',
-  'dark',
 ]

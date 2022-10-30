@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
 export const useAdsStore = defineStore('nav', () => {
-  const ads: string[] = []
+  const ads = ref<string[]>([])
 
   return { ads }
 })

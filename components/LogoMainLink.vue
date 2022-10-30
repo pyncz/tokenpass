@@ -4,13 +4,19 @@
     role="button"
     @click="redirectOrRefresh({ name: 'index' })"
   >
-    <logo-main />
+    <logo-main v-bind="$attrs" />
   </a>
 </template>
 
 <script setup lang="ts">
 const localeRoute = useLocaleRoute()
 const redirectOrRefresh = useRedirectOrRefresh(localeRoute)
+</script>
+
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
 </script>
 
 <style scoped lang="scss">

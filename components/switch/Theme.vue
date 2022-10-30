@@ -42,7 +42,7 @@ const colorMode = useColorMode()
 const { t } = useI18n()
 const getThemeLabel = (theme: string) => t(`theme.${theme}`)
 
-const themeOptions: SelectOption[] = themes.map(theme => ({
+const themeOptions: SelectOption[] = themeModes.map(theme => ({
   value: theme,
   label: getThemeLabel(theme),
   description: theme === 'system' ? getThemeLabel(colorMode.value) : '',

@@ -1,17 +1,21 @@
 <template>
-  <nuxt-layout>
-    <nuxt-loading-indicator />
-
-    <nuxt-page v-if="isOnline" />
-    <div v-else>
-      {{ $t('errors.noConnection') }}.
-    </div>
-
+  <div class="tw-section tw-min-h-screen tw-flex tw-flex-col">
     <div class="preferences">
       <switch-locale />
       <switch-theme />
     </div>
-  </nuxt-layout>
+    <nuxt-layout class="tw-layout-container tw-flex tw-flex-col tw-flex-1">
+      <nuxt-loading-indicator />
+
+      <nuxt-page v-if="isOnline" />
+      <div v-else>
+        {{ $t('errors.noConnection') }}.
+      </div>
+    </nuxt-layout>
+    <div class="tw-layout-container">
+      <footer-info class="tw-w-full tw-mt-8 md:tw-w-auto" />
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -41,7 +45,7 @@ useHead(head)
 
 <style lang="scss">
   .preferences {
-    @apply tw-fixed tw-top-0 tw-right-0 tw-left-0 tw-py-4 tw-px-4;
+    @apply tw-fixed tw-z-1 tw-top-0 tw-right-0 tw-left-0 tw-py-4 tw-px-4;
     @apply tw-flex tw-justify-end tw-gap-4 tw-backdrop-blur-sm tw-bg-base tw-bg-opacity-muted;
     box-shadow: 0 0 1rem rgb(var(--c-bg-base));
     @screen sm {
