@@ -6,19 +6,6 @@ export default defineNuxtConfig({
   /*
   * Build config
   */
-  ssr: false, // TODO: Doesn't work w/ SSR :c
-
-  build: {
-    postcss: {
-      postcssOptions: {
-        plugins: {
-          tailwindcss: {},
-          autoprefixer: {},
-        },
-      },
-    },
-  },
-
   typescript: {
     strict: true,
   },
@@ -26,6 +13,10 @@ export default defineNuxtConfig({
   /*
    * App config
    */
+  vite: {
+    devBundler: 'legacy',
+  },
+
   router: {
     options: {
       linkActiveClass: 'active',
@@ -42,10 +33,14 @@ export default defineNuxtConfig({
        * NOTE: Nuxt's native syncing envs are not used because of vars' nuxt-specific prefixes
        * https://v3.nuxtjs.org/guide/features/runtime-config/#environment-variables
        */
+      APP_DOMAIN: process.env.APP_DOMAIN ?? 'localhost:3000',
+
       API_BASE: process.env.API_BASE ?? '/api/v1',
       API_BASE_WS: process.env.API_BASE_WS ?? '/',
+
       INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',
+      WALLETCONNECT_RELAY_URL: process.env.WALLETCONNECT_RELAY_URL ?? 'wss://relay.walletconnect.com',
       MORALIS_API_KEY: process.env.MORALIS_API_KEY ?? '',
     },
   },
@@ -54,12 +49,17 @@ export default defineNuxtConfig({
    * Modules config
    */
   modules: [
+    '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
+
+  tailwindcss: {
+    cssPath: '~/assets/scss/tailwind.scss',
+  },
 
   i18n: {
     langDir: 'locales',
