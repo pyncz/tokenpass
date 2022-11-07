@@ -42,7 +42,6 @@ const textColors = {
 // Read more about tailwindcss configuration: https://tailwindcss.com/docs/configuration
 module.exports = {
   mode: 'jit',
-  content: ['**/*.{vue,js}'],
   prefix: 'tw-',
   safelist: [
     'light-mode',

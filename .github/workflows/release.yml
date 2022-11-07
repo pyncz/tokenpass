@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      
+
       # Smoke test version
       - name: Install Go
         uses: actions/setup-go@v2
@@ -37,10 +37,10 @@ jobs:
           go-version: 1.19
 
       - name: Fetch required Go modules
-        run:  go mod download
+        run: go mod download
 
       - name: Build
-        run:  go build -v ./...
+        run: go build -v ./...
 
       # Build flow
       - name: Docker meta
@@ -116,7 +116,7 @@ jobs:
         continue-on-error: true
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
+
   notify_end:
     name: Notify about finish releasing
     runs-on: ubuntu-latest

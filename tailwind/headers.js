@@ -19,17 +19,17 @@ module.exports = ({ addBase, theme, addUtilities }) => {
     h1: {
       ...headerStylesStrong,
       fontSize: theme('fontSize.4xl'),
-      marginBottom: '1em',
+      marginBottom: '0.75em',
     },
     h2: {
       ...headerStylesStrong,
       fontSize: theme('fontSize.3xl'),
-      marginBottom: '1em',
+      marginBottom: '0.625em',
     },
     h3: {
       ...headerStylesStrong,
       fontSize: theme('fontSize.2xl'),
-      marginBottom: '0.75em',
+      marginBottom: '0.625em',
     },
     h4: {
       ...headerStyles,
