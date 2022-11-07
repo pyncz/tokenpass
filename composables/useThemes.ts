@@ -4,6 +4,6 @@ export enum Theme {
 }
 
 export const themeModes = [
-  ...Object.values(Theme),
   'system',
+  ...Object.values(Theme),
 ]
