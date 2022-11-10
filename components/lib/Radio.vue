@@ -11,23 +11,18 @@
 
     <div class="radio-group tw-input-border">
       <radio-group-option
-        v-for="option of options"
-        :key="option.value"
+        v-for="option, index of options"
+        :key="getKey(option, index)"
         v-slot="{ checked }"
-        :value="option.value"
+        :value="getValue(option)"
       >
         <slot name="option" v-bind="{ option, checked }">
           <div class="radio-option-button tw-button" :class="{ checked, disabled }">
-            <div class="radio-option-content">
-              <radio-group-label as="template">
-                <span class="radio-option-label">
-                  {{ option.label ?? option.value }}
-                </span>
-              </radio-group-label>
-              <radio-group-description v-if="option.description" class="radio-option-description" as="p">
-                {{ option.description }}
-              </radio-group-description>
-            </div>
+            <radio-group-label as="div" class="tw-z-1">
+              <span class="tw-font-medium">
+                {{ option }}
+              </span>
+            </radio-group-label>
           </div>
         </slot>
       </radio-group-option>
@@ -38,20 +33,36 @@
 <script setup lang="ts">
 import {
   RadioGroup,
-  RadioGroupDescription,
   RadioGroupLabel,
   RadioGroupOption,
 } from '@headlessui/vue'
-import type { Direction, SelectOption } from '../../models'
+import type { Numeric } from '@voire/type-utils'
+import type { Direction } from '../../models'
 
-const props = defineProps<{
-  modelValue: string
-  options: SelectOption[]
+type Value = any
+type Option = any
+
+interface Props {
+  modelValue: Value
+  options?: Option[]
+
   label?: string
   disabled?: boolean
   thin?: boolean
   direction?: Direction
-}>()
+
+  // How to render list of the options
+  getKey?: (_option: Option, _index: number) => Numeric
+
+  // Getter to a value to use as a model
+  getValue?: (_option: Option) => Value
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  options: () => [],
+  getKey: (_option: Option, index: number) => index,
+  getValue: (option: Option) => option,
+})
 
 const model = useVModel(props)
 </script>
@@ -102,15 +113,6 @@ const model = useVModel(props)
         &.disabled {
           @apply tw-opacity-soft tw-cursor-not-allowed;
         }
-      }
-      &-content {
-        @apply tw-z-1;
-      }
-      &-label {
-        @apply tw-font-medium;
-      }
-      &-description {
-        @apply tw-opacity-muted tw-text-3/4;
       }
     }
   }

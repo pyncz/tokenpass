@@ -78,8 +78,8 @@ const props = withDefaults(defineProps<Props>(), {
   options: () => [],
   forbidCustom: false,
   filter: (options: Option[]) => options,
-  getValue: (option: Option) => option,
   getKey: (_option: Option, index: number) => index,
+  getValue: (option: Option) => option,
   getDisplay: (value?: Value) => value?.toString(),
 })
 

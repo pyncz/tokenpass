@@ -2,6 +2,8 @@
   <lib-radio
     v-model="localeModel"
     :options="localeOptions"
+    :get-key="(o) => o.value"
+    :get-value="(o) => o.value"
     direction="x"
     thin
   >
@@ -12,11 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import type { SelectOption } from '../../models'
-
 const { locale, locales } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const localeOptions = computed<SelectOption[]>(() => locales.value.map(l => ({
+const localeOptions = computed(() => locales.value.map(l => ({
   value: typeof l === 'string' ? l : l.code,
   label: typeof l === 'string' ? l : (l.name ?? l.code).toUpperCase(),
 })))
