@@ -1,4 +1,6 @@
 @mixin light-mode {
+  --c-logo: var(--c-color-base);
+
   /* text */
   --c-color-base: 5, 5, 6;
   --c-color-dim-1: 69, 77, 84;
@@ -11,6 +13,8 @@
   --c-bg-dim-2: 230, 235, 241;
 
   --c-bg-card: var(--c-white);
+  --o-bg-card: 0.5;
+  --o-bg-group: 1;
 
   --c-state-error: 255, 62, 80;
   --c-state-warning: 255, 160, 36;

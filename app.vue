@@ -4,14 +4,16 @@
       <switch-locale />
       <switch-theme />
     </div>
-    <nuxt-layout class="tw-layout-container tw-flex tw-flex-col tw-flex-1">
-      <nuxt-loading-indicator />
+    <div class="tw-px-6 tw-flex-1 tw-layout-container tw-flex tw-flex-col">
+      <nuxt-layout>
+        <nuxt-loading-indicator />
 
-      <nuxt-page v-if="isOnline" />
-      <div v-else>
-        {{ $t('errors.noConnection') }}.
-      </div>
-    </nuxt-layout>
+        <nuxt-page v-if="isOnline" />
+        <div v-else>
+          {{ $t('errors.noConnection') }}.
+        </div>
+      </nuxt-layout>
+    </div>
     <div class="tw-layout-container">
       <footer-info class="tw-w-full tw-mt-8 md:tw-w-auto" />
     </div>
@@ -19,7 +21,7 @@
 </template>
 
 <script setup>
-import '~/assets/scss/tailwind.scss'
+import './assets/scss/tailwind.scss'
 
 const isOnline = useNetwork()
 

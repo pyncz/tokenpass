@@ -4,7 +4,7 @@
       <chain-icon class="chain-icon" :chain-id="chainIntId" />
       <span class="test-mark" :title="$t('tooltips.test')" />
     </div>
-    <span class="tw-text-7/8 tw-truncate tw-flex-1 tw-text-dim-1">{{ label }}</span>
+    <span class="tw-text-7/8 tw-truncate tw-flex-1 tw-text-dim-1 tw-font-mono">{{ label }}</span>
   </div>
 </template>
 

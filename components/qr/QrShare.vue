@@ -4,7 +4,7 @@
       background="transparent"
       :foreground="foreground"
       class="tw-mx-auto tw-aspect-1 tw-h-full"
-      value="don't be angry"
+      :value="value"
     />
 
     <div>
@@ -15,6 +15,10 @@
 
 <script setup lang="ts">
 import QrCode from 'qrcode.vue'
+
+defineProps<{
+  value: string
+}>()
 
 const colorMode = useColorMode()
 const foreground = computed(

@@ -120,7 +120,7 @@
   }
 
   // Buttons
-  .tw-button {
+  .tw-clickable {
     @apply tw-cursor-pointer tw-gap-1 tw-rounded tw-font-medium tw-flex-center tw-inline-flex tw-duration-onhover-fast;
     @apply active:tw-scale-click;
   }
@@ -131,8 +131,8 @@
       @apply before:tw-scale-zoom;
     }
   }
-  .tw-action {
-    @apply tw-button;
+  .tw-button {
+    @apply tw-clickable;
     @apply tw-text-custom tw-bg-custom tw-bg-opacity-custom;
     @apply tw-text-sm tw-h-9 tw-bordered tw-py-2 tw-px-3;
     @apply before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
@@ -144,7 +144,7 @@
     }
   }
   .tw-button-primary {
-    @apply tw-action before:tw-border-accent-primary;
+    @apply tw-button before:tw-border-accent-primary;
     --text-color: var(--c-button-primary-color);
     --bg-color: var(--c-button-primary-bg);
     --bg-opacity: var(--o-button-primary-bg);
@@ -153,7 +153,7 @@
     }
   }
   .tw-button-secondary {
-    @apply tw-action;
+    @apply tw-button;
     --text-color: var(--c-button-secondary-color);
     --bg-color: var(--c-button-secondary-bg);
     --bg-opacity: var(--o-button-secondary-bg);
@@ -209,7 +209,7 @@
   }
 
   .tw-layout-container {
-    @apply tw-mx-auto tw-px-4 tw-w-full;
+    @apply tw-mx-auto tw-w-full;
     max-width: 26rem;
     @screen xs {
       width: 80vw;

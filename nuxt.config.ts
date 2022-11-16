@@ -13,10 +13,6 @@ export default defineNuxtConfig({
   /*
    * App config
    */
-  vite: {
-    devBundler: 'legacy',
-  },
-
   router: {
     options: {
       linkActiveClass: 'active',
@@ -34,9 +30,6 @@ export default defineNuxtConfig({
        * https://v3.nuxtjs.org/guide/features/runtime-config/#environment-variables
        */
       APP_DOMAIN: process.env.APP_DOMAIN ?? 'localhost:3000',
-
-      API_BASE: process.env.API_BASE ?? '/api/v1',
-      API_BASE_WS: process.env.API_BASE_WS ?? '/',
 
       INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',

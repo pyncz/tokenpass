@@ -12,9 +12,9 @@ import { useSetupStore } from '../stores'
 definePageMeta({
   middleware: () => {
     // without the `storeToRefs` as it's an one-time check
-    const { setupState } = useSetupStore()
+    const { connectUri } = useSetupStore()
 
-    if (setupState) {
+    if (connectUri) {
       const { $localePath } = useNuxtApp()
       return navigateTo($localePath({ name: 'share' }))
     }

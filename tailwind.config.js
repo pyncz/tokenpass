@@ -95,7 +95,7 @@ module.exports = {
       mono: ['monospace'],
     },
     lineHeight: {
-      none: 1,
+      1: 1,
       xs: 1.1,
       sm: 1.15,
     },
@@ -140,6 +140,7 @@ module.exports = {
       normal: '1',
     },
     fill: theme => ({
+      logo: co('--c-logo'),
       ...theme('backgroundColor'),
     }),
     stroke: theme => ({
@@ -164,6 +165,8 @@ module.exports = {
     }),
     backgroundOpacity: theme => ({
       ...theme('opacity'),
+      group: 'var(--o-bg-group)',
+      card: 'var(--o-bg-card)',
       custom: 'var(--bg-opacity)',
       modal: 'var(--o-modal-overlay)',
     }),
@@ -234,20 +237,18 @@ module.exports = {
     plugin(addHeaders),
     plugin(addLayouts),
     ({ addUtilities, matchUtilities, theme }) => {
+      const size = value => ({
+        height: value,
+        minHeight: value,
+        width: value,
+        minWidth: value,
+      })
       matchUtilities(
         {
+          size,
           circle: value => ({
-            height: value,
-            minHeight: value,
-            width: value,
-            minWidth: value,
+            ...size(value),
             borderRadius: theme('borderRadius.full'),
-          }),
-          size: value => ({
-            height: value,
-            minHeight: value,
-            width: value,
-            minWidth: value,
           }),
         },
         { values: theme('height') },

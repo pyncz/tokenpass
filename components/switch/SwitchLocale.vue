@@ -8,7 +8,7 @@
     thin
   >
     <template #option="{ option, checked }">
-      <a role="button" class="tw-radio-option-thin tw-text-xs" :class="{ checked }">{{ option.label }}</a>
+      <a role="button" class="tw-leading-1 tw-radio-option-thin tw-text-xs" :class="{ checked }">{{ option.label }}</a>
     </template>
   </lib-radio>
 </template>

@@ -9,6 +9,12 @@
   </div>
 </template>
 
+<script setup lang="ts">
+definePageMeta({
+  layout: 'message',
+})
+</script>
+
 <style lang="scss">
   .error-code {
     @apply tw-h1;
