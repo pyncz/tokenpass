@@ -1,5 +1,5 @@
 <template>
-  <lib-modal v-slot="{ close, open }">
+  <lib-modal v-slot="{ close, open }" :opened="opened">
     <dialog-panel class="tw-dialog dialog">
       <button tabindex="-1" class="close-button" @click="close()">
         <icon name="close" class="tw-z-1" />
@@ -35,6 +35,7 @@ import {
 defineProps<{
   title?: string
   description?: string
+  opened: boolean
 }>()
 </script>
 

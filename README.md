@@ -12,7 +12,7 @@ Using the legal power of NFTs.
 - [Tailwind CSS](https://tailwindcss.com)
 - Icons: [`ionicons`](https://ionic.io/ionicons)
 - UI: [`headless-ui`](https://headlessui.com/vue/menu)
-- Validation: [`vee-validate`](https://vee-validate.logaretm.com/v4)
+- Validation: [`vuelidate`](https://vuelidate-next.netlify.app)
 - Testing:
   - Unit: [`vitest`](https://vitest.dev)
 

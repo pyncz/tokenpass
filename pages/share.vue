@@ -12,21 +12,22 @@
       </h1>
     </template>
 
-    <card-container>
-      <qr-share />
+    <card-container v-if="connectUri">
+      <qr-share :value="connectUri" />
     </card-container>
   </layout-checker>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { useSetupStore } from '../stores'
 
 definePageMeta({
   middleware: () => {
     // without the `storeToRefs` as it's an one-time check
-    const { setupState } = useSetupStore()
+    const { connectUri } = useSetupStore()
 
-    if (!setupState) {
+    if (!connectUri) {
       const { $localePath } = useNuxtApp()
       return navigateTo($localePath({ name: 'index' }))
     }
@@ -34,5 +35,14 @@ definePageMeta({
 })
 
 const setupStore = useSetupStore()
-const { resetSetupState } = setupStore
+const { $reset: resetSetupState } = setupStore
+const { connectUri } = storeToRefs(setupStore)
+
+// Redirect on the setup page if the setup data is erased
+// NOTE: Not just on Back click since the setup may be removed from localStorage
+watch(connectUri, () => {
+  const router = useRouter()
+  const localePath = useLocalePath()
+  router.push(localePath({ name: 'index' }))
+})
 </script>
