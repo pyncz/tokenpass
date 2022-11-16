@@ -16,9 +16,7 @@
       Ads?
     </section>
 
-    <div class="md:tw-row-[2/4]">
-      <setup-state />
-    </div>
+    <setup-state class="md:tw-row-[2/4]" />
 
     <div class="md:tw-col-[2] md:tw-row-[3/5] lg:tw-row-[2/5]" :class="{ 'md:tw-row-[2/5]': !ads.length }">
       <slot />
@@ -41,7 +39,7 @@ const shortLogo = breakpoints.smallerOrEqual('xs')
 
 <style scoped lang="scss">
 .layout {
-  @apply tw-grid tw-gap-y-4 tw-gap-x-8 tw-justify-center tw-items-start;
+  @apply tw-w-full tw-grid tw-gap-y-4 tw-gap-x-8 tw-justify-center tw-items-start;
   grid-template-columns: minmax(0, 1fr);
   @screen md {
     // right sidebar

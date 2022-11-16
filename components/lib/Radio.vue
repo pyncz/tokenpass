@@ -17,7 +17,7 @@
         :value="getValue(option)"
       >
         <slot name="option" v-bind="{ option, checked }">
-          <div class="radio-option-button tw-button" :class="{ checked, disabled }">
+          <div class="radio-option-button tw-clickable" :class="{ checked, disabled }">
             <radio-group-label as="div" class="tw-z-1">
               <span class="tw-font-medium">
                 {{ option }}
