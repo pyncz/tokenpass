@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/color-mode',
-    '@nuxtjs/i18n',
+    '@nuxtjs/i18n-edge',
     '@pinia/nuxt',
     '@vueuse/nuxt',
 

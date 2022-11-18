@@ -21,7 +21,7 @@
     "@headlessui/vue": "latest",
     "@nuxtjs/critters": "^0.3.3",
     "@nuxtjs/fontaine": "^0.2.2",
-    "@nuxtjs/i18n": "8.0.0-beta.2",
+    "@nuxtjs/i18n-edge": "^8.0.0-beta.4-27812700.b832f07",
     "@nuxtjs/tailwindcss": "^6.1.3",
     "@pinia/nuxt": "^0.4.1",
     "@tailwindcss/aspect-ratio": "^0.3.0",
@@ -47,11 +47,12 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.2",
     "@antfu/ni": "^0.10.2",
+
     "@nuxtjs/color-mode": "^3.1.5",
     "@vueuse/nuxt": "^9.1.1",
     "eslint": "^8.23.0",
     "lint-staged": ">=10",
-    "nuxt": "^3.0.0-rc.13",
+    "nuxt": "^3.0.0",
     "nuxt-icon": "^0.1.7",
     "simple-git": "^2.47.0",
     "simple-git-hooks": "^2.7.0"
