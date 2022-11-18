@@ -1,15 +1,13 @@
 <template>
   <div class="tw-field field">
-    <div>
-      <slot name="label" v-bind="{ id }">
-        <div v-if="label" class="tw-flex">
-          <label :for="id" class="field-meta tw-label">
-            {{ label }}
-          </label>
-        </div>
-      </slot>
-      <slot v-bind="{ id }" />
-    </div>
+    <slot name="label" v-bind="{ id }">
+      <div v-if="label" class="tw-flex">
+        <label :for="id" class="field-meta tw-label">
+          {{ label }}
+        </label>
+      </div>
+    </slot>
+    <slot v-bind="{ id }" />
 
     <p v-if="error" class="field-meta tw-form-error">
       {{ error }}

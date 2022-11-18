@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from 'nuxt'
-
 const isProduction = !!process.env.IS_PRODUCTION
 
 export default defineNuxtConfig({
@@ -48,6 +46,10 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@pinia/nuxt',
     '@vueuse/nuxt',
+
+    // perfomance
+    '@nuxtjs/critters',
+    '@nuxtjs/fontaine',
   ],
 
   tailwindcss: {
@@ -62,12 +64,6 @@ export default defineNuxtConfig({
         name: 'en',
         file: 'en-US.yml',
         iso: 'en-US',
-      },
-      {
-        code: 'ru',
-        name: 'ру',
-        file: 'ru-RU.yml',
-        iso: 'ru-RU',
       },
     ],
     vueI18n: './i18n.config.mjs',

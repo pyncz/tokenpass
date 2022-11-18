@@ -1,10 +1,10 @@
 <template>
-  <div class="tw-section tw-min-h-screen tw-flex tw-flex-col">
+  <div class="tw-px-6 tw-section tw-min-h-screen tw-flex tw-flex-col">
     <div class="preferences">
       <switch-locale />
       <switch-theme />
     </div>
-    <div class="tw-px-6 tw-flex-1 tw-layout-container tw-flex tw-flex-col">
+    <div class="tw-flex-1 tw-layout-container tw-flex tw-flex-col">
       <nuxt-layout>
         <nuxt-loading-indicator />
 

@@ -1,6 +1,7 @@
 <template>
   <div class="qr-share">
     <qr-code
+      :size="400"
       background="transparent"
       :foreground="foreground"
       class="tw-mx-auto tw-aspect-1 tw-h-full"

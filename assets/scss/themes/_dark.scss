@@ -14,7 +14,6 @@
 
   --c-bg-card: var(--c-bg-dim-1);
   --o-bg-card: 0.05;
-  --o-bg-group: 0.5;
 
   --c-state-error: 255, 129, 143;
   --c-state-warning: 255, 160, 36;
@@ -23,9 +22,9 @@
   
   /* elements */
   // separator
-  --c-separator: 68, 68, 68;
-  --c-separator-vivid: 85, 85, 85;
-  --c-separator-muted: 51, 51, 51;
+  --c-separator: 53, 53, 53;
+  --c-separator-vivid: 75, 75, 75;
+  --c-separator-muted: 35, 35, 35;
 
   // link
   --c-link-primary: var(--c-accent-secondary);

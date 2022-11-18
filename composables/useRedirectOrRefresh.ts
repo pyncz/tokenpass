@@ -14,7 +14,7 @@ export function useRedirectOrRefresh(
   ) => {
     const targetRoute = localeRoute(route, locale)
     if (targetRoute) {
-      const currentRoute = useActiveRoute()
+      const currentRoute = useRoute()
 
       if (targetRoute.fullPath === currentRoute.fullPath) {
         window.location.reload()

@@ -2,10 +2,13 @@
   <form
     class="tw-space-y-form"
     @submit.prevent="submit"
+    @change="v.$validate()"
   >
     <div class="tw-space-y-form-fields">
       <div class="tw-space-y-form-fields">
-        <form-field :errors="v.chainId.$errors">
+        <form-field
+          :errors="v.chainId.$errors"
+        >
           <template #label="{ id }">
             <div class="tw-flex">
               <label :for="id" class="field-meta tw-label">
@@ -36,8 +39,13 @@
           </template>
         </form-field>
 
-        <form-field name="address" :label="$t('index.fields.address.label')" :errors="v.address.$errors">
+        <form-field
+          v-slot="{ id }"
+          :label="$t('index.fields.address.label')"
+          :errors="v.address.$errors"
+        >
           <lib-input
+            :id="id"
             v-model="form.address"
             :placeholder="$t('index.fields.address.placeholder')"
             :disabled="loading"
@@ -45,29 +53,35 @@
         </form-field>
       </div>
 
-      <div v-if="contractSpecified">
-        Hey ho
-      </div>
+      <token-details
+        v-if="contractSpecified"
+        v-slot="{ contractType }"
+        :chain-id="form.chainId"
+        :address="form.address"
+      >
+        Hey'ya
+        {{ contractType }}
+      </token-details>
 
-      <form-section icon="🪙">
-        ERC20, yeah!
-      </form-section>
       <form-section icon="💎" color="63,182,253">
         <p class="tw-mb-2 tw-font-medium tw-text-sm">
           Looks like this is an NFT!
         </p>
 
         <form-field
-          v-slot="field"
-          name="tokenId"
-          :rules="setupTokenId ? { required: setupTokenId, integer: true, min_value: 1 } : undefined"
+          v-slot="{ id }"
           :label="$t('index.fields.tokenId.label')"
-          :visible-name="$t('fields.tokenId')"
+          :error="v.tokenId.$errors"
         >
           <div class="field-row">
-            <lib-switch v-model="setupTokenId" class="tw-mt-1" />
+            <lib-switch
+              v-model="setupTokenId"
+              class="tw-mt-1"
+              :disabled="loading"
+            />
             <lib-input
-              v-bind="field"
+              :id="id"
+              v-model="form.tokenId"
               class="tw-flex-1"
               :placeholder="$t('index.fields.tokenId.placeholder')"
               :disabled="loading || !setupTokenId"
@@ -82,34 +96,44 @@
         </p>
 
         <form-field
-          v-slot="field"
-          name="amount"
-          :rules="setupAmount ? { required: setupAmount, integer: true, min_value: 1 } : undefined"
+          v-slot="{ id }"
           :label="$t('index.fields.amount.label')"
-          :visible-name="$t('fields.amount')"
+          :error="v.amount.$errors"
         >
           <div class="field-row">
-            <lib-switch v-model="setupAmount" class="tw-mt-1" />
+            <lib-switch
+              v-model="setupAmount"
+              class="tw-mt-1"
+              :disabled="loading"
+            />
             <lib-input
-              v-bind="field"
+              :id="id"
+              v-model="form.amount"
               class="tw-flex-1"
               :placeholder="$t('index.fields.amount.placeholder')"
-              :disabled="!setupAmount"
+              :disabled="loading || !setupAmount"
             />
           </div>
         </form-field>
       </form-section>
     </div>
 
-    <button class="tw-button-primary tw-w-full" :disabled="loading">
-      {{ $t('index.submit') }}
+    <button
+      type="submit"
+      class="tw-button-primary tw-w-full"
+      :disabled="!initialized || loading"
+    >
+      {{ initialized ? $t('index.submit.ready') : $t('index.submit.initializing') }}
     </button>
   </form>
 </template>
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { storeToRefs } from 'pinia'
+import { setupStateMapper } from '../../models'
 import type { ChainInfo, HexString, SetupForm } from '../../models'
+import { useConnectionStore, useSetupStore } from '../../stores'
 import { squeeze } from '../../utils'
 
 // Select chain
@@ -126,13 +150,26 @@ const filterNetworks = (options: ChainInfo[], q: string) => options.filter((opti
 // Setup form
 const { ethAddress, integer, positive, required } = useValidators()
 
-const form = reactive<SetupForm>({
+// Enable additional config
+const setupTokenId = ref(false)
+const setupAmount = ref(false)
+
+const form = ref<SetupForm>({
   chainId: +networks[0].id,
   address: '' as HexString,
+  tokenId: '',
+  amount: '',
 })
+
 const rules = computed(() => ({
   chainId: { required, integer, positive },
   address: { required, ethAddress },
+  tokenId: setupTokenId.value
+    ? { required, integer, positive }
+    : {},
+  amount: setupAmount.value
+    ? { required, integer, positive }
+    : {},
 }))
 
 const v = useVuelidate(rules, form)
@@ -140,29 +177,27 @@ const v = useVuelidate(rules, form)
 const chainIdValid = computed(() => !v.value.chainId.$invalid)
 const addressValid = computed(() => !v.value.address.$invalid)
 
-const contractSpecified = computed(
-  // just value checks are included in order to avoid a flash before the validation rules are applied
-  () => form.chainId && chainIdValid.value && form.address && addressValid.value,
+const contractSpecified = computed(() =>
+  chainIdValid.value && addressValid.value
+    // just value checks are included
+    // in order to avoid a flash before the validation rules are applied
+    && form.value.chainId && form.value.address,
 )
 
-// Enable additional config
-const setupTokenId = ref(false)
-const setupAmount = ref(false)
-
 // Submit
-const { decoratedMethod: submit, loading } = useLoading(async () => {
-  console.log(form)
-  if (await v.value.$validate()) {
-    const payload = {
-      ...form,
-      tokenId: setupTokenId.value ? form.tokenId : undefined,
-      amount: setupAmount.value ? form.amount : undefined,
-    }
-    console.log(payload)
-  }
+const { initialized } = storeToRefs(useConnectionStore())
 
-  // const { initConnectionRequest } = useSetupStore()
-  // await initConnectionRequest(form)
+const { decoratedMethod: submit, loading } = useLoading(async () => {
+  if (await v.value.$validate()) {
+    const payload: SetupForm = {
+      ...form.value,
+      tokenId: setupTokenId.value ? form.value.tokenId : '',
+      amount: setupAmount.value ? form.value.amount : '',
+    }
+
+    const { setSetupState } = useSetupStore()
+    setSetupState(setupStateMapper(payload))
+  }
 })
 </script>
 

@@ -1,6 +1,6 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { $fetch } from 'ohmyfetch'
-import type { CollectionMetadata, HexString } from '~~/models'
+import type { CollectionMetadata, HexString } from '../models'
 
 export const useNftStore = defineStore('nft', () => {
   const api = $fetch.create({

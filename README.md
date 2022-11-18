@@ -2,7 +2,7 @@
 
 # ✅ tokenpass
 
-Using the legal power of NFTs.
+Using the unique power of blockchain.
 
 
 ## Stack

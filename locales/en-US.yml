@@ -4,6 +4,10 @@ logo: '{name} logo'
 pages:
   index:
     title: Setup
+    description:
+      Using the unique power of blockchain.
+      Setup collection contract on any EVM blockchain, let your customer
+      read the generated QR Code and check if he ownes the specified token.
   check:
     title: 'Check #{id}'
   about:
@@ -46,7 +50,9 @@ index:
   title:
     setup: Setup address
     share: Share link
-  submit: '@:actions.setup'
+  submit:
+    ready: '@:actions.setup'
+    initializing: Initializing...
   disclosure: Additional config
   fields:
     chainId:

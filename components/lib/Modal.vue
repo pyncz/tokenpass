@@ -17,9 +17,8 @@ import {
 const props = defineProps<{
   opened: boolean
 }>()
-const emit = defineEmits(['update:opened'])
 
-const opened = useVModel(props, 'opened', emit)
+const opened = useVModel(props, 'opened')
 
 function close() {
   opened.value = false

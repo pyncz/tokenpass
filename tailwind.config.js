@@ -165,7 +165,6 @@ module.exports = {
     }),
     backgroundOpacity: theme => ({
       ...theme('opacity'),
-      group: 'var(--o-bg-group)',
       card: 'var(--o-bg-card)',
       custom: 'var(--bg-opacity)',
       modal: 'var(--o-modal-overlay)',

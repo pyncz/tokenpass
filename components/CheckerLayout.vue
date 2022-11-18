@@ -12,26 +12,22 @@
       </slot>
     </span>
 
-    <section v-if="ads.length" class="tw-callout md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]">
+    <section class="tw-callout md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]">
       Ads?
     </section>
 
     <setup-state class="md:tw-row-[2/4]" />
 
-    <div class="md:tw-col-[2] md:tw-row-[3/5] lg:tw-row-[2/5]" :class="{ 'md:tw-row-[2/5]': !ads.length }">
+    <div class="md:tw-col-[2] md:tw-row-[3/5] lg:tw-row-[2/5]">
       <slot />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useAdsStore } from '~~/stores'
-
 defineProps<{
   title?: string
 }>()
-const { ads } = storeToRefs(useAdsStore())
 
 const breakpoints = useTailwindBreakpoints()
 const shortLogo = breakpoints.smallerOrEqual('xs')

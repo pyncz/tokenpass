@@ -1,23 +1,52 @@
 <template>
-  <layout-checker :title="$t('index.title.setup')">
-    <card-container>
-      <setup-form />
-    </card-container>
-  </layout-checker>
+  <checker-layout>
+    <template #title>
+      <client-only>
+        <template v-if="connectUri">
+          <a role="button" @click="resetSetupState">
+            <icon
+              name="ion:arrow-back"
+              class="tw-text-2xl tw-text-accent-primary"
+            />
+          </a>
+          <h1>
+            {{ $t('index.title.share') }}
+          </h1>
+        </template>
+
+        <h1 v-else>
+          {{ $t('index.title.setup') }}
+        </h1>
+
+        <template #fallback>
+          <h1>
+            {{ $t('index.title.setup') }}
+          </h1>
+        </template>
+      </client-only>
+    </template>
+
+    <client-only>
+      <card-container v-if="connectUri">
+        <qr-share :value="connectUri" />
+      </card-container>
+
+      <card-container v-else>
+        <setup-form />
+      </card-container>
+    </client-only>
+  </checker-layout>
 </template>
 
 <script setup lang="ts">
-import { useSetupStore } from '../stores'
+import { storeToRefs } from 'pinia'
+import { useConnectionStore, useSetupStore } from '../stores'
 
-definePageMeta({
-  middleware: () => {
-    // without the `storeToRefs` as it's an one-time check
-    const { connectUri } = useSetupStore()
+const { reset: resetSetupState } = useSetupStore()
 
-    if (connectUri) {
-      const { $localePath } = useNuxtApp()
-      return navigateTo($localePath({ name: 'share' }))
-    }
-  },
-})
+// Init connection things
+const connectionStore = useConnectionStore()
+const { connectUri } = storeToRefs(connectionStore)
+
+onMounted(connectionStore.init)
 </script>

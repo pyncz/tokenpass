@@ -1,5 +1,5 @@
 <template>
-  <input v-model="value" class="tw-input">
+  <input v-model="model" class="tw-input">
 </template>
 
 <script setup lang="ts">
@@ -7,5 +7,5 @@ const props = defineProps<{
   modelValue: string
 }>()
 
-const value = useVModel(props)
+const model = useVModel(props)
 </script>

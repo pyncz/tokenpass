@@ -1,5 +1,5 @@
 export * from './ui'
-export * from './collections'
+export * from './web3'
 
 export * from './setupForm'
 export * from './hex'

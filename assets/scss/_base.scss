@@ -30,4 +30,8 @@
     @apply tw-rounded tw-bg-text-base tw-bg-opacity-20 tw-py-px tw-px-1;
     @apply tw-opacity-muted tw-text-7/8;
   }
+
+  *:disabled {
+    @apply tw-pointer-events-none tw-cursor-not-allowed tw-opacity-muted;
+  }
 }
