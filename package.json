@@ -14,6 +14,7 @@
     "build": "nuxi build",
     "start": "node .output/server/index.mjs",
     "generate": "nuxi generate",
+    "test": "vitest --run",
     "lint": "eslint .",
     "lintfix": "nr lint --fix"
   },
@@ -47,7 +48,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.2",
     "@antfu/ni": "^0.10.2",
-
+    "@nuxt/test-utils-edge": "^3.0.1-rc.0-27810184.d991a55",
     "@nuxtjs/color-mode": "^3.1.5",
     "@vueuse/nuxt": "^9.1.1",
     "eslint": "^8.23.0",
@@ -55,7 +56,8 @@
     "nuxt": "^3.0.0",
     "nuxt-icon": "^0.1.7",
     "simple-git": "^2.47.0",
-    "simple-git-hooks": "^2.7.0"
+    "simple-git-hooks": "^2.7.0",
+    "vitest": "^0.25.2"
   },
   "simple-git-hooks": {
     "pre-commit": "nr lint-staged"

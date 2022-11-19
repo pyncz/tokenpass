@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore, skipHydrate, storeToRefs } from 'pinia'
 import AuthClient, { generateNonce } from '@walletconnect/auth-client'
 import type { Nullable } from '@voire/type-utils'
-import { useSetupStore } from './useSetupStore'
+import { useSetupStore } from './setup'
 
 export const useConnectionStore = defineStore('connection', () => {
   /*

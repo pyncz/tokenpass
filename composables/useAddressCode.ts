@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { providers } from 'ethers'
-import type { HexString } from '~~/models'
+import type { HexString } from '../models'
 
 export function useAddressCode(
   address: MaybeRef<HexString>,
@@ -16,7 +16,7 @@ export function useAddressCode(
 
   // It is a smart contract (i.e. a token), if the address stores some code
   // Otherwise it's just a regular address
-  const isContract = computed(() => code.value && code.value.length > 0)
+  const isContract = computed(() => code.value ? code.value.length > 0 : false)
 
   return {
     code,

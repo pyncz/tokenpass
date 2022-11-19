@@ -1,3 +1,3 @@
-export * from './useSetupStore'
-export * from './useNftStore'
-export * from './useConnectionStore'
+export * from './setup'
+export * from './nft'
+export * from './connection'

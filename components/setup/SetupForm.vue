@@ -134,7 +134,6 @@ import { storeToRefs } from 'pinia'
 import { setupStateMapper } from '../../models'
 import type { ChainInfo, HexString, SetupForm } from '../../models'
 import { useConnectionStore, useSetupStore } from '../../stores'
-import { squeeze } from '../../utils'
 
 // Select chain
 const networks: ChainInfo[] = Object.entries(chainNamesMap).map(([id, info]) => ({

@@ -1,6 +1,4 @@
-import type { Abi } from './abi.types'
-
-export const ERC165Abi: Abi = [
+export const ERC165Abi = [
   {
     inputs: [
       {
@@ -21,5 +19,3 @@ export const ERC165Abi: Abi = [
     type: 'function',
   },
 ]
-
-export const ERC20Abi: Abi = []
