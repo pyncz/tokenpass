@@ -16,7 +16,7 @@
               </label>
             </div>
             <lazy-chain-representation
-              v-if="form.chainId && chainIdValid"
+              v-if="!!form.chainId && chainIdValid"
               :chain-id="form.chainId"
             />
           </template>
@@ -43,13 +43,13 @@
         </form-field>
       </div>
 
-      <form-section
+      <lazy-form-section
         v-if="contractSpecified"
         v-bind="contractSectionAttributes"
         class="tw-text-7/8"
       >
         <div v-if="evaluatingContractCheck">
-          <loading-spinner />
+          <lazy-loading-spinner />
         </div>
 
         <div
@@ -57,26 +57,60 @@
           v-bind="{ contractType }"
           class="tw-space-y-form-fields"
         >
-          <erc721-token-preview v-if="isIERC721" />
-          <erc1155-token-preview v-else-if="isIERC1155" />
-          <erc20-token-preview v-else-if="isIERC20" />
+          <lazy-erc721-preview
+            v-if="isIERC721 && isIERC721Metadata"
+            :chain-id="form.chainId"
+            :address="form.address"
+          />
+          <lazy-erc1155-preview
+            v-if="isIERC1155 && isIERC1155MetadataURI"
+            :chain-id="form.chainId"
+            :address="form.address"
+          />
+          <lazy-erc20-preview
+            v-if="isIERC20"
+            :chain-id="form.chainId"
+            :address="form.address"
+          />
 
-          <form-field
+          <lazy-form-field
             v-if="isNftContract"
-            v-slot="{ id }"
-            :label="$t('index.fields.tokenId.label')"
             :error="v.tokenId.$errors"
           >
-            <lib-input
-              :id="id"
-              v-model="form.tokenId"
-              class="tw-flex-1"
-              :placeholder="$t('index.fields.tokenId.placeholder')"
-              :disabled="loading"
-            />
-          </form-field>
+            <template #label="{ id }">
+              <div class="tw-flex">
+                <label :for="id" class="field-meta tw-label">
+                  {{ $t('index.fields.tokenId.label') }}
+                </label>
+              </div>
 
-          <form-field
+              <template v-if="validTokenId">
+                <lazy-erc721-token-preview
+                  v-if="isIERC721Metadata"
+                  :chain-id="form.chainId"
+                  :address="form.address"
+                  :token-id="validTokenId"
+                />
+                <lazy-erc1155-token-preview
+                  v-if="isIERC1155MetadataURI"
+                  :chain-id="form.chainId"
+                  :address="form.address"
+                  :token-id="validTokenId"
+                />
+              </template>
+            </template>
+            <template #default="{ id }">
+              <lib-input
+                :id="id"
+                v-model="form.tokenId"
+                class="tw-flex-1"
+                :placeholder="$t('index.fields.tokenId.placeholder')"
+                :disabled="loading"
+              />
+            </template>
+          </lazy-form-field>
+
+          <lazy-form-field
             :error="v.amount.$errors"
           >
             <template #label="{ id }">
@@ -87,11 +121,11 @@
               </div>
 
               <div v-if="isIERC1155">
-                <lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
-                <span v-if="tokenIdValid && form.tokenId">({{ form.tokenId }})</span>
+                <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
+                <span v-if="tokenIdValid && !!form.tokenId">({{ form.tokenId }})</span>
               </div>
               <div v-else-if="isIERC20">
-                <lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
+                <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
               </div>
             </template>
             <template #default="{ id }">
@@ -100,10 +134,10 @@
                 v-model="form.amount"
                 class="tw-flex-1"
                 :placeholder="$t('index.fields.amount.placeholder')"
-                :disabled="loading || (isIERC721 && form.tokenId)"
+                :disabled="loading || (isIERC721 && !!form.tokenId)"
               />
             </template>
-          </form-field>
+          </lazy-form-field>
         </div>
 
         <div v-else class="tw-space-y-2">
@@ -114,12 +148,12 @@
             {{ $t('contractCheck.noCode') }}
           </p>
 
-          <lib-markdown
+          <lazy-lib-markdown
             :value="$t('contractCheck.disclaimer')"
             class="tw-text-7/8 tw-text-dim-2 tw-pb-1"
           />
         </div>
-      </form-section>
+      </lazy-form-section>
     </div>
 
     <button
@@ -156,7 +190,9 @@ const {
   isContract,
   type: contractType,
   isIERC721,
+  isIERC721Metadata,
   isIERC1155,
+  isIERC1155MetadataURI,
   isIERC20,
 } = useContractTypes(
   address,
@@ -187,6 +223,8 @@ const chainIdValid = computed(() => !v.value.chainId.$invalid)
 const addressValid = computed(() => !v.value.address.$invalid)
 const tokenIdValid = computed(() => !v.value.tokenId.$invalid)
 
+const validTokenId = computed(() => tokenIdValid.value ? form.tokenId : null)
+
 const contractSpecified = computed(() =>
   chainIdValid.value && addressValid.value
     // just value checks are included
@@ -197,9 +235,8 @@ const contractSpecified = computed(() =>
 const isNftContract = computed(() => isIERC721.value || isIERC1155.value)
 
 const contractSectionAttributes = computed(() => {
-  return isNftContract.value
+  return isNftContract.value && !evaluatingContractCheck.value
     ? {
-        icon: '💎',
         style: {
           '--bg-color': '63,182,253',
           '--bg-opacity': 'var(--o-bg-form-section)',
@@ -212,7 +249,7 @@ const contractSectionAttributes = computed(() => {
 
 watchEffect(() => {
   // Set checked amount to 1, if it's an ERC-721 with tokenId specified
-  if (form.tokenId && isIERC721.value) {
+  if (tokenIdValid.value && form.tokenId && isIERC721.value) {
     form.amount = 1
   }
 })
