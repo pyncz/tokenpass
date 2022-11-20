@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 const localeRoute = useLocaleRoute()
-const redirectOrRefresh = useRedirectOrRefresh(localeRoute)
+const redirectOrRefresh = makeRedirectOrRefresh(localeRoute)
 </script>
 
 <script lang="ts">

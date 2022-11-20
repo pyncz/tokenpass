@@ -4,7 +4,7 @@ import type { Optional } from '@voire/type-utils'
 
 export type LocaleRoute = Route | (RouteLocation & { href: string })
 
-export type LocaleRouteFunction = (
+export type RouteResolver = (
   route: RawLocation | RouteLocationRaw,
   locale?: Locale,
 ) => Optional<LocaleRoute>
