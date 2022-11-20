@@ -116,6 +116,7 @@ module.exports = {
     }),
     borderColor: theme => ({
       ...theme('colors'),
+      transparent: 'transparent',
       custom: co('--border-color'),
       text: textColors,
       separator: {

@@ -1,15 +1,23 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { providers } from 'ethers'
+import type { Nullable } from '@voire/type-utils'
 import type { HexString } from '../models'
 
 export function useAddressCode(
-  address: MaybeRef<HexString>,
-  provider: MaybeRef<providers.InfuraProvider>,
+  address: MaybeRef<Nullable<HexString>>,
+  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
 ) {
   const evaluating = ref(false)
 
   const code = computedAsync(
-    () => unref(provider).getCode(unref(address)),
+    () => {
+      const providerValue = unref(provider)
+      const addressValue = unref(address)
+      if (providerValue && addressValue) {
+        return providerValue.getCode(addressValue)
+      }
+      return null
+    },
     null,
     { evaluating },
   )

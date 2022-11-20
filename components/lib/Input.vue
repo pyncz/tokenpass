@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  modelValue: string
+  modelValue?: string | number
 }>()
 
 const model = useVModel(props)

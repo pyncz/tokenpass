@@ -45,6 +45,20 @@ errors:
   noCollection: There's no such collection. Check the selected address / chain
   notFound: Not found
 
+validations:
+  required: This field is required
+  integer: The value should be an integer
+  positive: The value should be a positive number
+  ethAddress: An eth address is expected
+
+contractCheck:
+  noCode: Not a contract!
+  unknown: Unknown contract interface!
+  type: Looks like this is an {type}!
+  disclaimer:
+    Check the selected chain and address, and specify an ERC-721, ERC-1155 or ERC-20
+    contract so we can check if your client owns the token.
+
 # by pages
 index:
   title:
@@ -65,7 +79,7 @@ index:
       label: Look for a specific token
       placeholder: Token ID
     amount:
-      label: Look for a specific amount
+      label: Look for a specific amount (1 if not specified)
       placeholder: Amount
 
 about:

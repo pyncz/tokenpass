@@ -21,21 +21,11 @@
             />
           </template>
           <template #default="{ id }">
-            <lib-autocomplete
+            <select-chain
               :id="id"
               v-model="form.chainId"
-              :get-value="(o: ChainInfo) => o.id"
-              :options="networks"
-              :filter="filterNetworks"
-              :placeholder="$t('index.fields.chainId.placeholder')"
               :disabled="loading"
-            >
-              <template #option="{ option }">
-                <div class="tw-combo-option tw-relative">
-                  <chain-representation :chain-id="option.id" />
-                </div>
-              </template>
-            </lib-autocomplete>
+            />
           </template>
         </form-field>
 
@@ -53,75 +43,89 @@
         </form-field>
       </div>
 
-      <token-details
+      <form-section
         v-if="contractSpecified"
-        v-slot="{ contractType }"
-        :chain-id="form.chainId"
-        :address="form.address"
+        v-bind="contractSectionAttributes"
+        class="tw-text-7/8"
       >
-        Hey'ya
-        {{ contractType }}
-      </token-details>
+        <div v-if="evaluatingContractCheck">
+          <loading-spinner />
+        </div>
 
-      <form-section icon="💎" color="63,182,253">
-        <p class="tw-mb-2 tw-font-medium tw-text-sm">
-          Looks like this is an NFT!
-        </p>
-
-        <form-field
-          v-slot="{ id }"
-          :label="$t('index.fields.tokenId.label')"
-          :error="v.tokenId.$errors"
+        <div
+          v-else-if="contractType"
+          v-bind="{ contractType }"
+          class="tw-space-y-form-fields"
         >
-          <div class="field-row">
-            <lib-switch
-              v-model="setupTokenId"
-              class="tw-mt-1"
-              :disabled="loading"
-            />
+          <erc721-token-preview v-if="isIERC721" />
+          <erc1155-token-preview v-else-if="isIERC1155" />
+          <erc20-token-preview v-else-if="isIERC20" />
+
+          <form-field
+            v-if="isNftContract"
+            v-slot="{ id }"
+            :label="$t('index.fields.tokenId.label')"
+            :error="v.tokenId.$errors"
+          >
             <lib-input
               :id="id"
               v-model="form.tokenId"
               class="tw-flex-1"
               :placeholder="$t('index.fields.tokenId.placeholder')"
-              :disabled="loading || !setupTokenId"
-            />
-          </div>
-        </form-field>
-      </form-section>
-
-      <form-section>
-        <p class="tw-mb-2 tw-font-medium tw-text-sm">
-          TODO: Show if it's erc20 or erc1155 (smth with amount)
-        </p>
-
-        <form-field
-          v-slot="{ id }"
-          :label="$t('index.fields.amount.label')"
-          :error="v.amount.$errors"
-        >
-          <div class="field-row">
-            <lib-switch
-              v-model="setupAmount"
-              class="tw-mt-1"
               :disabled="loading"
             />
-            <lib-input
-              :id="id"
-              v-model="form.amount"
-              class="tw-flex-1"
-              :placeholder="$t('index.fields.amount.placeholder')"
-              :disabled="loading || !setupAmount"
-            />
-          </div>
-        </form-field>
+          </form-field>
+
+          <form-field
+            :error="v.amount.$errors"
+          >
+            <template #label="{ id }">
+              <div class="tw-flex">
+                <label :for="id" class="field-meta tw-label">
+                  {{ $t('index.fields.amount.label') }}
+                </label>
+              </div>
+
+              <div v-if="isIERC1155">
+                Amount of tokens of the provided `tokenId`
+                <span v-if="tokenIdValid && form.tokenId">({{ form.tokenId }})</span>
+              </div>
+              <div v-else-if="isIERC20">
+                In units, e.g. 1'000'000'000'000'000'000 for 1 WETH
+              </div>
+            </template>
+            <template #default="{ id }">
+              <lib-input
+                :id="id"
+                v-model="form.amount"
+                class="tw-flex-1"
+                :placeholder="$t('index.fields.amount.placeholder')"
+                :disabled="loading || (isIERC721 && form.tokenId)"
+              />
+            </template>
+          </form-field>
+        </div>
+
+        <div v-else class="tw-space-y-2">
+          <p v-if="isContract">
+            {{ $t('contractCheck.unknown') }}
+          </p>
+          <p v-else>
+            {{ $t('contractCheck.noCode') }}
+          </p>
+
+          <p class="tw-text-7/8 tw-text-dim-2 tw-pb-1">
+            <!-- TODO: Add refs to ERC-* specs -->
+            {{ $t('contractCheck.disclaimer') }}
+          </p>
+        </div>
       </form-section>
     </div>
 
     <button
       type="submit"
       class="tw-button-primary tw-w-full"
-      :disabled="!initialized || loading"
+      :disabled="disableSubmit"
     >
       {{ initialized ? $t('index.submit.ready') : $t('index.submit.initializing') }}
     </button>
@@ -132,76 +136,102 @@
 import { useVuelidate } from '@vuelidate/core'
 import { storeToRefs } from 'pinia'
 import { setupStateMapper } from '../../models'
-import type { ChainInfo, HexString, SetupForm } from '../../models'
+import type { HexString, SetupForm } from '../../models'
 import { useConnectionStore, useSetupStore } from '../../stores'
-
-// Select chain
-const networks: ChainInfo[] = Object.entries(chainNamesMap).map(([id, info]) => ({
-  id: +id,
-  ...info,
-}))
-
-const filterNetworks = (options: ChainInfo[], q: string) => options.filter((option) => {
-  const squeezedQuery = squeeze(q)
-  return option.id.toString().includes(squeezedQuery) || squeeze(option.label).includes(squeezedQuery)
-})
 
 // Setup form
 const { ethAddress, integer, positive, required } = useValidators()
 
-// Enable additional config
-const setupTokenId = ref(false)
-const setupAmount = ref(false)
-
-const form = ref<SetupForm>({
-  chainId: +networks[0].id,
+const form = reactive<SetupForm>({
+  chainId: 1,
   address: '' as HexString,
   tokenId: '',
-  amount: '',
+  amount: 1,
+})
+
+const { chainId, address } = toRefs(form)
+
+const {
+  evaluating: evaluatingContractCheck,
+  isContract,
+  type: contractType,
+  isIERC721,
+  isIERC1155,
+  isIERC20,
+} = useContractTypes(
+  address,
+  useInfuraProvider(chainId),
+)
+
+const tokenIdRules = computed(() => {
+  switch (true) {
+    case isIERC1155.value:
+      return { required, integer, positive }
+    case isIERC721.value:
+      return { integer, positive }
+    default:
+      return {}
+  }
 })
 
 const rules = computed(() => ({
   chainId: { required, integer, positive },
   address: { required, ethAddress },
-  tokenId: setupTokenId.value
-    ? { required, integer, positive }
-    : {},
-  amount: setupAmount.value
-    ? { required, integer, positive }
-    : {},
+  tokenId: tokenIdRules.value,
+  amount: { integer, positive },
 }))
 
 const v = useVuelidate(rules, form)
 
 const chainIdValid = computed(() => !v.value.chainId.$invalid)
 const addressValid = computed(() => !v.value.address.$invalid)
+const tokenIdValid = computed(() => !v.value.tokenId.$invalid)
 
 const contractSpecified = computed(() =>
   chainIdValid.value && addressValid.value
     // just value checks are included
     // in order to avoid a flash before the validation rules are applied
-    && form.value.chainId && form.value.address,
+    && chainId.value && address.value,
 )
+
+const isNftContract = computed(() => isIERC721.value || isIERC1155.value)
+
+const contractSectionAttributes = computed(() => {
+  return isNftContract.value
+    ? {
+        icon: '💎',
+        style: {
+          '--bg-color': '63,182,253',
+          '--bg-opacity': 'var(--o-bg-form-section)',
+          '--border-color': '63,182,253',
+          '--border-opacity': 'var(--o-border-form-section)',
+        },
+      }
+    : {}
+})
+
+watchEffect(() => {
+  // Set checked amount to 1, if it's an ERC-721 with tokenId specified
+  if (form.tokenId && isIERC721.value) {
+    form.amount = 1
+  }
+})
 
 // Submit
 const { initialized } = storeToRefs(useConnectionStore())
 
-const { decoratedMethod: submit, loading } = useLoading(async () => {
-  if (await v.value.$validate()) {
-    const payload: SetupForm = {
-      ...form.value,
-      tokenId: setupTokenId.value ? form.value.tokenId : '',
-      amount: setupAmount.value ? form.value.amount : '',
-    }
+const loading = ref(false)
+const disableSubmit = computed(() => loading.value || !initialized.value || evaluatingContractCheck.value)
+
+const submit = async () => {
+  // Resume if the field are valid AND the provided contract has suitable type
+  if (await v.value.$validate() && !disableSubmit.value && contractType.value) {
+    loading.value = true
 
     const { setSetupState } = useSetupStore()
-    setSetupState(setupStateMapper(payload))
-  }
-})
-</script>
+    setSetupState(setupStateMapper(form))
 
-<style scoped lang="scss">
-  .field-row {
-    @apply tw-flex tw-gap-y-1.5 tw-gap-x-2.5;
+    loading.value = false
   }
-</style>
+}
+</script>
