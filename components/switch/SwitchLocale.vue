@@ -1,5 +1,6 @@
 <template>
   <lib-radio
+    v-if="localeOptions.length > 1"
     v-model="localeModel"
     :options="localeOptions"
     :get-key="(o) => o.value"

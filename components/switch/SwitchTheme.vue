@@ -1,5 +1,6 @@
 <template>
   <lib-radio
+    v-if="themeModes.length > 1"
     v-model="$colorMode.preference"
     :options="themeModes"
     direction="x"
