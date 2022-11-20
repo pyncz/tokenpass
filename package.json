@@ -38,7 +38,6 @@
     "date-fns": "^2.28.0",
     "ethers": "^5.7.2",
     "micromark": "^3.1.0",
-    "ohmyfetch": "^0.4.20",
     "pinia": "^2.0.21",
     "qrcode.vue": "^3.3.3",
     "sass": "^1.43.3",

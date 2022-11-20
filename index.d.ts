@@ -7,7 +7,6 @@ declare module '@nuxt/schema' {
       // TODO: Move on private level?
       INFURA_PROJECT_ID: string
       WALLETCONNECT_PROJECT_ID: string
-      MORALIS_API_KEY: string
     }
   }
 }

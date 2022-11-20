@@ -32,7 +32,6 @@ export default defineNuxtConfig({
       INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',
       WALLETCONNECT_RELAY_URL: process.env.WALLETCONNECT_RELAY_URL ?? 'wss://relay.walletconnect.com',
-      MORALIS_API_KEY: process.env.MORALIS_API_KEY ?? '',
     },
   },
 
