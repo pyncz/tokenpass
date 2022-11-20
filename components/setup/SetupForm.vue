@@ -87,11 +87,11 @@
               </div>
 
               <div v-if="isIERC1155">
-                Amount of tokens of the provided `tokenId`
+                <lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
                 <span v-if="tokenIdValid && form.tokenId">({{ form.tokenId }})</span>
               </div>
               <div v-else-if="isIERC20">
-                In units, e.g. 1'000'000'000'000'000'000 for 1 WETH
+                <lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
               </div>
             </template>
             <template #default="{ id }">
@@ -114,10 +114,10 @@
             {{ $t('contractCheck.noCode') }}
           </p>
 
-          <p class="tw-text-7/8 tw-text-dim-2 tw-pb-1">
-            <!-- TODO: Add refs to ERC-* specs -->
-            {{ $t('contractCheck.disclaimer') }}
-          </p>
+          <lib-markdown
+            :value="$t('contractCheck.disclaimer')"
+            class="tw-text-7/8 tw-text-dim-2 tw-pb-1"
+          />
         </div>
       </form-section>
     </div>

@@ -9,6 +9,10 @@
 
   a {
     @apply tw-cursor-pointer;
+    &:not([role="button"]) {
+      @apply tw-link-muted;
+      @apply tw-border-b tw-border-solid tw-border-separator-muted hover:tw-border-separator;
+    }
   }
 
   hr {

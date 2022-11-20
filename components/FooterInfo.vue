@@ -1,10 +1,10 @@
 <template>
   <footer class="footer">
     <nav class="tw-flex tw-gap-1.5">
-      <nuxt-link class="tw-link-muted" :to="localeRoute({ name: 'index' })">
+      <nuxt-link class="tw-link-muted !tw-border-0" :to="localeRoute({ name: 'index' })">
         {{ $t('home') }}
       </nuxt-link>
-      <nuxt-link class="tw-link-muted" :to="localeRoute({ name: 'about' })">
+      <nuxt-link class="tw-link-muted !tw-border-0" :to="localeRoute({ name: 'about' })">
         {{ $t('about.title') }}
       </nuxt-link>
     </nav>
@@ -12,7 +12,7 @@
       {{ years }}.
 
       {{ $t('madeBy') }}
-      <a-link class="tw-link-muted author-link" blank href="https://github.com/pyncz"><icon name="github" />
+      <a-link class="tw-pb-0.5" blank href="https://github.com/pyncz"><icon name="github" />
         pyncz</a-link>
     </p>
   </footer>
@@ -33,8 +33,5 @@ const years = useYearsFrom(2022)
   @screen xl {
     @apply tw-left-20;
   }
-}
-.author-link {
-  @apply tw-border-b tw-border-solid tw-pb-0.5 tw-border-separator-muted hover:tw-border-separator;
 }
 </style>

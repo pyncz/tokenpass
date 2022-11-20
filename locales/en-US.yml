@@ -56,7 +56,10 @@ contractCheck:
   unknown: Unknown contract interface!
   type: Looks like this is an {type}!
   disclaimer:
-    Check the selected chain and address, and specify an ERC-721, ERC-1155 or ERC-20
+    Check the selected chain and address, and specify an
+    [ERC-721](https://eips.ethereum.org/EIPS/eip-721),
+    [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155)
+    or [ERC-20](https://eips.ethereum.org/EIPS/eip-20)
     contract so we can check if your client owns the token.
 
 # by pages
@@ -81,6 +84,9 @@ index:
     amount:
       label: Look for a specific amount (1 if not specified)
       placeholder: Amount
+      description:
+        ERC1155: Amount of tokens of the provided `tokenId`
+        ERC20: In units, e.g. `1'000'000'000'000'000'000` for 1 WETH
 
 about:
   title: About
