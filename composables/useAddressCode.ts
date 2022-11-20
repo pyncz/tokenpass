@@ -11,8 +11,8 @@ export function useAddressCode(
 
   const code = computedAsync(
     () => {
-      const providerValue = unref(provider)
       const addressValue = unref(address)
+      const providerValue = unref(provider)
       if (providerValue && addressValue) {
         return providerValue.getCode(addressValue)
       }

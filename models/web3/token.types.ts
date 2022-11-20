@@ -1,5 +1,3 @@
-import type { Nullable } from '@voire/type-utils'
-
 export enum ContractInterface {
   IERC165 = 'IERC165',
 
@@ -28,16 +26,4 @@ export enum ContractType {
   ERC1155 = 'ERC1155',
   ERC721 = 'ERC721',
   ERC20 = 'ERC20',
-}
-
-export interface CollectionMetadata {
-  token_address: string
-  name: Nullable<string>
-  symbol: Nullable<string>
-  contract_type: ContractType
-}
-
-export interface Erc20Metadata {
-  name: string
-  symbol: string
 }
