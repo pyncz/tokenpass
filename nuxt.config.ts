@@ -8,6 +8,27 @@ export default defineNuxtConfig({
     strict: true,
   },
 
+  vite: {
+    plugins: [
+      {
+        name: 'ipfs-transform',
+        transform(src, id) {
+          if (
+            /ipfs:\/\//.test(src)
+          ) {
+            console.log(id)
+          }
+          // if (fileRegex.test(id)) {
+          //   return {
+          //     code: compileFileToJS(src),
+          //     map: null, // provide source map if available
+          //   }
+          // }
+        },
+      },
+    ],
+  },
+
   /*
    * App config
    */
@@ -29,9 +50,9 @@ export default defineNuxtConfig({
        */
       APP_DOMAIN: process.env.APP_DOMAIN ?? 'localhost:3000',
 
-      INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',
       WALLETCONNECT_RELAY_URL: process.env.WALLETCONNECT_RELAY_URL ?? 'wss://relay.walletconnect.com',
+      INFURA_PROJECT_ID: process.env.INFURA_PROJECT_ID ?? '',
     },
   },
 
@@ -45,6 +66,18 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n-edge',
     '@pinia/nuxt',
     '@vueuse/nuxt',
+    ['nuxt-proxy', {
+      options: {
+        target: 'https://gateway.pinata.cloud/ipfs/',
+        changeOrigin: true,
+        pathFilter: [
+          '^ipfs://',
+        ],
+        // pathFilter: (path, req) => {
+        //   return path.match('^/api') && req.method === 'GET';
+        // },
+      },
+    }],
 
     // perfomance
     '@nuxtjs/critters',

@@ -14,7 +14,7 @@ export const EthereumErc20Addresses: HexString[] = [
 ]
 
 export const EthereumErc721Addresses: HexString[] = [
-  // TheMerge ERC721
+  // TheMerge ERC721 (metadata on IPFS!)
   '0xE42caD6fC883877A76A26A16ed92444ab177E306',
 
   // Cool Cats FC ERC721

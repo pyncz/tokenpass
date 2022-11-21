@@ -9,7 +9,7 @@ import { ERC165Abi, ERC20Abi, WHITE_ADDRESS } from '../utils'
 
 type InterfacesMap = Record<`is${ContractInterface}`, boolean>
 
-export function useContractTypes(
+export function useContractInterfaces(
   address: MaybeRef<Nullable<HexString>>,
   provider: MaybeRef<Nullable<providers.InfuraProvider>>,
 ) {

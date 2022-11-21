@@ -3,7 +3,7 @@ export async function callWithFallback<T = any>(
   fallback: T | null = null,
 ) {
   try {
-    return await getter()
+    return getter()
   } catch (e) {
     return fallback
   }

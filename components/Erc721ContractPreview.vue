@@ -1,7 +1,10 @@
 <template>
-  <token-preview type="ERC-20" :evaluating="evaluating">
-    <token-preview-title :symbol="symbol" :name="name" />
-  </token-preview>
+  <contract-preview type="ERC-721" :evaluating="evaluating">
+    <div class="tw-flex-center-y tw-gap-1.5">
+      <icon name="💎" class="tw-text-accent-secondary" />
+      <contract-preview-title :symbol="symbol" :name="name" />
+    </div>
+  </contract-preview>
 </template>
 
 <script setup lang="ts">
@@ -18,12 +21,11 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const { chainId, address } = toRefs(props)
-const provider = useInfuraProvider(chainId)
 
 const {
   evaluating,
   metadata,
-} = useErc20Metadata(address, provider)
+} = useErc721Metadata(address, useInfuraProvider(chainId))
 
 const { symbol, name } = refToRefs(metadata)
 </script>

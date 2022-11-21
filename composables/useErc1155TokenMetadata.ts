@@ -2,10 +2,10 @@ import type { MaybeRef } from '@vueuse/core'
 import type { providers } from 'ethers'
 import type { Nullable } from '@voire/type-utils'
 import type { HexString } from '../models'
-import { IERC721MetadataAbi, callWithFallback } from '../utils'
+import { IERC1155MetadataAbi, callWithFallback } from '../utils'
 import { useTokenMetadata } from './useTokenMetadata'
 
-export function useErc721TokenMetadata(
+export function useErc1155TokenMetadata(
   address: MaybeRef<Nullable<HexString>>,
   provider: MaybeRef<Nullable<providers.InfuraProvider>>,
   tokenId: MaybeRef<Nullable<string | number>>,
@@ -14,7 +14,7 @@ export function useErc721TokenMetadata(
     address,
     provider,
     tokenId,
-    IERC721MetadataAbi,
-    (contract, id) => callWithFallback<string>(() => contract.tokenURI(id)),
+    IERC1155MetadataAbi,
+    (contract, id) => callWithFallback<string>(() => contract.uri(id)),
   )
 }

@@ -1584,6 +1584,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
   integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
 
+"@types/http-proxy@^1.17.8":
+  version "1.17.9"
+  resolved "https://registry.yarnpkg.com/@types/http-proxy/-/http-proxy-1.17.9.tgz#7f0e7931343761efde1e2bf48c40f02f3f75705a"
+  integrity sha512-QsbSjA/fSk7xB+UXlCT3wHBy5ai9wOcNDWwZAtud+jXhwOM3l+EYZh8Lng4+/6n8uar0J7xILzqftJdJ/Wdfkw==
+  dependencies:
+    "@types/node" "*"
+
 "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
@@ -4833,6 +4840,18 @@ http-errors@~1.6.2:
     setprototypeof "1.1.0"
     statuses ">= 1.4.0 < 2"
 
+http-proxy-middleware@^3.0.0-beta.0:
+  version "3.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/http-proxy-middleware/-/http-proxy-middleware-3.0.0-beta.0.tgz#4c32cd1a190ec3c5d4e255b88c267ef47de0ec32"
+  integrity sha512-99DWW7XRJdLGkVKkXh7sOP1adeSMss2wzI6qAI7klyishj/E8/I+EgtvPuFsSdZ+zDy2D8YizF8vs31Y61Y1bA==
+  dependencies:
+    "@types/http-proxy" "^1.17.8"
+    debug "^4.3.4"
+    http-proxy "^1.18.1"
+    is-glob "^4.0.1"
+    is-plain-obj "^3.0.0"
+    micromatch "^4.0.5"
+
 http-proxy@^1.18.1:
   version "1.18.1"
   resolved "https://registry.yarnpkg.com/http-proxy/-/http-proxy-1.18.1.tgz#401541f0534884bbf95260334e72f88ee3976549"
@@ -5147,6 +5166,11 @@ is-path-inside@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/is-path-inside/-/is-path-inside-3.0.3.tgz#d231362e53a07ff2b0e0ea7fed049161ffd16283"
   integrity sha512-Fd4gABb+ycGAmKou8eMftCupSir5lRxqf4aD/vd0cD2qc4HL07OjCeuHMr8Ro4CoMaeCKDB0/ECBOVWjTwUvPQ==
+
+is-plain-obj@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-3.0.0.tgz#af6f2ea14ac5a646183a5bbdb5baabbc156ad9d7"
+  integrity sha512-gwsOE28k+23GP1B6vFl1oVh/WOzmawBrKwo5Ev6wMKzPkaXaCDIQKzLnvsA42DRlbVTWorkgTKIviAKCWkfUwA==
 
 is-primitive@^3.0.1:
   version "3.0.1"
@@ -6412,6 +6436,17 @@ nuxt-icon@^0.1.7:
   dependencies:
     "@iconify/vue" "^4.0.0"
     "@nuxt/kit" "^3.0.0-rc.10"
+
+nuxt-proxy@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/nuxt-proxy/-/nuxt-proxy-0.3.4.tgz#077dbe9e962a954de3648361f023878e9ac8857e"
+  integrity sha512-PHW9hN4DRNuLQO0vL3Q20/o7kdvNay3UYkkEL/9MkzxaOd/shLOHRsyyc4Nm2BW3qE03cyJoTgmM5axWSxVzqQ==
+  dependencies:
+    "@nuxt/kit" "3.0.0"
+    defu "^6.1.1"
+    h3 "^1.0.1"
+    http-proxy-middleware "^3.0.0-beta.0"
+    ohash "^1.0.0"
 
 nuxt@^3.0.0:
   version "3.0.0"

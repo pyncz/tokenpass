@@ -3,14 +3,14 @@
     :chain-id="chainId"
     :address="address"
     :token-id="tokenId"
-    :abi="IERC721MetadataAbi"
-    :uri-getter="getErc721TokenUri"
+    :abi="IERC1155MetadataAbi"
+    :uri-getter="getErc1155TokenUri"
   />
 </template>
 
 <script setup lang="ts">
 import type { Contract } from 'ethers'
-import { IERC721MetadataAbi, callWithFallback } from '../utils'
+import { IERC1155MetadataAbi, callWithFallback } from '../utils'
 import type { ChainID, HexString } from '../models'
 
 defineProps<{
@@ -19,5 +19,5 @@ defineProps<{
   tokenId?: string | number
 }>()
 
-const getErc721TokenUri = (contract: Contract, id: string) => callWithFallback<string>(() => contract.tokenURI(id))
+const getErc1155TokenUri = (contract: Contract, id: string) => callWithFallback<string>(() => contract.uri(id))
 </script>

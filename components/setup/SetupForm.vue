@@ -57,17 +57,12 @@
           v-bind="{ contractType }"
           class="tw-space-y-form-fields"
         >
-          <lazy-erc721-preview
+          <lazy-erc721-contract-preview
             v-if="isIERC721 && isIERC721Metadata"
             :chain-id="form.chainId"
             :address="form.address"
           />
-          <lazy-erc1155-preview
-            v-if="isIERC1155 && isIERC1155MetadataURI"
-            :chain-id="form.chainId"
-            :address="form.address"
-          />
-          <lazy-erc20-preview
+          <lazy-erc20-contract-preview
             v-if="isIERC20"
             :chain-id="form.chainId"
             :address="form.address"
@@ -86,13 +81,13 @@
 
               <template v-if="validTokenId">
                 <lazy-erc721-token-preview
-                  v-if="isIERC721Metadata"
+                  v-if="isIERC721 && isIERC721Metadata"
                   :chain-id="form.chainId"
                   :address="form.address"
                   :token-id="validTokenId"
                 />
                 <lazy-erc1155-token-preview
-                  v-if="isIERC1155MetadataURI"
+                  v-if="isIERC1155 && isIERC1155MetadataURI"
                   :chain-id="form.chainId"
                   :address="form.address"
                   :token-id="validTokenId"
@@ -194,7 +189,7 @@ const {
   isIERC1155,
   isIERC1155MetadataURI,
   isIERC20,
-} = useContractTypes(
+} = useContractInterfaces(
   address,
   useInfuraProvider(chainId),
 )

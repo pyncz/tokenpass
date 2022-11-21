@@ -29,7 +29,7 @@ function open() {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .modal {
     @apply tw-modal-container;
     .overlay {

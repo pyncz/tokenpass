@@ -67,7 +67,7 @@ const props = withDefaults(defineProps<Props>(), {
 const model = useVModel(props)
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   .radio {
     @apply tw-flex tw-text-sm tw-flex-col sm:tw-items-start;
     &-group {

@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
-import { chainNamesMap } from './useChains'
-import type { ChainID } from '~~/models'
+import { chainNamesMap } from '../utils'
+import type { ChainID } from '../models'
 
 /**
  * Returns set of details for a chain by provided chainID
