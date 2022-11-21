@@ -4,19 +4,20 @@
     role="button"
     @click="redirectOrRefresh({ name: 'index' })"
   >
-    <logo-main v-bind="$attrs" />
+    <logo-main :size="size" :short="short" />
   </a>
 </template>
 
 <script setup lang="ts">
+import type { SizeExta } from '~~/models'
+
+defineProps<{
+  short?: boolean
+  size?: SizeExta
+}>()
+
 const localeRoute = useLocaleRoute()
 const redirectOrRefresh = makeRedirectOrRefresh(localeRoute)
-</script>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
 </script>
 
 <style scoped lang="scss">
