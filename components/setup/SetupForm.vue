@@ -253,11 +253,13 @@ watchEffect(() => {
 const { initialized } = storeToRefs(useConnectionStore())
 
 const loading = ref(false)
-const disableSubmit = computed(() => loading.value || !initialized.value || evaluatingContractCheck.value)
+const disableSubmit = computed(
+  () => loading.value || !initialized.value || !contractType.value || evaluatingContractCheck.value,
+)
 
 const submit = async () => {
   // Resume if the field are valid AND the provided contract has suitable type
-  if (await v.value.$validate() && !disableSubmit.value && contractType.value) {
+  if (await v.value.$validate() && !disableSubmit.value) {
     loading.value = true
 
     const { setSetupState } = useSetupStore()
