@@ -20,7 +20,7 @@ export function useContractMetadata<
     async () => {
       if (contract.value) {
         try {
-          return getter(contract.value)
+          return await getter(contract.value)
         } catch (e) {}
       }
       return defaultMetadata
