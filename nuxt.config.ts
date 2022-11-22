@@ -8,27 +8,6 @@ export default defineNuxtConfig({
     strict: true,
   },
 
-  vite: {
-    plugins: [
-      {
-        name: 'ipfs-transform',
-        transform(src, id) {
-          if (
-            /ipfs:\/\//.test(src)
-          ) {
-            console.log(id)
-          }
-          // if (fileRegex.test(id)) {
-          //   return {
-          //     code: compileFileToJS(src),
-          //     map: null, // provide source map if available
-          //   }
-          // }
-        },
-      },
-    ],
-  },
-
   /*
    * App config
    */
