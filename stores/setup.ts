@@ -3,7 +3,7 @@ import { acceptHMRUpdate, defineStore, skipHydrate } from 'pinia'
 import type { SetupState } from '../models'
 
 export const useSetupStore = defineStore('setup', () => {
-  const setupState = useLocalStorage<SetupState>('setup', null, {
+  const setupState = useLocalStorage<Nullable<SetupState>>('setup', null, {
     serializer: {
       read: (v: any) => JSON.parse(v),
       write: (v: any) => JSON.stringify(v),

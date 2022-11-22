@@ -1,4 +1,4 @@
-import { acceptHMRUpdate, defineStore, skipHydrate, storeToRefs } from 'pinia'
+import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
 import AuthClient, { generateNonce } from '@walletconnect/auth-client'
 import type { Nullable } from '@voire/type-utils'
 import type { HexString } from '../models'
@@ -18,15 +18,10 @@ export const useConnectionStore = defineStore('connection', () => {
   /*
    * Connection specific things
    */
-  const connectUri = useLocalStorage<Nullable<string>>('uri', null)
-
   const client = ref<Nullable<AuthClient>>(null)
   const initialized = computed(() => !!client.value)
 
   const address = ref<Nullable<HexString>>(null)
-
-  // Waiting for user to connect by the shared link
-  const pending = computed(() => !!connectUri.value && !address.value)
 
   // reactive auth error
   const error = ref<Nullable<string>>(null)
@@ -73,38 +68,33 @@ export const useConnectionStore = defineStore('connection', () => {
     })
   })
 
-  const reset = () => {
-    connectUri.value = null
-    error.value = null
-  }
-
-  watch(chain, async () => {
-    if (chain.value) {
-      if (!client.value) {
-        return
+  const connectUri = computedAsync(
+    async () => {
+      if (chain.value && client.value) {
+        // New chain, re-request connection
+        const { uri } = await client.value.request({
+          aud: window.location.href,
+          domain: window.location.hostname.split('.').slice(-2).join('.'),
+          chainId: chain.value,
+          type: 'eip4361',
+          nonce: generateNonce(),
+          statement: 'Sign in with wallet.',
+        })
+        return uri
       }
-      // New chain, re-request connection
-      const { uri } = await client.value.request({
-        aud: window.location.href,
-        domain: window.location.hostname.split('.').slice(-2).join('.'),
-        chainId: chain.value,
-        type: 'eip4361',
-        nonce: generateNonce(),
-        statement: 'Sign in with wallet.',
-      })
-      connectUri.value = uri
-    } else {
-      // Chain has been reset, clear connection state
-      reset()
-    }
-  })
+      return null
+    },
+    null,
+  )
+
+  // Waiting for user to connect by the shared link
+  const pending = computed(() => !!connectUri.value && !address.value)
 
   return {
     // Skip hydration from init state
     // as need to init only on the client side from localStorage
-    connectUri: skipHydrate(connectUri),
+    connectUri,
     initialized,
-    error,
 
     init,
     address,
