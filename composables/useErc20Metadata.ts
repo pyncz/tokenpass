@@ -20,9 +20,9 @@ export function useErc20Metadata(
     provider,
     ERC20Abi,
     async contract => ({
-      name: await callWithFallback<string>(contract.value.name),
-      symbol: await callWithFallback<string>(contract.value.symbol),
-      decimals: await callWithFallback<number>(contract.value.decimals),
+      name: await callWithFallback<string>(contract.name),
+      symbol: await callWithFallback<string>(contract.symbol),
+      decimals: await callWithFallback<number>(contract.decimals),
     }),
     {
       name: null,

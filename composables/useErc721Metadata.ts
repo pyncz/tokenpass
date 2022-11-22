@@ -19,8 +19,8 @@ export function useErc721Metadata(
     provider,
     IERC721MetadataAbi,
     async contract => ({
-      symbol: await callWithFallback<string>(contract.value.symbol),
-      name: await callWithFallback<string>(contract.value.name),
+      symbol: await callWithFallback<string>(contract.symbol),
+      name: await callWithFallback<string>(contract.name),
     }),
     {
       name: null,
