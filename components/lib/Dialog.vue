@@ -1,9 +1,9 @@
 <template>
-  <lib-modal v-slot="{ close, open }" v-model:opened="opened">
+  <lib-modal v-slot="{ close, open }" v-model:opened="model">
     <dialog-panel class="tw-dialog dialog">
-      <lib-button tabindex="-1" class="close-button" @click="close()">
+      <button tabindex="-1" class="close-button" @click="close()">
         <icon name="close" class="tw-z-1" />
-      </lib-button>
+      </button>
       <dialog-title v-if="title">
         {{ title }}
       </dialog-title>
@@ -38,7 +38,7 @@ const props = defineProps<{
   opened: boolean
 }>()
 
-const opened = useVModel(props, 'opened')
+const model = useVModel(props, 'opened')
 </script>
 
 <style scoped lang="scss">

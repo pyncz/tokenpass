@@ -1,5 +1,5 @@
 <template>
-  <modal-overlay class="modal" :open="opened" @close="close()">
+  <modal-overlay class="modal" :open="model" @close="close()">
     <div class="overlay" />
     <div class="modal-wrapper">
       <div class="modal-container">
@@ -18,14 +18,14 @@ const props = defineProps<{
   opened: boolean
 }>()
 
-const opened = useVModel(props, 'opened')
+const model = useVModel(props, 'opened')
 
-function close() {
-  opened.value = false
+const close = () => {
+  model.value = false
 }
 
-function open() {
-  opened.value = true
+const open = () => {
+  model.value = true
 }
 </script>
 

@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <lazy-lib-dialog v-if="!!result" :opened="true">
+  <lazy-lib-dialog v-if="result" v-model:opened="showResult">
     {{ result.passed ? 'success' : 'nah' }}
   </lazy-lib-dialog>
 </template>
@@ -45,4 +45,12 @@ const foreground = computed(
 )
 
 const { checking, result } = storeToRefs(useCheckingStore())
+const showResult = ref(false)
+
+// Show result dialog as soon as result is defined
+watchOnce(result, () => {
+  if (result.value) {
+    showResult.value = true
+  }
+})
 </script>
