@@ -10,6 +10,7 @@ export default defineAppConfig({
       'github': 'ion:logo-github',
       'link': 'ion:link-outline',
       'gem': 'ion:diamond-outline',
+      'copy': 'ion:copy-outline',
     },
   },
 })

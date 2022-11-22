@@ -151,13 +151,13 @@
       </lazy-form-section>
     </div>
 
-    <button
+    <lib-button
       type="submit"
       class="tw-button-primary tw-w-full"
       :disabled="disableSubmit"
     >
       {{ initialized ? $t('index.submit.ready') : $t('index.submit.initializing') }}
-    </button>
+    </lib-button>
   </form>
 </template>
 

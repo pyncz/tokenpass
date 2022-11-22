@@ -1,9 +1,9 @@
 <template>
-  <lib-modal v-slot="{ close, open }" :opened="opened">
+  <lib-modal v-slot="{ close, open }" v-model:opened="opened">
     <dialog-panel class="tw-dialog dialog">
-      <button tabindex="-1" class="close-button" @click="close()">
+      <lib-button tabindex="-1" class="close-button" @click="close()">
         <icon name="close" class="tw-z-1" />
-      </button>
+      </lib-button>
       <dialog-title v-if="title">
         {{ title }}
       </dialog-title>
@@ -16,9 +16,9 @@
       </div>
 
       <div class="tw-flex tw-flex-col tw-gap-3">
-        <button class="close-control tw-button-secondary" @click="close()">
-          Close
-        </button>
+        <lib-button class="close-control tw-button-secondary" @click="close()">
+          {{ $t('actions.close') }}
+        </lib-button>
         <slot name="controls" v-bind="{ close, open }" />
       </div>
     </dialog-panel>
@@ -32,11 +32,13 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 
-defineProps<{
+const props = defineProps<{
   title?: string
   description?: string
   opened: boolean
 }>()
+
+const opened = useVModel(props, 'opened')
 </script>
 
 <style scoped lang="scss">

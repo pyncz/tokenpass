@@ -30,6 +30,11 @@ home: Home
 actions:
   setup: Setup
   use: Use
+  close: Close
+
+status:
+  pending: Pending
+  checking: Checking
 
 fields:
   chainId: Chain ID

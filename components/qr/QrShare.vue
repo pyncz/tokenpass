@@ -1,25 +1,41 @@
 <template>
-  <div class="qr-share">
-    <qr-code
-      :size="400"
-      background="transparent"
-      :foreground="foreground"
-      class="tw-mx-auto tw-aspect-1 tw-h-full"
-      :value="value"
-    />
+  <qr-code
+    :size="400"
+    background="transparent"
+    :foreground="foreground"
+    class="tw-mx-auto tw-aspect-1 !tw-w-full !tw-h-auto"
+    :value="value"
+  />
 
-    <div>
-      Some info, copy link button
+  <lib-button
+    class="tw-button-secondary sm:tw-min-w-[12em] tw-h-auto tw-text-xl sm:tw-text-normal tw-p-[0.5em]"
+    @click="copy()"
+  >
+    <icon name="copy" />
+    {{ message }}
+  </lib-button>
+  <div>
+    <div v-if="checking">
+      {{ $t('status.checking') }}...
     </div>
   </div>
+
+  <lazy-lib-dialog v-if="!!result" :opened="true">
+    {{ result.passed ? 'success' : 'nah' }}
+  </lazy-lib-dialog>
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import QrCode from 'qrcode.vue'
+import { useCheckingStore } from '../../stores'
 
-defineProps<{
+const props = defineProps<{
   value: string
 }>()
+const { value } = toRefs(props)
+
+const { message, copy } = useCopy(value)
 
 const colorMode = useColorMode()
 const foreground = computed(
@@ -27,10 +43,6 @@ const foreground = computed(
     ? '#fff'
     : '#000',
 )
-</script>
 
-<style scoped lang="scss">
-  .qr-share {
-    @apply tw-flex-col tw-flex-center-y tw-text-center tw-space-y-8 tw-py-12;
-  }
-</style>
+const { checking, result } = storeToRefs(useCheckingStore())
+</script>
