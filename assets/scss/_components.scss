@@ -143,7 +143,7 @@
     }
   }
   .tw-button-primary {
-    @apply tw-button before:tw-border-accent-primary;
+    @apply tw-button before:tw-border-accent-primary before:tw-bg-base;
     --text-color: var(--c-button-primary-color);
     --bg-color: var(--c-button-primary-bg);
     --bg-opacity: var(--o-button-primary-bg);

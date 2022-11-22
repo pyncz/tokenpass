@@ -8,8 +8,10 @@
   }
 
   a {
-    @apply tw-cursor-pointer;
+    outline: none !important;
+    @apply tw-cursor-pointer tw-outline-none;
     &:not([role="button"]) {
+      @apply focus:tw-underline focus:tw-decoration-text-dim-3;
       @apply tw-link-muted;
       @apply tw-border-b tw-border-solid tw-border-separator-muted hover:tw-border-separator;
     }
