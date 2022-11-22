@@ -1,6 +1,7 @@
 import { acceptHMRUpdate, defineStore, skipHydrate, storeToRefs } from 'pinia'
 import AuthClient, { generateNonce } from '@walletconnect/auth-client'
 import type { Nullable } from '@voire/type-utils'
+import type { HexString } from '../models'
 import { useSetupStore } from './setup'
 
 export const useConnectionStore = defineStore('connection', () => {
@@ -8,8 +9,9 @@ export const useConnectionStore = defineStore('connection', () => {
    * Use selected chains in order to re-request
    */
   const { setupState } = storeToRefs(useSetupStore())
+
   const chain = computed(() => setupState.value
-    ? `eip155:${+setupState.value?.chainId}`
+    ? `eip155:${+setupState.value.chainId}`
     : null,
   )
 
@@ -20,6 +22,11 @@ export const useConnectionStore = defineStore('connection', () => {
 
   const client = ref<Nullable<AuthClient>>(null)
   const initialized = computed(() => !!client.value)
+
+  const address = ref<Nullable<HexString>>(null)
+
+  // Waiting for user to connect by the shared link
+  const pending = computed(() => !!connectUri.value && !address.value)
 
   // reactive auth error
   const error = ref<Nullable<string>>(null)
@@ -62,11 +69,7 @@ export const useConnectionStore = defineStore('connection', () => {
       if ('error' in params) {
         return setError(params.error)
       }
-      const address = params.result.p.iss.split(':')[4]
-
-      // check if the address ownes the token
-      console.log(`check if the address "${address}" ownes the token`)
-      console.log(chain.value, setupState.value?.address)
+      address.value = params.result.p.iss.split(':')[4] as HexString
     })
   })
 
@@ -104,6 +107,9 @@ export const useConnectionStore = defineStore('connection', () => {
     error,
 
     init,
+    address,
+
+    pending,
   }
 })
 
