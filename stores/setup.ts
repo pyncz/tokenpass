@@ -1,9 +1,14 @@
 import type { Nullable } from '@voire/type-utils'
-import { acceptHMRUpdate, defineStore } from 'pinia'
+import { acceptHMRUpdate, defineStore, skipHydrate } from 'pinia'
 import type { SetupState } from '../models'
 
 export const useSetupStore = defineStore('setup', () => {
-  const setupState = useLocalStorage<Nullable<SetupState>>('setup', null)
+  const setupState = useLocalStorage<SetupState>('setup', null, {
+    serializer: {
+      read: (v: any) => JSON.parse(v),
+      write: (v: any) => JSON.stringify(v),
+    },
+  })
 
   // The collection setup's set / reset methods
   const setSetupState = (form: Nullable<SetupState>): void => {
@@ -13,7 +18,7 @@ export const useSetupStore = defineStore('setup', () => {
   const reset = () => setSetupState(null)
 
   return {
-    setupState,
+    setupState: skipHydrate(setupState),
     setSetupState,
 
     reset,
