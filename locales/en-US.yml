@@ -35,6 +35,7 @@ actions:
 status:
   pending: Pending
   checking: Checking
+  initializing: Initializing
 
 fields:
   chainId: Chain ID
@@ -72,9 +73,7 @@ index:
   title:
     setup: Setup address
     share: Share link
-  submit:
-    ready: '@:actions.setup'
-    initializing: Initializing...
+  submit: '@:actions.setup'
   disclosure: Additional config
   fields:
     chainId:

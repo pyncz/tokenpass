@@ -156,17 +156,16 @@
       class="tw-button-primary tw-w-full"
       :disabled="disableSubmit"
     >
-      {{ initialized ? $t('index.submit.ready') : $t('index.submit.initializing') }}
+      {{ $t('index.submit') }}
     </lib-button>
   </form>
 </template>
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { storeToRefs } from 'pinia'
 import { setupStateMapper } from '../../models'
 import type { HexString, SetupForm } from '../../models'
-import { useConnectionStore, useSetupStore } from '../../stores'
+import { useSetupStore } from '../../stores'
 
 // Setup form
 const { ethAddress, integer, positive, required } = useValidators()
@@ -250,11 +249,9 @@ watchEffect(() => {
 })
 
 // Submit
-const { initialized } = storeToRefs(useConnectionStore())
-
 const loading = ref(false)
 const disableSubmit = computed(
-  () => loading.value || !initialized.value || !contractType.value || evaluatingContractCheck.value,
+  () => loading.value || !contractType.value || evaluatingContractCheck.value,
 )
 
 const submit = async () => {
