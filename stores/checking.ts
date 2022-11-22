@@ -28,7 +28,7 @@ export const useCheckingStore = defineStore('checking', () => {
     isIERC20,
     isIERC721,
     isIERC1155,
-  } = useContractInterfaces(address, provider)
+  } = useContractInterfaces(contractAddress, provider)
 
   const contractAbi = computed(() => {
     switch (true) {
