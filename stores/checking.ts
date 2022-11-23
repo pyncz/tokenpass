@@ -1,7 +1,7 @@
 import type { Nullable } from '@voire/type-utils'
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
-import { ERC1155Abi, ERC20Abi, ERC721Abi } from '../utils'
 import { useConnectionStore } from './connection'
+import { useContractStore } from './contract'
 import { useSetupStore } from './setup'
 
 interface CheckOwnershipResults {
@@ -12,38 +12,18 @@ interface CheckOwnershipResults {
 }
 
 export const useCheckingStore = defineStore('checking', () => {
-  const { setupState } = storeToRefs(useSetupStore())
   const { address } = storeToRefs(useConnectionStore())
 
-  const chainId = computed(() => setupState.value?.chainId ?? null)
-  const contractAddress = computed(() => setupState.value?.address ?? null)
-  const amount = computed(() => setupState.value?.amount ?? null)
-  const tokenId = computed(() => setupState.value?.tokenId ?? null)
-
-  const provider = useInfuraProvider(chainId)
-
-  // As soon as the address is known, check if the accountt ownes the token
-  const checkingOwnership = ref(false)
+  const { setupState } = storeToRefs(useSetupStore())
   const {
+    contract,
     isIERC20,
     isIERC721,
     isIERC1155,
-  } = useContractInterfaces(contractAddress, provider)
+  } = storeToRefs(useContractStore())
 
-  const contractAbi = computed(() => {
-    switch (true) {
-      case isIERC20.value:
-        return ERC20Abi
-      case isIERC721.value:
-        return ERC721Abi
-      case isIERC1155.value:
-        return ERC1155Abi
-      default:
-        return null
-    }
-  })
-
-  const contract = useContract(contractAddress, provider, contractAbi)
+  const amount = computed(() => setupState.value?.amount ?? null)
+  const tokenId = computed(() => setupState.value?.tokenId ?? null)
 
   const makeResult = (balance: number): CheckOwnershipResults => {
     const required = amount.value ?? 1
@@ -54,6 +34,8 @@ export const useCheckingStore = defineStore('checking', () => {
       tokenId: tokenId.value,
     }
   }
+
+  const checkingOwnership = ref(false)
 
   const result = computedAsync<Nullable<CheckOwnershipResults>>(
     async () => {
