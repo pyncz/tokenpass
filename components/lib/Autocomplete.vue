@@ -83,7 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
   getDisplay: (value?: Value) => value?.toString(),
 })
 
-const model = useVModel(props)
+const model = useVModel(props, 'modelValue')
 const query = ref<string>(model.value?.toString() ?? '')
 const { options, filter } = toRefs(props)
 

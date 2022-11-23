@@ -35,7 +35,7 @@ const filterNetworks = (options: ChainInfo[], q: string) => options.filter((opti
   return option.id.toString().includes(squeezedQuery) || squeeze(option.label).includes(squeezedQuery)
 })
 
-const model = useVModel(props, undefined, undefined, {
+const model = useVModel(props, 'modelValue', undefined, {
   defaultValue: +networks[0].id,
 })
 </script>

@@ -11,5 +11,5 @@ const props = defineProps<{
   modelValue: boolean
 }>()
 
-const enabled = useVModel(props)
+const enabled = useVModel(props, 'modelValue')
 </script>

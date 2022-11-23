@@ -7,5 +7,5 @@ const props = defineProps<{
   modelValue?: string | number
 }>()
 
-const model = useVModel(props)
+const model = useVModel(props, 'modelValue')
 </script>

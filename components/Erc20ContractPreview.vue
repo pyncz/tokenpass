@@ -1,6 +1,9 @@
 <template>
   <with-skeleton :evaluating="evaluating">
-    <contract-preview :symbol="symbol" :name="name" />
+    <div class="tw-flex-center-y tw-gap-1.5">
+      <icon name="🪙" size="auto" />
+      <contract-preview :symbol="symbol" :name="name" />
+    </div>
   </with-skeleton>
 </template>
 

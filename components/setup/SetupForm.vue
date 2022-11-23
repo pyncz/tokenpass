@@ -100,7 +100,6 @@
               <lib-input
                 :id="id"
                 v-model="form.tokenId"
-                class="tw-flex-1"
                 :placeholder="$t('index.fields.tokenId.placeholder')"
                 :disabled="loading"
               />
@@ -122,16 +121,22 @@
                   <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
                   <span v-if="tokenIdValid && !!form.tokenId" class="tw-px-0.5">({{ form.tokenId }})</span>
                 </div>
-                <div v-else-if="isIERC20" class="tw-text-xs tw-pb-1">
-                  <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
-                </div>
               </div>
             </template>
             <template #default="{ id }">
-              <lib-input
+              <template v-if="isIERC20">
+                <lazy-erc20-input
+                  v-if="decimals"
+                  :id="id"
+                  v-model="form.amount"
+                  :decimals="decimals"
+                  :disabled="loading"
+                />
+              </template>
+              <lazy-lib-input
+                v-else
                 :id="id"
                 v-model="form.amount"
-                class="tw-flex-1"
                 :placeholder="$t('index.fields.amount.placeholder')"
                 :disabled="loading || (isIERC721 && !!form.tokenId)"
               />
@@ -167,6 +172,7 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
+import { toRefs as refToRefs } from '@vueuse/core'
 import { setupStateMapper } from '../../models'
 import type { HexString, SetupForm } from '../../models'
 import { useSetupStore } from '../../stores'
@@ -183,6 +189,8 @@ const form = reactive<SetupForm>({
 
 const { chainId, address } = toRefs(form)
 
+const provider = useInfuraProvider(chainId)
+
 const {
   evaluating: evaluatingContractCheck,
   isContract,
@@ -194,9 +202,17 @@ const {
   isIERC20,
 } = useContractInterfaces(
   address,
-  useInfuraProvider(chainId),
+  provider,
 )
 
+// Get decimals if it's an ERC-20, and use it in its amount input
+const {
+  metadata: erc20Metadata,
+} = useErc20Metadata(address, provider)
+
+const { decimals } = refToRefs(erc20Metadata)
+
+// Validation things
 const tokenIdRules = computed(() => {
   switch (true) {
     case isIERC1155.value:
@@ -230,6 +246,14 @@ const contractSpecified = computed(() =>
     && chainId.value && address.value,
 )
 
+watchEffect(() => {
+  // Set checked amount to 1, if it's an ERC-721 with tokenId specified
+  if (tokenIdValid.value && form.tokenId && isIERC721.value) {
+    form.amount = 1
+  }
+})
+
+// Style contract section if it's an NFT
 const isNftContract = computed(() => isIERC721.value || isIERC1155.value)
 
 const contractSectionAttributes = computed(() => {
@@ -243,13 +267,6 @@ const contractSectionAttributes = computed(() => {
         },
       }
     : {}
-})
-
-watchEffect(() => {
-  // Set checked amount to 1, if it's an ERC-721 with tokenId specified
-  if (tokenIdValid.value && form.tokenId && isIERC721.value) {
-    form.amount = 1
-  }
 })
 
 // Submit

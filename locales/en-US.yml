@@ -26,6 +26,10 @@ locale: Localization
 madeBy: Made by
 home: Home
 
+# tokens' amounts
+inUnits: In units
+formatted: Formatted
+
 # buttons' actions
 actions:
   setup: Setup
@@ -91,9 +95,11 @@ index:
     amount:
       label: Look for a specific amount (1 if not specified)
       placeholder: Amount
+      placeholderUnits: Amount (in units)
+      placeholderFormatted: Amount (formatted)
       description:
         ERC1155: Amount of tokens of the provided `tokenId`
-        ERC20: In units, e.g. `1'000'000'000'000'000'000` for 1 WETH
+        ERC20: In units, e.g. `{units}` for 1 {symbol}
 
 about:
   title: About

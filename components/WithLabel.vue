@@ -1,6 +1,6 @@
 <template>
-  <div class="tw-space-y-1.5">
-    <div class="tw-label">
+  <div class="tw-field">
+    <div class="tw-label field-meta">
       {{ label }}
     </div>
     <div>

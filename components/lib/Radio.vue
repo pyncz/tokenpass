@@ -64,7 +64,7 @@ const props = withDefaults(defineProps<Props>(), {
   getValue: (option: Option) => option,
 })
 
-const model = useVModel(props)
+const model = useVModel(props, 'modelValue')
 </script>
 
 <style scoped lang="scss">
