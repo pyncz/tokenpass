@@ -1,7 +1,7 @@
 <template>
-  <contract-preview type="ERC-20" :evaluating="evaluating">
-    <contract-preview-title :symbol="symbol" :name="name" />
-  </contract-preview>
+  <with-skeleton :evaluating="evaluating">
+    <contract-preview :symbol="symbol" :name="name" />
+  </with-skeleton>
 </template>
 
 <script setup lang="ts">

@@ -1,10 +1,10 @@
 <template>
-  <contract-preview type="ERC-721" :evaluating="evaluating">
+  <with-skeleton :evaluating="evaluating">
     <div class="tw-flex-center-y tw-gap-1.5">
       <icon name="💎" class="tw-text-accent-secondary" />
-      <contract-preview-title :symbol="symbol" :name="name" />
+      <contract-preview :symbol="symbol" :name="name" />
     </div>
-  </contract-preview>
+  </with-skeleton>
 </template>
 
 <script setup lang="ts">

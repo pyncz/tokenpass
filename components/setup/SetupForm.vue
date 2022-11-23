@@ -57,16 +57,18 @@
           v-bind="{ contractType }"
           class="tw-space-y-form-fields"
         >
-          <lazy-erc721-contract-preview
-            v-if="isIERC721 && isIERC721Metadata"
-            :chain-id="form.chainId"
-            :address="form.address"
-          />
-          <lazy-erc20-contract-preview
-            v-if="isIERC20"
-            :chain-id="form.chainId"
-            :address="form.address"
-          />
+          <contract-preview-labeled v-if="isIERC721 && isIERC721Metadata" type="ERC-721">
+            <lazy-erc721-contract-preview
+              :chain-id="form.chainId"
+              :address="form.address"
+            />
+          </contract-preview-labeled>
+          <contract-preview-labeled v-if="isIERC20" type="ERC-20">
+            <lazy-erc20-contract-preview
+              :chain-id="form.chainId"
+              :address="form.address"
+            />
+          </contract-preview-labeled>
 
           <lazy-form-field
             v-if="isNftContract"
