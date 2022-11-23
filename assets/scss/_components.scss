@@ -133,9 +133,8 @@
   .tw-button {
     @apply tw-clickable;
     @apply tw-text-custom tw-bg-custom tw-bg-opacity-custom;
-    @apply tw-text-sm tw-h-9 tw-bordered tw-py-2 tw-px-3;
-    @apply before:tw-duration-slow before:tw-rounded before:tw-opacity-muted;
-    @apply hover:before:tw-opacity-soft;
+    @apply tw-text-sm tw-h-9 tw-relative tw-py-2 tw-px-3;
+    @apply before:tw-duration-slow before:tw-absolute before:tw-inset-0 before:tw-rounded before:tw-bg-custom before:tw-bg-opacity-custom before:tw-border before:tw-border-custom before:tw-border-opacity-custom;
     @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
     --text-color: var(--c-color-base);
     &::before {
@@ -143,12 +142,16 @@
     }
   }
   .tw-button-primary {
-    @apply tw-button before:tw-border-accent-primary before:tw-bg-base;
+    @apply tw-button;
+    background: radial-gradient(20rem 20rem at 20% 170%, #c02469, #660ab1, blue, #3c00e3, #119272, yellow, orange, #da0ada);
     --text-color: var(--c-button-primary-color);
     --bg-color: var(--c-button-primary-bg);
     --bg-opacity: var(--o-button-primary-bg);
+    --border-color: var(--c-button-primary-border);
+    --border-opacity: var(--o-button-primary-border);
     &:hover {
       --bg-opacity: var(--o-button-primary-bg-hover);
+      --border-opacity: var(--o-button-primary-border-hover);
     }
   }
   .tw-button-secondary {
@@ -156,8 +159,11 @@
     --text-color: var(--c-button-secondary-color);
     --bg-color: var(--c-button-secondary-bg);
     --bg-opacity: var(--o-button-secondary-bg);
+    --border-color: var(--c-button-secondary-border);
+    --border-opacity: var(--o-button-secondary-border);
     &:hover {
       --bg-opacity: var(--o-button-secondary-bg-hover);
+      --border-opacity: var(--o-button-secondary-border-hover);
     }
   }
 

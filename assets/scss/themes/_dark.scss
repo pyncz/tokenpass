@@ -42,15 +42,21 @@
 
   // button
   // - primary
-  --c-button-primary-bg: var(--c-accent-primary);
-  --o-button-primary-bg: 0.9;
-  --o-button-primary-bg-hover: 1;
+  --c-button-primary-bg: var(--c-bg-base);
+  --o-button-primary-bg: 0.5;
+  --o-button-primary-bg-hover: 0.8;
   --c-button-primary-color: var(--c-white);
+  --c-button-primary-border: var(--c-accent-primary);
+  --o-button-primary-border: 0.6;
+  --o-button-primary-border-hover: 1;
   // - secondary
-  --c-button-secondary-bg: var(--c-black);
-  --o-button-secondary-bg: 0.5;
-  --o-button-secondary-bg-hover: 1;
+  --c-button-secondary-bg: var(--c-accent-primary);
+  --o-button-secondary-bg: 0.1;
+  --o-button-secondary-bg-hover: 0.15;
   --c-button-secondary-color: var(--c-white);
+  --c-button-secondary-border: var(--c-accent-primary);
+  --o-button-secondary-border: 0.5;
+  --o-button-secondary-border-hover: 1;
 
   // switcher
   // - container
