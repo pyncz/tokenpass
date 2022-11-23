@@ -111,18 +111,20 @@
             :errors="v.amount.$errors"
           >
             <template #label="{ id }">
-              <div class="tw-flex">
-                <label :for="id" class="field-meta tw-label">
-                  {{ $t('index.fields.amount.label') }}
-                </label>
-              </div>
+              <div>
+                <div class="tw-flex">
+                  <label :for="id" class="field-meta tw-label">
+                    {{ $t('index.fields.amount.label') }}
+                  </label>
+                </div>
 
-              <div v-if="isIERC1155">
-                <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
-                <span v-if="tokenIdValid && !!form.tokenId">({{ form.tokenId }})</span>
-              </div>
-              <div v-else-if="isIERC20">
-                <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
+                <div v-if="isIERC1155" class="tw-text-xs tw-pb-1">
+                  <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC1155')" />
+                  <span v-if="tokenIdValid && !!form.tokenId" class="tw-px-0.5">({{ form.tokenId }})</span>
+                </div>
+                <div v-else-if="isIERC20" class="tw-text-xs tw-pb-1">
+                  <lazy-lib-markdown :value="$t('index.fields.amount.description.ERC20')" />
+                </div>
               </div>
             </template>
             <template #default="{ id }">
@@ -252,8 +254,10 @@ watchEffect(() => {
 
 // Submit
 const loading = ref(false)
+
+const unsuitableContract = computed(() => contractSpecified.value && !contractType.value)
 const disableSubmit = computed(
-  () => loading.value || !contractType.value || evaluatingContractCheck.value,
+  () => loading.value || unsuitableContract.value || evaluatingContractCheck.value,
 )
 
 const submit = async () => {

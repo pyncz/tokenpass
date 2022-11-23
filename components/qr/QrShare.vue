@@ -8,7 +8,7 @@
   />
 
   <lib-button
-    class="tw-button-secondary sm:tw-min-w-[12em] tw-h-auto tw-text-xl sm:tw-text-normal tw-p-[0.5em]"
+    class="tw-button-secondary sm:tw-min-w-[12em] tw-h-auto tw-text-lg sm:tw-text-normal tw-p-[0.5em]"
     @click="copy()"
   >
     <icon name="copy" />

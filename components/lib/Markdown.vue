@@ -1,5 +1,5 @@
 <template>
-  <div v-html="content" />
+  <span class="[&>*]:tw-inline" v-html="content" />
 </template>
 
 <script setup lang="ts">

@@ -36,6 +36,8 @@ status:
   pending: Pending
   checking: Checking
   initializing: Initializing
+  initialized: Initialized
+
 
 fields:
   chainId: Chain ID
@@ -45,6 +47,7 @@ fields:
 
 tooltips:
   test: Test network
+  initializing: WalletConnect AuthClient
 
 errors:
   noConnection: No connection

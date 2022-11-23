@@ -12,8 +12,6 @@
 </template>
 
 <script setup>
-import './assets/scss/tailwind.scss'
-
 const isOnline = useNetwork()
 
 const pageName = useRouteBaseName()

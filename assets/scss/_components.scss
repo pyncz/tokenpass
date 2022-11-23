@@ -7,7 +7,7 @@
     @apply tw-text-xs tw-text-state-error tw-px-0.5;
   }
   .tw-label {
-    @apply tw-text-xs tw-text-dim-1 tw-font-medium tw-px-0.5;
+    @apply tw-text-xs tw-text-dim-1 tw-font-medium;
   }
   .tw-field {
     @apply tw-space-y-1.5;
@@ -56,7 +56,7 @@
   }
   
   .tw-input {
-    @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-9 tw-duration-onhover-fast;
+    @apply tw-input-border tw-text-sm tw-placeholder-text-dim-2 tw-px-2 tw-py-1.5 tw-rounded tw-h-10 tw-duration-onhover-fast;
     @apply tw-bg-custom tw-bg-opacity-custom tw-text-custom;
     @apply focus:tw-shadow-accent focus-within:tw-shadow-accent;
     @apply disabled:tw-placeholder-opacity-muted;
@@ -133,7 +133,7 @@
   .tw-button {
     @apply tw-clickable;
     @apply tw-text-custom tw-bg-custom tw-bg-opacity-custom;
-    @apply tw-text-sm tw-h-9 tw-relative tw-py-2 tw-px-3;
+    @apply tw-text-sm tw-h-10 tw-relative tw-py-2 tw-px-3;
     @apply before:tw-duration-slow before:tw-absolute before:tw-inset-0 before:tw-rounded before:tw-bg-custom before:tw-bg-opacity-custom before:tw-border before:tw-border-custom before:tw-border-opacity-custom;
     @apply focus:tw-ring-2 focus:tw-ring-accent-primary focus:tw-ring-opacity-outline focus:tw-shadow-accent;
     --text-color: var(--c-color-base);
@@ -142,14 +142,16 @@
     }
   }
   .tw-button-primary {
-    @apply tw-button;
-    background: radial-gradient(20rem 20rem at 20% 170%, #c02469, #660ab1, blue, #3c00e3, #119272, yellow, orange, #da0ada);
+    @apply tw-button tw-bg-center tw-bg-wc;
+    background-size: 100%;
+    background-position: center;
     --text-color: var(--c-button-primary-color);
     --bg-color: var(--c-button-primary-bg);
     --bg-opacity: var(--o-button-primary-bg);
     --border-color: var(--c-button-primary-border);
     --border-opacity: var(--o-button-primary-border);
     &:hover {
+      background-size: 110%;
       --bg-opacity: var(--o-button-primary-bg-hover);
       --border-opacity: var(--o-button-primary-border-hover);
     }
