@@ -1,7 +1,7 @@
 <template>
   <app-layout>
     <nuxt-layout>
-      <nuxt-loading-indicator />
+      <nuxt-loading-indicator color="rgb(var(--c-accent-primary))" />
 
       <nuxt-page v-if="isOnline" />
       <div v-else>
