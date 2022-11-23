@@ -41,6 +41,7 @@ status:
   checking: Checking
   initializing: Initializing
   initialized: Initialized
+  generating: Generating connection link
 
 
 fields:

@@ -12,9 +12,7 @@
       </slot>
     </span>
 
-    <section class="tw-callout md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]">
-      Ads?
-    </section>
+    <summary-info class="md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]" />
 
     <setup-state class="md:tw-row-[2/4]" />
 

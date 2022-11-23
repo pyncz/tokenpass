@@ -1,6 +1,6 @@
 <template>
-  <div class="card-container ">
-    <div class="tw-relative">
+  <div class="card-container">
+    <div class="tw-relative tw-flex-1 tw-flex tw-flex-col">
       <slot />
     </div>
     <div class="bg">
@@ -12,7 +12,7 @@
 
 <style scoped lang="scss">
   .card-container {
-    @apply tw-w-full;
+    @apply tw-w-full tw-flex tw-flex-col;
     @screen sm {
       @apply tw-bg-card tw-bg-opacity-card tw-bordered tw-py-6 tw-px-6 tw-rounded-lg before:tw-rounded-lg;
       @apply before:tw-z-[0] before:tw-border before:tw-border-solid before:tw-border-separator-muted;

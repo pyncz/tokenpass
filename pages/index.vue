@@ -19,7 +19,7 @@
 
     <card-container>
       <client-only>
-        <lazy-qr-section v-if="setupState" />
+        <lazy-qr-section v-if="setupState" class="md:tw-min-h-[18rem]" />
         <lazy-setup-form v-else />
       </client-only>
     </card-container>
