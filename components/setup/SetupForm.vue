@@ -72,7 +72,7 @@
 
           <lazy-form-field
             v-if="isNftContract"
-            :error="v.tokenId.$errors"
+            :errors="v.tokenId.$errors"
           >
             <template #label="{ id }">
               <div class="tw-flex">
@@ -108,7 +108,7 @@
           </lazy-form-field>
 
           <lazy-form-field
-            :error="v.amount.$errors"
+            :errors="v.amount.$errors"
           >
             <template #label="{ id }">
               <div class="tw-flex">
