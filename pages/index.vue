@@ -37,4 +37,18 @@ const { setupState } = storeToRefs(setupStore)
 // Init connection things
 const connectionStore = useConnectionStore()
 onMounted(connectionStore.init)
+
+// Head
+const { t } = useI18n()
+
+useHead({
+  title: ` / ${t('pages.index.title')}`,
+  meta: [
+    {
+      hid: 'description',
+      name: 'description',
+      content: t('pages.index.description'),
+    },
+  ],
+})
 </script>

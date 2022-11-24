@@ -14,22 +14,7 @@
 <script setup>
 const isOnline = useNetwork()
 
-const pageName = useRouteBaseName()
-const { t, te } = useI18n()
-
-const head = te(`pages.${pageName}`)
-  ? {
-      titleTemplate: 'tokenpass %s',
-      title: ` / ${t(`pages.${pageName}.title`)}`,
-      meta: [
-        {
-          hid: 'description',
-          name: 'description',
-          content: t(`pages.${pageName}.description`),
-        },
-      ],
-    }
-  : {}
-
-useHead(head)
+useHead({
+  titleTemplate: 'tokenpass %s',
+})
 </script>

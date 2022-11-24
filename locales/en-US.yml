@@ -8,10 +8,9 @@ pages:
       Using the unique power of blockchain.
       Setup collection contract on any EVM blockchain, let your customer
       read the generated QR Code and check if he ownes the specified token.
-  check:
-    title: 'Check #{id}'
   about:
     title: About
+    description: Why may you need tokenpass?
   settings:
     title: Settings
 
