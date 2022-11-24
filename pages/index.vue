@@ -3,7 +3,7 @@
     <template #title>
       <client-only>
         <template v-if="setupState">
-          <h1 class="tw-relative">
+          <h1 class="tw-relative tw-mb-2">
             <div class="tw-absolute tw-w-0 tw-left-2.5 tw--top-2 tw-flex-center">
               <return-button @click="resetSetupState()" />
             </div>
@@ -11,7 +11,7 @@
           </h1>
         </template>
 
-        <h1 v-else>
+        <h1 v-else class="tw-mb-2">
           {{ $t('index.title.setup') }}
         </h1>
       </client-only>

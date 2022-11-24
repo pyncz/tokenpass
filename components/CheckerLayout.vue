@@ -4,7 +4,7 @@
       <logo-main-link :short="shortLogo" />
     </div>
 
-    <span class="md:tw-col-[2] tw--mt-0.5 tw-opacity-soft">
+    <span class="md:tw-row-[2] lg:tw-col-[2] lg:tw-row-[1] tw--mt-0.5 tw-opacity-soft">
       <slot name="title">
         <h1>
           {{ title }}
@@ -12,11 +12,11 @@
       </slot>
     </span>
 
-    <summary-info class="md:tw-col-[2] md:tw-row-[2] lg:tw-col-[3] lg:tw-row-[1/span_4]" />
+    <summary-info class="md:tw-col-[2] md:tw-row-[2/5] lg:tw-col-[3] lg:tw-row-[1/3]" />
 
-    <setup-state class="md:tw-row-[2/4]" />
+    <setup-state class="md:tw-row-[3] lg:tw-row-[2]" />
 
-    <div class="md:tw-col-[2] md:tw-row-[3/5] lg:tw-row-[2/5]">
+    <div class="md:tw-row-[4] lg:tw-row-[2] lg:tw-col-[2]">
       <slot />
     </div>
   </div>
@@ -37,7 +37,7 @@ const shortLogo = breakpoints.smallerOrEqual('xs')
   grid-template-columns: minmax(0, 1fr);
   @screen md {
     // right sidebar
-    grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
+    grid-template-columns: minmax(0, 3fr) minmax(10rem, 1fr);
   }
   @screen lg {
     // symmetric sidebars
