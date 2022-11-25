@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     strict: true,
   },
 
+  css: ['~/assets/scss/main.scss'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+
   /*
    * App config
    */
@@ -39,7 +47,6 @@ export default defineNuxtConfig({
    * Modules config
    */
   modules: [
-    '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n-edge',
@@ -62,10 +69,6 @@ export default defineNuxtConfig({
     '@nuxtjs/critters',
     '@nuxtjs/fontaine',
   ],
-
-  tailwindcss: {
-    cssPath: '~/assets/scss/main.scss',
-  },
 
   i18n: {
     langDir: 'locales',
