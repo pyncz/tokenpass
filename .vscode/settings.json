@@ -6,5 +6,6 @@
   },
   "files.associations": {
     ".env.template": "properties"
-  }
+  },
+  "i18n-ally.enabledFrameworks": ["vue"],
 }
