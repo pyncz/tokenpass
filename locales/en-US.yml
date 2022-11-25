@@ -34,6 +34,7 @@ actions:
   setup: Setup
   use: Use
   close: Close
+  copy: Copy to clipboard
 
 status:
   pending: Pending
@@ -41,7 +42,6 @@ status:
   initializing: Initializing
   initialized: Initialized
   generating: Generating connection link
-
 
 fields:
   chainId: Chain ID
@@ -74,6 +74,18 @@ contractCheck:
     [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155)
     or [ERC-20](https://eips.ethereum.org/EIPS/eip-20)
     contract so we can check if your client owns the token.
+
+result:
+  passed:
+    title: Passed
+  failed:
+    title: Failed
+  attributes:
+    amount: Required amount
+    balance: Current balance
+
+feedback:
+  copied: Copied!
 
 # by pages
 index:

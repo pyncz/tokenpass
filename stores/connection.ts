@@ -53,11 +53,8 @@ export const useConnectionStore = defineStore('connection', () => {
     }
   }
 
-  watch(client, () => {
-    if (!client.value) {
-      return
-    }
-    client.value.on('auth_response', ({ params }) => {
+  whenever(client, (initializedClient) => {
+    initializedClient.on('auth_response', ({ params }) => {
       if ('code' in params) {
         return setError(params.message)
       }

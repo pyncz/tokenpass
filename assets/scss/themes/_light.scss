@@ -50,13 +50,13 @@
   --o-button-primary-border: 0.2;
   --o-button-primary-border-hover: 1;
   // - secondary
-  --c-button-secondary-bg: var(--c-accent-primary);
-  --o-button-secondary-bg: 0.05;
-  --o-button-secondary-bg-hover: 0.1;
-  --c-button-secondary-color: var(--c-accent-primary);
-  --c-button-secondary-border: var(--c-accent-primary);
-  --o-button-secondary-border: 0.2;
-  --o-button-secondary-border-hover: 0.4;
+  --c-button-secondary-bg: var(--c-bg-dim-2);
+  --o-button-secondary-bg: 0.5;
+  --o-button-secondary-bg-hover: 1;
+  --c-button-secondary-color: var(--c-color-dim-1);
+  --c-button-secondary-border: var(--c-separator-vivid);
+  --o-button-secondary-border: 0.4;
+  --o-button-secondary-border-hover: 0.6;
 
   // switcher
   // - container
@@ -103,7 +103,7 @@
   --c-chain-bsc: 243, 186, 47;
   --c-chain-avalanche: 233, 63, 64;
 
-  --c-test: 255, 160, 36;
+  --c-testnet: 255, 160, 36;
 
   /* shadows */
   --s-title: none;

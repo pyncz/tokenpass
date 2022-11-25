@@ -1,6 +1,8 @@
 <template>
   <app-layout>
-    <logo-main-link class="tw-fixed tw-z-[2] tw-top-4 sm:tw-top-8" />
+    <div class="tw-hidden sm:tw-block tw-fixed tw-z-[2] tw-top-4 sm:tw-top-8">
+      <logo-main-link />
+    </div>
 
     <div class="tw-flex-center tw-flex-col tw-flex-1">
       <div class="tw-space-y-8 tw-text-center">

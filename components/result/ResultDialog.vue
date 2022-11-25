@@ -1,0 +1,81 @@
+<template>
+  <lazy-lib-dialog v-if="result" v-model:opened="model">
+    <div class="tw-text-center tw-flex-center-y tw-flex-col">
+      <result-icon :successful="result.passed" class="tw-my-2" />
+
+      <div class="tw-max-w-full tw-w-full sm:tw-w-auto tw-flex-center-y tw-flex-col tw-gap-2">
+        <div>
+          <h2 class="tw-mb-3">
+            {{ result.passed ? $t('result.passed.title') : $t('result.failed.title') }}
+          </h2>
+          <p class="tw-text-dim-2">
+            {{ description }}
+          </p>
+        </div>
+
+        <copy-button
+          :value="address"
+          :default-message="addressTruncated"
+        />
+
+        <div v-if="showCounters" class="tw-flex-center tw-pt-2 tw-gap-4 sm:tw-gap-5">
+          <result-attribute
+            v-if="commifiedRequiredAmount"
+            :value="commifiedRequiredAmount"
+            :label="$t('result.attributes.amount')"
+          />
+          <result-attribute
+            v-if="commifiedBalance"
+            :value="commifiedBalance"
+            :label="$t('result.attributes.balance')"
+          />
+        </div>
+      </div>
+    </div>
+
+    <template #controls>
+      <lib-button class="tw-button-primary">
+        Close
+      </lib-button>
+    </template>
+  </lazy-lib-dialog>
+</template>
+
+<script setup lang="ts">
+import type { Nullable } from '@voire/type-utils'
+import { toRefs as refToRefs } from '@vueuse/core'
+import type { CheckOwnershipResults, HexString } from '../../models'
+
+interface Props {
+  opened: boolean
+  result: CheckOwnershipResults
+  address: HexString
+  showCounters?: boolean
+  decimals?: Nullable<number>
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  decimals: null,
+})
+
+const model = useVModel(props, 'opened')
+const { address, result, decimals } = toRefs(props)
+
+// Display checkee account's address
+const addressTruncated = useAddressTruncated(address)
+
+// Display result's amounts
+const { balance, required } = refToRefs(result)
+const { commified: commifiedBalance } = useTokenAmount(balance, decimals)
+const { commified: commifiedRequiredAmount } = useTokenAmount(required, decimals)
+
+const description = computed(() => {
+  return props.result.passed
+    ? props.result.required > 1
+      ? 'Account ownes required amount of tokens!'
+      : 'Account ownes the token!'
+    : props.result.balance > 1
+      ? 'Account doesn\'t own required amount of tokens!'
+      : 'Account doesn\'t own the token!'
+})
+</script>

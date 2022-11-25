@@ -11,11 +11,11 @@
         {{ description }}
       </dialog-description>
 
-      <div class="tw-pb-6 tw-flex-1">
+      <div class="tw-pb-9 tw-flex-1">
         <slot v-bind="{ close, open }" />
       </div>
 
-      <div class="tw-flex tw-flex-col tw-gap-3">
+      <div class="tw-flex tw-flex-col tw-gap-4">
         <lib-button class="close-control tw-button-secondary" @click="close()">
           {{ $t('actions.close') }}
         </lib-button>

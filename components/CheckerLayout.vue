@@ -1,10 +1,10 @@
 <template>
   <div class="layout">
-    <div class="tw-sticky tw-top-4 sm:tw-top-8 tw-z-[2]">
+    <div class="tw-hidden sm:tw-block tw-sticky tw-top-3 sm:tw-top-7 tw-z-[2]">
       <logo-main-link :short="shortLogo" />
     </div>
 
-    <span class="md:tw-row-[2] lg:tw-col-[2] lg:tw-row-[1] tw--mt-0.5 tw-opacity-soft">
+    <span class="tw-mt-16 sm:tw-mt-0 md:tw-row-[2] lg:tw-col-[2] lg:tw-row-[1] tw-opacity-soft">
       <slot name="title">
         <h1>
           {{ title }}

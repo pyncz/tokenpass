@@ -1,6 +1,6 @@
 <template>
-  <button @click="$emit('click')">
-    <span class="tw-relative"><slot /></span>
+  <button class="tw-max-w-full tw-flex" @click="$emit('click')">
+    <span class="tw-relative tw-w-full"><slot /></span>
   </button>
 </template>
 

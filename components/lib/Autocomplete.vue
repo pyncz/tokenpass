@@ -7,7 +7,7 @@
         class="tw-input tw-w-full tw-pr-10"
         @change="(q) => query = q.target.value"
       />
-      <combobox-button class="tw-absolute tw-z-1 tw-inset-y-0 tw-right-0 tw-flex-center tw-px-2">
+      <combobox-button class="tw-absolute tw-inset-y-0 tw-right-0 tw-flex-center tw-px-2">
         <div class="tw-icon-button tw-flex">
           <icon name="chevron-down" class="tw-relative" />
         </div>

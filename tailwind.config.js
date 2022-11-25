@@ -96,7 +96,8 @@ module.exports = {
         primary: co('--c-accent-primary'),
         secondary: co('--c-accent-secondary'),
       },
-      test: co('--c-test'),
+      testnet: co('--c-testnet'),
+      custom: co('--color'),
       text: textColors,
     },
     fontFamily: {

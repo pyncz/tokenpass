@@ -1,8 +1,8 @@
 <template>
-  <div class="chain">
-    <div class="chain-icon-group" :class="{ test: !!chainInfo?.test }">
+  <div v-if="chainIntId" class="chain">
+    <div class="chain-icon-group" :class="{ testnet: !!chainInfo?.test }">
       <chain-icon class="chain-icon" :chain-id="chainIntId" />
-      <span class="test-mark" :title="$t('tooltips.test')" />
+      <span class="testnet-mark" :title="$t('tooltips.test')" />
     </div>
     <span class="tw-text-7/8 tw-truncate tw-flex-1 tw-text-dim-1 tw-font-mono">{{ label }}</span>
   </div>
@@ -29,15 +29,15 @@ const label = computed(() => chainInfo.value?.label ?? chainHexId.value)
     }
     &-icon-group {
       @apply tw-relative tw--top-px;
-      .test-mark {
+      .testnet-mark {
         @apply tw-hidden;
-        @apply tw-circle-2 tw-bg-test tw-absolute tw--right-0.5 tw--bottom-0.5;
+        @apply tw-circle-2 tw-bg-testnet tw-absolute tw--right-0.5 tw--bottom-0.5;
       }
-      &.test {
+      &.testnet {
         .chain-icon {
           mask-image: radial-gradient(0.375rem 0.375rem at calc(100% - 0.125rem) calc(100% - 0.125rem), transparent 100%, black 100%);
         }
-        .test-mark {
+        .testnet-mark {
           @apply tw-inline-flex;
         }
       }

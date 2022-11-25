@@ -1,17 +1,41 @@
 <template>
-  <modal-overlay class="modal" :open="model" @close="close()">
-    <div class="overlay" />
-    <div class="modal-wrapper">
-      <div class="modal-container">
-        <slot v-bind="{ open, close }" />
+  <transition-root appear :show="model" as="template">
+    <modal-overlay class="modal" @close="close()">
+      <transition-child
+        as="template"
+        enter="tw-duration-normal tw-ease-out"
+        enter-from="tw-opacity-0"
+        enter-to="tw-opacity-full"
+        leave="tw-duration-fast tw-ease-in"
+        leave-from="tw-opacity-full"
+        leave-to="tw-opacity-0"
+      >
+        <div class="overlay" />
+      </transition-child>
+      <div class="modal-wrapper tw">
+        <transition-child
+          as="template"
+          enter="tw-duration-normal tw-ease-out"
+          enter-from="tw-translate-y-20 sm:tw-translate-y-4 tw-opacity-0 tw-scale-click"
+          enter-to="tw-opacity-full tw-scale-normal"
+          leave="tw-duration-fast tw-ease-in"
+          leave-from="tw-opacity-full tw-scale-normal"
+          leave-to="tw-translate-y-32 sm:tw--translate-y-4 tw-opacity-0 tw-scale-click"
+        >
+          <div class="modal-container">
+            <slot v-bind="{ open, close }" />
+          </div>
+        </transition-child>
       </div>
-    </div>
-  </modal-overlay>
+    </modal-overlay>
+  </transition-root>
 </template>
 
 <script setup lang="ts">
 import {
   Dialog as ModalOverlay,
+  TransitionChild,
+  TransitionRoot,
 } from '@headlessui/vue'
 
 const props = defineProps<{
@@ -29,9 +53,9 @@ const open = () => {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .modal {
-    @apply tw-modal-container;
+    @apply tw-modal-container tw-z-modal;
     .overlay {
       @apply tw-modal-container;
       @apply tw-bg-overlay tw-bg-opacity-modal tw-backdrop-blur-xs;
