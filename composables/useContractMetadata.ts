@@ -1,13 +1,13 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Contract, providers } from 'ethers'
+import type { Contract } from 'ethers'
 import type { MaybePromise, Nullable } from '@voire/type-utils'
-import type { HexString } from '../models'
+import type { HexString, IJsonRpcProvider } from '../models'
 
 export function useContractMetadata<
   TMetadata extends Record<string, any> = Record<string, any>,
 >(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
   abi: MaybeRef<Nullable<any>>,
 
   getter: (contract: Contract) => MaybePromise<TMetadata>,

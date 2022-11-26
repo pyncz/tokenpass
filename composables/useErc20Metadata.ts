@@ -1,7 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { providers } from 'ethers'
 import type { Nullable } from '@voire/type-utils'
-import type { HexString } from '../models'
+import type { HexString, IJsonRpcProvider } from '../models'
 import { ERC20Abi, callWithFallback } from '../utils'
 import { useContractMetadata } from './useContractMetadata'
 
@@ -13,7 +12,7 @@ interface Erc20Metadata {
 
 export function useErc20Metadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
 ) {
   return useContractMetadata<Erc20Metadata>(
     address,

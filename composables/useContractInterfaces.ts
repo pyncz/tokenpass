@@ -1,17 +1,16 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { providers } from 'ethers'
 import { Contract } from 'ethers'
 import type { Nullable } from '@voire/type-utils'
 import { toRefs as refToRefs } from '@vueuse/core'
 import { ContractInterfaceId, ContractType } from '../models'
-import type { ContractInterface, HexString } from '../models'
+import type { ContractInterface, HexString, IJsonRpcProvider } from '../models'
 import { ERC165Abi, ERC20Abi, WHITE_ADDRESS } from '../utils'
 
 type InterfacesMap = Record<`is${ContractInterface}`, boolean>
 
 export function useContractInterfaces(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
 ) {
   const {
     isContract,

@@ -1,12 +1,12 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Contract, providers } from 'ethers'
+import type { Contract } from 'ethers'
 import type { MaybePromise, Nullable } from '@voire/type-utils'
 import { ofetch } from 'ofetch'
-import type { HexString } from '../models'
+import type { HexString, IJsonRpcProvider } from '../models'
 
 export function useTokenMetadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
   tokenId: MaybeRef<Nullable<string | number>>,
   abi: MaybeRef<Nullable<any>>,
   uriGetter: MaybeRef<(contract: Contract, tokenId: string) => MaybePromise<Nullable<string>>>,

@@ -1,7 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { providers } from 'ethers'
 import type { Nullable } from '@voire/type-utils'
-import type { HexString } from '../models'
+import type { HexString, IJsonRpcProvider } from '../models'
 import { IERC721MetadataAbi, callWithFallback } from '../utils'
 import { useContractMetadata } from './useContractMetadata'
 
@@ -12,7 +11,7 @@ interface Erc721Metadata {
 
 export function useErc721Metadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
 ) {
   return useContractMetadata<Erc721Metadata>(
     address,

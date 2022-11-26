@@ -1,12 +1,11 @@
 import type { Nullable } from '@voire/type-utils'
 import type { MaybeRef } from '@vueuse/core'
-import type { providers } from 'ethers'
 import { Contract } from 'ethers'
-import type { HexString } from '../models'
+import type { HexString, IJsonRpcProvider } from '../models'
 
 export function useContract(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
+  provider: MaybeRef<Nullable<IJsonRpcProvider>>,
   abi: MaybeRef<Nullable<any>>,
 ) {
   const contract = computed(() => {
