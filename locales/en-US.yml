@@ -1,117 +1,95 @@
-logo: '{name} logo'
-
-# meta
-pages:
-  index:
-    title: Setup
-    description:
-      Using the unique power of blockchain.
-      Setup collection contract on any EVM blockchain, let your customer
-      read the generated QR Code and check if he ownes the specified token.
-  about:
-    title: About
-    description: Why may you need tokenpass?
-  settings:
-    title: Settings
-
-theme:
-  system: System
-  light: Light
-  dark: Dark
-  black: Black
-
-colorMode: Color mode
-locale: Localization
-madeBy: Made by
-home: Home
-
-# tokens' amounts
-inUnits: In units
-formatted: Formatted
-
-# buttons' actions
+about:
+  title: About
 actions:
-  setup: Setup
-  use: Use
   close: Close
   copy: Copy to clipboard
-
-status:
-  pending: Pending
-  checking: Checking
-  initializing: Initializing
-  initialized: Initialized
-  generating: Generating connection link
-
-fields:
-  chainId: Chain ID
-  collectionAddress: Collection’s contract address
-  tokenId: Token ID
-  amount: Amount
-
-tooltips:
-  test: Test network
-  initializing: WalletConnect AuthClient
-
-errors:
-  noConnection: No connection
-  noCollection: There's no such collection. Check the selected address / chain
-  notFound: Not found
-
-validations:
-  required: This field is required
-  integer: The value should be an integer
-  positive: The value should be a positive number
-  ethAddress: An eth address is expected
-
+  generateConnectionLink: Generate connection link
+  ok: Ok
+  setup: Setup
+  use: Use
 contractCheck:
-  noCode: Not a contract!
-  unknown: Unknown contract interface!
-  type: Looks like this is an {type}!
-  disclaimer:
+  disclaimer: >-
     Check the selected chain and address, and specify an
     [ERC-721](https://eips.ethereum.org/EIPS/eip-721),
-    [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155)
-    or [ERC-20](https://eips.ethereum.org/EIPS/eip-20)
-    contract so we can check if your client owns the token.
-
-result:
-  passed:
-    title: Passed
-  failed:
-    title: Failed
-  attributes:
-    amount: Required amount
-    balance: Current balance
-
+    [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155) or
+    [ERC-20](https://eips.ethereum.org/EIPS/eip-20) contract so we can check if
+    your client owns the token.
+  noCode: Not a contract!
+  type: Looks like this is an {type}!
+  unknown: Unknown contract interface!
+error: Error
+errors:
+  default: Oh
+  noConnection: No connection
+  notFound: Not found
 feedback:
   copied: Copied!
-
-# by pages
+formatted: Formatted
+home: Home
+inUnits: In units
 index:
-  title:
-    setup: Setup address
-    share: Share link
-  submit: '@:actions.setup'
-  disclosure: Additional config
   fields:
+    address:
+      label: Address of the token's contract
+      placeholder: 0xABC...123
+    amount:
+      description:
+        ERC1155: Amount of tokens of the provided `tokenId`
+      label: Look for a specific amount (1 if not specified)
+      placeholder: Amount
+      placeholderFormatted: Amount (formatted)
+      placeholderUnits: Amount (in units)
     chainId:
       label: Chain
       placeholder: Select chain ID
-    address:
-      label: '@:fields.collectionAddress'
-      placeholder: 0xABC...123
     tokenId:
       label: Look for a specific token
       placeholder: Token ID
-    amount:
-      label: Look for a specific amount (1 if not specified)
-      placeholder: Amount
-      placeholderUnits: Amount (in units)
-      placeholderFormatted: Amount (formatted)
-      description:
-        ERC1155: Amount of tokens of the provided `tokenId`
-        ERC20: In units, e.g. `{units}` for 1 {symbol}
-
-about:
-  title: About
+  submit: '@:actions.setup'
+  title:
+    setup: Setup address
+    share: Share link
+logo: '{name} logo'
+madeBy: Made by
+pages:
+  about:
+    description: Why may you need tokenpass?
+    title: About
+  index:
+    description: >-
+      Using the unique power of blockchain. Setup collection contract on any EVM
+      blockchain, let your customer read the generated QR Code and check if he
+      ownes the specified token.
+    title: Setup
+  settings:
+    title: Settings
+result:
+  attributes:
+    amount: Required amount
+    balance: Current balance
+  failed:
+    title: Failed
+  passed:
+    title: Passed
+state:
+  amount: Amount
+  chain: Chain
+  contract: Contract
+  token: Token
+status:
+  checking: Checking
+  generating: Generating connection link
+  initialized: Initialized
+  initializing: Initializing
+theme:
+  dark: Dark
+  light: Light
+  system: System
+tooltips:
+  initializing: WalletConnect AuthClient
+  test: Test network
+validations:
+  ethAddress: An eth address is expected
+  integer: The value should be an integer
+  positive: The value should be a positive number
+  required: This field is required
