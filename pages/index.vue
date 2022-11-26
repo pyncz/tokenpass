@@ -19,7 +19,7 @@
 
     <card-container>
       <client-only>
-        <lazy-qr-section v-if="setupState" class="md:tw-min-h-[18rem]" />
+        <lazy-qr-view v-if="setupState" class="md:tw-min-h-[18rem]" />
         <lazy-setup-form v-else />
       </client-only>
     </card-container>
@@ -28,15 +28,11 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useConnectionStore, useSetupStore } from '../stores'
+import { useSetupStore } from '../stores'
 
 const setupStore = useSetupStore()
 const { reset: resetSetupState } = setupStore
 const { setupState } = storeToRefs(setupStore)
-
-// Init connection things
-const connectionStore = useConnectionStore()
-onMounted(connectionStore.init)
 
 // Head
 const { t } = useI18n()

@@ -1,12 +1,12 @@
 <template>
   <div v-if="setupState" class="tw-py-2 tw-callout tw-text-sm tw-text-dim-2 tw-divide-y tw-divide-separator-muted">
-    <with-label label="Chain" class="tw-py-3">
+    <with-label :label="$t('state.chain')" class="tw-py-3">
       <lazy-chain-representation
         :chain-id="setupState.chainId"
       />
     </with-label>
 
-    <with-label v-if="!isIERC1155" label="Contract" class="tw-py-3">
+    <with-label v-if="!isIERC1155" :label="$t('state.contract')" class="tw-py-3">
       <lazy-erc721-contract-preview
         v-if="isIERC721 && isIERC721Metadata"
         :chain-id="setupState.chainId"
@@ -19,7 +19,7 @@
       />
     </with-label>
 
-    <with-label v-if="setupState.tokenId" label="Token" class="tw-py-3">
+    <with-label v-if="setupState.tokenId" :label="$t('state.token')" class="tw-py-3">
       <lazy-erc721-token-preview
         v-if="isIERC721 && isIERC721Metadata"
         :chain-id="setupState.chainId"
@@ -34,7 +34,7 @@
       />
     </with-label>
 
-    <with-label label="Amount" class="tw-py-3">
+    <with-label :label="$t('state.amount')" class="tw-py-3">
       {{ setupState.amount }}
     </with-label>
   </div>
@@ -42,15 +42,14 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useContractStore, useSetupStore } from '../../stores'
-
-const { setupState } = storeToRefs(useSetupStore())
+import { useSetupStore } from '../../stores'
 
 const {
+  setupState,
   isIERC1155,
   isIERC1155MetadataURI,
   isIERC20,
   isIERC721,
   isIERC721Metadata,
-} = storeToRefs(useContractStore())
+} = storeToRefs(useSetupStore())
 </script>

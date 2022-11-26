@@ -3,13 +3,22 @@
     :to="localePath({ name: 'about', hash: '#walletconnect' })"
     class="status tw-min-w-[7.5rem]"
     role="button"
-    :class="{ initialized }"
     :title="$t('tooltips.initializing')"
+    :class="{
+      'tw-opacity-muted': !!error,
+    }"
   >
-    <span class="beacon" />
+    <span
+      class="beacon"
+      :class="{
+        'tw-animate-spin': initializing,
+        'before:tw-animate-ping': initialized,
+      }"
+    />
 
     <transition name="fade" mode="out-in">
       <span v-if="initialized" class="tw-flex-1 tw-text-dim-2 tw-px-1">{{ $t('status.initialized') }}</span>
+      <span v-else-if="error" class="tw-flex-1 tw-text-state-error tw-px-1">{{ $t('errors.initializationError') }}</span>
       <span v-else class="tw-flex-1 tw-text-dim-2 tw-px-1">{{ $t('status.initializing') }}</span>
     </transition>
   </nuxt-link>
@@ -17,9 +26,9 @@
 
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useConnectionStore } from '../stores'
+import { useClientStore } from '../stores'
 
-const { initialized } = storeToRefs(useConnectionStore())
+const { initialized, initializing, error } = storeToRefs(useClientStore())
 const localePath = useLocalePath()
 </script>
 
@@ -29,18 +38,6 @@ const localePath = useLocalePath()
     .beacon {
       @apply tw-duration-fast tw-circle-[0.75em] tw-inline-flex tw-bg-white tw-relative tw-bg-beacon;
       @apply before:tw-opacity-muted before:tw-absolute before:tw-inset-0 before:tw-rounded-full before:tw-bg-beacon;
-    }
-
-    &:not(.initialized) {
-      .beacon {
-        @apply tw-animate-spin;
-      }
-    }
-
-    &.initialized {
-      .beacon {
-        @apply before:tw-animate-ping;
-      }
     }
   }
 </style>

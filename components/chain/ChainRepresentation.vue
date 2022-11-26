@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ChainID } from '~~/models'
+import type { ChainID } from '../../models'
 
 const props = defineProps<{
   chainId: ChainID

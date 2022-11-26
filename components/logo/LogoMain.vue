@@ -3,6 +3,7 @@
     :class="`tw-h-logo-${size}`"
     :viewBox="short ? '0 0 160 160' : '0 0 680 160'"
     fill="none"
+    :title="$t('logo', { name: 'tokenpass' })"
     xmlns="http://www.w3.org/2000/svg"
   >
     <g>

@@ -1,24 +1,26 @@
 <template>
-  <qr-code
-    :size="400"
-    background="transparent"
-    :foreground="foreground"
-    class="tw-mx-auto tw-aspect-1 !tw-w-full !tw-h-auto tw-duration-fast tw-origin-top"
-    :class="{ 'tw-scale-[0.9]': checking }"
-    :value="value"
-  />
+  <div class="tw-flex-col tw-flex-center-y tw-text-center tw-space-y-8 lg:tw-pt-8">
+    <qr-code
+      :size="400"
+      background="transparent"
+      :foreground="foreground"
+      class="tw-mx-auto tw-aspect-1 !tw-w-full !tw-h-auto tw-duration-fast tw-origin-top"
+      :class="{ 'tw-scale-[0.9]': checking }"
+      :value="value"
+    />
 
-  <copy-button
-    :value="value"
-    :default-message="$t('actions.copy')"
-  />
+    <copy-button
+      :value="value"
+      :default-message="$t('actions.copy')"
+    />
 
-  <div v-if="connectionError" class="tw-text-sm tw-text-state-error">
-    {{ connectionError }}
-  </div>
+    <div v-if="connectionError" class="tw-text-sm tw-text-state-error">
+      {{ connectionError }}
+    </div>
 
-  <div v-if="checking" class="tw-text-dim-1">
-    {{ $t('status.checking') }}...
+    <div v-if="checking" class="tw-text-dim-1">
+      {{ $t('status.checking') }}...
+    </div>
   </div>
 
   <lazy-result-dialog

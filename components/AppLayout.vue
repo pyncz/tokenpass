@@ -1,7 +1,8 @@
 <template>
   <div class="tw-px-6 tw-section tw-min-h-screen tw-flex tw-flex-col">
     <div class="control-panel">
-      <initializing-status />
+      <initialization-status />
+
       <div class="tw-flex tw-gap-4">
         <switch-locale />
         <switch-theme />

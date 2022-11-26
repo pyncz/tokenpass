@@ -12,6 +12,7 @@
         role="button"
         class="tw-radio-option-thin"
         :class="{ checked }"
+        :title="$t('theme.system')"
       >
         <icon name="desktop" />
       </a>
@@ -20,6 +21,7 @@
         role="button"
         class="tw-radio-option-thin"
         :class="{ checked }"
+        :title="$t('theme.light')"
       >
         <icon name="sun" class="tw-scale-[1.2]" />
       </a>
@@ -28,6 +30,7 @@
         role="button"
         class="tw-radio-option-thin"
         :class="{ checked }"
+        :title="$t('theme.dark')"
       >
         <icon name="moon" />
       </a>

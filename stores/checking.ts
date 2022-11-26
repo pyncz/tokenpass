@@ -2,19 +2,18 @@ import type { Nullable } from '@voire/type-utils'
 import { acceptHMRUpdate, defineStore, storeToRefs } from 'pinia'
 import type { CheckOwnershipResults } from '../models'
 import { useConnectionStore } from './connection'
-import { useContractStore } from './contract'
 import { useSetupStore } from './setup'
 
 export const useCheckingStore = defineStore('checking', () => {
   const { address } = storeToRefs(useConnectionStore())
 
-  const { setupState } = storeToRefs(useSetupStore())
   const {
+    setupState,
     contract,
     isIERC20,
     isIERC721,
     isIERC1155,
-  } = storeToRefs(useContractStore())
+  } = storeToRefs(useSetupStore())
 
   const amount = computed(() => setupState.value?.amount ?? null)
   const tokenId = computed(() => setupState.value?.tokenId ?? null)

@@ -20,6 +20,7 @@ contractCheck:
 error: Error
 errors:
   default: Oh
+  initializationError: Initialization error
   noConnection: No connection
   notFound: Not found
 feedback:
