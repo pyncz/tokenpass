@@ -172,6 +172,9 @@
       --border-opacity: var(--o-button-secondary-border-hover);
     }
   }
+  .tw-free-button {
+    @apply tw-text-lg sm:tw-text-normal tw-h-auto tw-p-[0.5em];
+  }
 
   .tw-link-muted {
     @apply tw-cursor-pointer tw-text-dim-3 hover:tw-text-dim-2 tw-duration-onhover-fast;

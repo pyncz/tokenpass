@@ -9,30 +9,38 @@
       :value="value"
     />
 
-    <copy-button
-      :value="value"
-      :default-message="$t('actions.copy')"
-    />
+    <div class="tw-gap-y-2 tw-gap-x-3 tw-flex-wrap tw-flex-center tw-flex-col sm:tw-flex-row">
+      <copy-button
+        :value="value"
+        :default-message="$t('actions.copy')"
+      />
+      <lib-button
+        class="tw-button-primary tw-free-button"
+        @click="generate()"
+      >
+        <span class="tw-flex tw-text-7/8">{{ $t('generate.renew') }}</span>
+      </lib-button>
+    </div>
 
     <div v-if="connectionError" class="tw-text-sm tw-text-state-error">
       {{ connectionError }}
     </div>
 
     <div v-if="checking" class="tw-text-dim-1">
-      {{ $t('status.checking') }}...
+      {{ $t('status.checking') }}
     </div>
-  </div>
 
-  <lazy-result-dialog
-    v-if="result && address"
-    v-model:opened="showResult"
-    :result="result"
-    :address="address"
-    :show-counters="!isIERC721"
-    :decimals="decimals"
-    @close="resetConnection"
-    @finish="resetSetupState"
-  />
+    <lazy-result-dialog
+      v-if="result && address"
+      v-model:opened="showResult"
+      :result="result"
+      :address="address"
+      :show-counters="!isIERC721"
+      :decimals="decimals"
+      @close="resetConnection"
+      @finish="resetSetupState"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -47,7 +55,7 @@ const props = defineProps<{
 const { value } = toRefs(props)
 
 const connectionStore = useConnectionStore()
-const { reset: resetConnection } = connectionStore
+const { generate, reset: resetConnection } = connectionStore
 const { address, error: connectionError } = storeToRefs(connectionStore)
 
 const setupStore = useSetupStore()

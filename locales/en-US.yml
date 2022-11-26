@@ -3,7 +3,6 @@ about:
 actions:
   close: Close
   copy: Copy to clipboard
-  generateConnectionLink: Generate connection link
   ok: Ok
   setup: Setup
   use: Use
@@ -26,6 +25,13 @@ errors:
 feedback:
   copied: Copied!
 formatted: Formatted
+generate:
+  description: >-
+    Generate and share a link to your customer to check if they have specified
+    token
+  renew: Generate a new one
+  submit: Generate link
+  title: Generate connection link
 home: Home
 inUnits: In units
 index:

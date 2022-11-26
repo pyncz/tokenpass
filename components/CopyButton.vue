@@ -1,7 +1,7 @@
 <template>
   <lib-button
     ref="button"
-    class="tw-relative tw-text-dim-2 tw-flex tw-button-secondary tw-h-auto tw-text-lg sm:tw-text-normal tw-p-[0.5em]"
+    class="tw-relative tw-text-dim-2 tw-flex tw-button-secondary tw-free-button"
     :style="{ width }"
     @click="copy()"
   >
