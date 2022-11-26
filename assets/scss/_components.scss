@@ -205,8 +205,12 @@
     --bg-color: var(--c-combo-bg);
     --bg-opacity: var(--o-combo-bg);
   }
+  .tw-combo-container {
+    @apply tw-text-ellipsis tw-px-2 sm:tw-px-4 md:tw-px-8 tw-py-2;
+  }
   .tw-combo-option {
-    @apply tw-text-ellipsis tw-cursor-pointer tw-px-2 sm:tw-px-4 md:tw-px-8 tw-py-2 tw-rounded tw-duration-fast;
+    @apply tw-combo-container;
+    @apply tw-cursor-pointer tw-rounded tw-duration-fast;
     @apply tw-bg-custom tw-bg-opacity-custom;
     --bg-color: var(--c-combo-option-bg);
     --bg-opacity: var(--o-combo-option-bg);

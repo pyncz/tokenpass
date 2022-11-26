@@ -7,6 +7,7 @@
     :filter="filterNetworks"
     :placeholder="$t('index.fields.chainId.placeholder')"
     :disabled="disabled"
+    forbid-custom
   >
     <template #option="{ option }">
       <div class="tw-combo-option tw-relative">

@@ -15,6 +15,13 @@
     </div>
 
     <combobox-options class="tw-options">
+      <div
+        v-if="forbidCustom && !filteredOptions.length"
+        class="tw-combo-container tw-text-dim-3"
+      >
+        {{ $t('errors.notFound') }}
+      </div>
+
       <combobox-option v-if="query && !forbidCustom" :value="query" class="tw-cursor-pointer">
         <slot name="custom-option" v-bind="{ query }">
           <div class="tw-combo-option">
