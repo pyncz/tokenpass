@@ -25,7 +25,7 @@ Tokenpass provides such a checking tool.
 
 An important step in the process is to allow the user to authenticate using only their wallet (on the phone or anywhere) without entering keys and passwords on a checking device.
 
-Such feature is provided and framed in a convenient interface by [WalletConnect AuthClient](https://walletconnect.com). It's just been released and there is no support from wallets _yet_, but you can test with [demo wallet](https://react-auth-wallet.walletconnect.com) for now.
+Such feature is provided and framed in a convenient interface by [WalletConnect AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation). It's just been released and there is no support from wallets _yet_, but you can test with [demo wallet](https://react-auth-wallet.walletconnect.com) for now.
 
 
 ### Available Chains

@@ -10,6 +10,7 @@ Using the unique power of blockchain.
 - [Nuxt 3](https://v3.nuxtjs.org)
 - [VueUse](https://vueuse.org)
 - [Tailwind CSS](https://tailwindcss.com)
+- [WalletConnect v2](https://walletconnect.com)
 - Icons: [`ionicons`](https://ionic.io/ionicons)
 - UI: [`headless-ui`](https://headlessui.com/vue/menu)
 - Validation: [`vuelidate`](https://vuelidate-next.netlify.app)
