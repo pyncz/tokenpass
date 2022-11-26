@@ -34,7 +34,7 @@
       />
     </with-label>
 
-    <with-label :label="$t('state.amount')" class="tw-py-3">
+    <with-label v-if="!isIERC721" :label="$t('state.amount')" class="tw-py-3">
       {{ setupState.amount }}
     </with-label>
   </div>
