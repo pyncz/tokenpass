@@ -109,6 +109,7 @@ module.exports = {
       1: 1,
       xs: 1.1,
       sm: 1.15,
+      inherit: 'inherit',
     },
     // skins
     textColor: theme => ({
@@ -123,7 +124,7 @@ module.exports = {
       overlay: co('--c-overlay-bg'),
       base: co('--c-bg-base'),
       card: co('--c-bg-card'),
-      dim: fill(2, i => co(`--c-bg-dim-${i}`)),
+      dim: fill(3, i => co(`--c-bg-dim-${i}`)),
     }),
     borderColor: theme => ({
       ...theme('colors'),

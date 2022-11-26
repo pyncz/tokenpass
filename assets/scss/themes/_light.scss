@@ -10,7 +10,8 @@
   /* bg */
   --c-bg-base: 249, 249, 255;
   --c-bg-dim-1: 240, 245, 252;
-  --c-bg-dim-2: 230, 235, 241;
+  --c-bg-dim-2: 235, 240, 246;
+  --c-bg-dim-3: 230, 230, 239;
 
   --c-bg-card: var(--c-white);
   --o-bg-card: 0.9;
@@ -93,7 +94,7 @@
   --c-combo-bg: var(--c-bg-card);
   --o-combo-bg: 0.9;
   // - option
-  --c-combo-option-bg: var(--c-bg-dim-1);
+  --c-combo-option-bg: var(--c-bg-dim-2);
   --o-combo-option-bg: 0;
   --o-combo-option-bg-hover: 1;
 

@@ -125,7 +125,7 @@
   }
   .tw-icon-button {
     @apply tw-relative tw-text-dim-2 tw-duration-onhover-fast tw-opacity-soft hover:tw-opacity-full;
-    @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-2 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
+    @apply before:tw-absolute before:tw-inset-0 before:tw-bg-dim-3 before:tw-rounded before:tw-duration-normal active:tw-scale-click;
     &:hover {
       @apply before:tw-scale-zoom;
     }

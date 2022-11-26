@@ -83,7 +83,7 @@ const model = useVModel(props, 'modelValue')
       @apply tw-flex-col;
     }
     &.thin &-group {
-      @apply tw-border-separator-muted tw-bg-dim-1 tw-rounded-lg;
+      @apply tw-border-separator-muted tw-bg-dim-2 tw-rounded-lg;
       --bg-opacity: 0;
     }
     &-option {

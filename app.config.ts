@@ -11,6 +11,7 @@ export default defineAppConfig({
       'link': 'ion:link-outline',
       'gem': 'ion:diamond-outline',
       'copy': 'ion:copy-outline',
+      'info': 'ion:information-circle-outline',
     },
   },
 })

@@ -9,10 +9,11 @@
 
   /* bg */
   --c-bg-base: 8, 8, 19;
-  --c-bg-dim-1: 26, 26, 35;
-  --c-bg-dim-2: 40, 40, 47;
+  --c-bg-dim-1: 16, 16, 25;
+  --c-bg-dim-2: 24, 24, 31;
+  --c-bg-dim-3: 32, 32, 39;
 
-  --c-bg-card: var(--c-bg-dim-1);
+  --c-bg-card: var(--c-bg-dim-2);
   --o-bg-card: 0.05;
 
   --o-bg-form-section: 0.05;
@@ -33,7 +34,7 @@
   --c-link-primary: var(--c-accent-secondary);
   
   // input
-  --c-input: var(--c-bg-card);
+  --c-input: var(--c-bg-dim-2);
   --c-input-disabled: var(--c-bg-card);
   --o-input-bg: 1;
   --o-input-bg-disabled: 0.2;
@@ -50,7 +51,7 @@
   --o-button-primary-border: 0.5;
   --o-button-primary-border-hover: 0.8;
   // - secondary
-  --c-button-secondary-bg: var(--c-bg-dim-2);
+  --c-button-secondary-bg: var(--c-bg-dim-3);
   --o-button-secondary-bg: 0.4;
   --o-button-secondary-bg-hover: 0.6;
   --c-button-secondary-color: var(--c-white);
@@ -93,7 +94,7 @@
   --c-combo-bg: var(--c-bg-card);
   --o-combo-bg: 0.9;
   // - option
-  --c-combo-option-bg: var(--c-bg-dim-2);
+  --c-combo-option-bg: var(--c-bg-dim-3);
   --o-combo-option-bg: 0;
   --o-combo-option-bg-hover: 1;
 

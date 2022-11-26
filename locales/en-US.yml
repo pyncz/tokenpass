@@ -29,8 +29,7 @@ feedback:
 formatted: Formatted
 generate:
   description: >-
-    Generate and share a link to your customer to check if they have specified
-    token
+    To check another account, generate a link and share it to your customer
   renew: Generate a new one
   submit: Generate link
   title: Generate connection link
@@ -77,7 +76,9 @@ result:
     amount: Required amount
     balance: Current balance
   failed:
-    message: Account doesn't own the token! | Account doesn't own required amount of tokens! | Account doesn't own required amount of tokens!
+    message: >-
+      Account doesn't own the token! | Account doesn't own required amount of
+      tokens! | Account doesn't own required amount of tokens!
     title: Failed
   passed:
     message: Account owns the token! | Account owns required amount of tokens!
@@ -92,6 +93,14 @@ status:
   generating: Generating connection link
   initialized: Initialized
   initializing: Initializing
+summary:
+  body:
+    - Tokenpass allows you to check, if your customer owns a
+      specific token. Set up a contract, share link and see results.
+    - It works using [WalletConnect AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation),
+      which has just been released and not many wallets support it yet,
+      so you can try a [demo wallet](https://react-auth-wallet.walletconnect.com) for now.
+  title: How to use?
 theme:
   dark: Dark
   light: Light

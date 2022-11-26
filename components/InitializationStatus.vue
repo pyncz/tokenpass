@@ -34,7 +34,7 @@ const localePath = useLocalePath()
 
 <style scoped lang="scss">
   .status {
-    @apply tw-px-2.5 tw-py-2 tw-text-center tw-duration-onhover-fast tw-rounded-full tw-bg-dim-1 hover:tw-bg-dim-2 tw-flex-center-y tw-gap-0.5;
+    @apply tw-px-2.5 tw-py-2 tw-text-center tw-duration-onhover-fast tw-rounded-full tw-bg-dim-2 hover:tw-bg-dim-3 tw-flex-center-y tw-gap-0.5;
     .beacon {
       @apply tw-duration-fast tw-circle-[0.75em] tw-inline-flex tw-bg-white tw-relative tw-bg-beacon;
       @apply before:tw-opacity-muted before:tw-absolute before:tw-inset-0 before:tw-rounded-full before:tw-bg-beacon;

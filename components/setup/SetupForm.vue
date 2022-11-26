@@ -154,7 +154,7 @@
 
           <lazy-lib-markdown
             :value="$t('contractCheck.disclaimer')"
-            class="tw-text-7/8 tw-text-dim-2 tw-pb-1"
+            class="tw-block tw-text-7/8 tw-text-dim-2 tw-pb-1"
           />
         </div>
       </lazy-form-section>

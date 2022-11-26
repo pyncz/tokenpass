@@ -6,7 +6,7 @@
     @click="copy()"
   >
     <div class="tw-flex">
-      <div class="tw-absolute tw--left-0.5 tw-top-1/2 tw--translate-y-1/2 tw-inline-flex tw-p-1 tw-rounded tw-bg-dim-2">
+      <div class="tw-absolute tw--left-0.5 tw-top-1/2 tw--translate-y-1/2 tw-inline-flex tw-p-1 tw-rounded tw-bg-dim-3">
         <icon name="copy" />
       </div>
       <span class="tw-truncate tw-flex-1 tw-pl-[2.125em] tw-text-7/8">

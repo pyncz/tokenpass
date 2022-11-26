@@ -29,7 +29,7 @@ export const useSetupStore = defineStore('setup', () => {
 
   const provider = useRpcProvider(chainId)
 
-  // As soon as the address is known, check if the accountt ownes the token
+  // As soon as the address is known, check if the accountt owns the token
   const interfacesFlags = useContractInterfaces(contractAddress, provider)
 
   const contractAbi = computed(() => {

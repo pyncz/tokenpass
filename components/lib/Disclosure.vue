@@ -41,7 +41,7 @@ defineProps<{
   .disclosure {
     @apply tw-text-sm tw-py-1;
     &-content {
-      @apply tw-py-3;
+      @apply tw-py-1;
     }
     &-toggle {
       @apply tw-text-dim-2 tw-text-opacity-soft hover:tw-text-opacity-full tw-duration-onhover-fast tw-font-medium;

@@ -1,5 +1,5 @@
 <template>
-  <span class="[&>*]:tw-inline" v-html="content" />
+  <span class="[&>*]:tw-inline [&>*]:tw-leading-inherit" v-html="content" />
 </template>
 
 <script setup lang="ts">
