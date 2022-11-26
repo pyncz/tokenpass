@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import { chainNamesMap } from '../utils'
+import { chainInfoMap } from '../utils'
 import type { ChainID } from '../models'
 
 /**
@@ -24,7 +24,7 @@ export function useChainById(id: MaybeRef<ChainID>) {
   })
 
   const hexId = computed(() => intId.value ? `0x${intId.value.toString(16)}` : undefined)
-  const chainInfo = computed(() => intId.value ? chainNamesMap[intId.value] : undefined)
+  const chainInfo = computed(() => intId.value ? chainInfoMap[intId.value] : undefined)
 
   return {
     hexId,

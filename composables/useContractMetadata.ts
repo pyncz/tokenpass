@@ -7,7 +7,7 @@ export function useContractMetadata<
   TMetadata extends Record<string, any> = Record<string, any>,
 >(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
   abi: MaybeRef<Nullable<any>>,
 
   getter: (contract: Contract) => MaybePromise<TMetadata>,

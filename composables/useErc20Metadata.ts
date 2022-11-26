@@ -13,7 +13,7 @@ interface Erc20Metadata {
 
 export function useErc20Metadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
 ) {
   return useContractMetadata<Erc20Metadata>(
     address,

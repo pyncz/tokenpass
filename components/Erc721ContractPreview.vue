@@ -25,7 +25,7 @@ const { chainId, address } = toRefs(props)
 const {
   evaluating,
   metadata,
-} = useErc721Metadata(address, useInfuraProvider(chainId))
+} = useErc721Metadata(address, useRpcProvider(chainId))
 
 const { symbol, name } = refToRefs(metadata)
 </script>

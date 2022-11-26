@@ -4,6 +4,7 @@ export type ChainID = HexString | number
 
 export interface ChainInfoById {
   label: string
+  rpcDomain: string
   test?: boolean
 }
 

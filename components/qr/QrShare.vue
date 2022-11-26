@@ -67,7 +67,7 @@ const chainId = computed(() => setupState.value?.chainId ?? null)
 
 const {
   metadata: erc20Metadata,
-} = useErc20Metadata(address, useInfuraProvider(chainId))
+} = useErc20Metadata(address, useRpcProvider(chainId))
 
 const { decimals } = refToRefs(erc20Metadata)
 

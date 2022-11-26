@@ -47,7 +47,7 @@ const { chainId, address, tokenId, abi, uriGetter } = toRefs(props)
 
 const { evaluating, metadata } = useTokenMetadata(
   address,
-  useInfuraProvider(chainId),
+  useRpcProvider(chainId),
   tokenId,
   abi,
   uriGetter,

@@ -12,7 +12,7 @@ interface Erc721Metadata {
 
 export function useErc721Metadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
 ) {
   return useContractMetadata<Erc721Metadata>(
     address,

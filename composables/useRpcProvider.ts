@@ -2,10 +2,11 @@ import type { MaybeRef } from '@vueuse/core'
 import { providers } from 'ethers'
 import type { Nullable } from '@voire/type-utils'
 import type { ChainID } from '../models'
+import { chainInfoMap } from '../utils'
 
-const { InfuraProvider } = providers
+const { JsonRpcProvider } = providers
 
-export function useInfuraProvider(
+export function useRpcProvider(
   chainId: MaybeRef<Nullable<ChainID>>,
 ) {
   const { INFURA_PROJECT_ID } = useRuntimeConfig()
@@ -13,10 +14,15 @@ export function useInfuraProvider(
   const provider = computed(() => {
     const chainIdValue = unref(chainId)
     if (chainIdValue) {
-      return new InfuraProvider(
-        +chainIdValue,
-        INFURA_PROJECT_ID,
-      )
+      const { rpcDomain } = chainInfoMap[chainIdValue] ?? {}
+      if (rpcDomain) {
+        return new JsonRpcProvider(
+          {
+            url: `https://${rpcDomain}.infura.io/v3/${INFURA_PROJECT_ID}`,
+          },
+          +chainIdValue,
+        )
+      }
     }
 
     return null

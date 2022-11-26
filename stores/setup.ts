@@ -27,7 +27,7 @@ export const useSetupStore = defineStore('setup', () => {
   const chainId = computed(() => setupState.value?.chainId ?? null)
   const contractAddress = computed(() => setupState.value?.address ?? null)
 
-  const provider = useInfuraProvider(chainId)
+  const provider = useRpcProvider(chainId)
 
   // As soon as the address is known, check if the accountt ownes the token
   const interfacesFlags = useContractInterfaces(contractAddress, provider)

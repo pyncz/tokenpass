@@ -5,7 +5,7 @@ import type { HexString } from '../models'
 
 export function useAddressCode(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
 ) {
   const evaluating = ref(false)
 

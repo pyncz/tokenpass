@@ -11,7 +11,7 @@ type InterfacesMap = Record<`is${ContractInterface}`, boolean>
 
 export function useContractInterfaces(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
 ) {
   const {
     isContract,

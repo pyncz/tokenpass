@@ -189,7 +189,7 @@ const form = reactive<SetupForm>({
 
 const { chainId, address } = toRefs(form)
 
-const provider = useInfuraProvider(chainId)
+const provider = useRpcProvider(chainId)
 
 const {
   evaluating: evaluatingContractCheck,

@@ -6,7 +6,7 @@ import type { HexString } from '../models'
 
 export function useTokenMetadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
   tokenId: MaybeRef<Nullable<string | number>>,
   abi: MaybeRef<Nullable<any>>,
   uriGetter: MaybeRef<(contract: Contract, tokenId: string) => MaybePromise<Nullable<string>>>,

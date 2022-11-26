@@ -7,7 +7,7 @@ import { useTokenMetadata } from './useTokenMetadata'
 
 export function useErc1155TokenMetadata(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
   tokenId: MaybeRef<Nullable<string | number>>,
 ) {
   return useTokenMetadata(

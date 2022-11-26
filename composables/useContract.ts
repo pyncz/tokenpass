@@ -6,7 +6,7 @@ import type { HexString } from '../models'
 
 export function useContract(
   address: MaybeRef<Nullable<HexString>>,
-  provider: MaybeRef<Nullable<providers.InfuraProvider>>,
+  provider: MaybeRef<Nullable<providers.JsonRpcProvider>>,
   abi: MaybeRef<Nullable<any>>,
 ) {
   const contract = computed(() => {

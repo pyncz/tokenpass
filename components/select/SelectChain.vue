@@ -25,7 +25,7 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const networks: ChainInfo[] = Object.entries(chainNamesMap).map(([id, info]) => ({
+const networks: ChainInfo[] = Object.entries(chainInfoMap).map(([id, info]) => ({
   id: +id,
   ...info,
 }))
