@@ -23,7 +23,7 @@
           leave-to="tw-translate-y-32 sm:tw--translate-y-4 tw-opacity-0 tw-scale-click"
         >
           <div class="modal-container">
-            <slot v-bind="{ open, close }" />
+            <slot v-bind="{ close }" />
           </div>
         </transition-child>
       </div>
@@ -42,15 +42,26 @@ const props = defineProps<{
   opened: boolean
 }>()
 
-const model = useVModel(props, 'opened')
+const emit = defineEmits<{
+  (event: 'open'): void
+  (event: 'close'): void
+  (event: 'update:opened', opened: boolean): void
+}>()
+
+const model = useVModel(props, 'opened', emit)
 
 const close = () => {
   model.value = false
 }
 
-const open = () => {
-  model.value = true
-}
+// Register additional events
+watch(model, (isOpened) => {
+  if (isOpened) {
+    emit('open')
+  } else {
+    emit('close')
+  }
+})
 </script>
 
 <style lang="scss">

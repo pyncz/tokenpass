@@ -1,5 +1,5 @@
 <template>
-  <lib-modal v-slot="{ close, open }" v-model:opened="model">
+  <lib-modal v-slot="{ close }" v-model:opened="model">
     <dialog-panel class="tw-dialog dialog">
       <button tabindex="-1" class="close-button" @click="close()">
         <icon name="close" class="tw-z-1" />
@@ -12,14 +12,16 @@
       </dialog-description>
 
       <div class="tw-pb-9 tw-flex-1">
-        <slot v-bind="{ close, open }" />
+        <slot v-bind="{ close }" />
       </div>
 
       <div class="tw-flex tw-flex-col tw-gap-4">
-        <lib-button class="close-control tw-button-secondary" @click="close()">
-          {{ $t('actions.close') }}
-        </lib-button>
-        <slot name="controls" v-bind="{ close, open }" />
+        <slot name="actions" v-bind="{ close }">
+          <lib-button class="close-control tw-button-secondary" @click="close()">
+            {{ $t('actions.close') }}
+          </lib-button>
+          <slot name="main-actions" v-bind="{ close }" />
+        </slot>
       </div>
     </dialog-panel>
   </lib-modal>

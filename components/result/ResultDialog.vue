@@ -33,9 +33,12 @@
       </div>
     </div>
 
-    <template #controls>
-      <lib-button class="tw-button-primary">
-        Close
+    <template #actions="{ close }">
+      <lib-button class="tw-button-secondary" @click="closeAndFinishChecking(close)">
+        {{ $t('actions.ok') }}
+      </lib-button>
+      <lib-button class="tw-button-primary" @click="close()">
+        {{ $t('actions.ok') }}
       </lib-button>
     </template>
   </lazy-lib-dialog>
@@ -58,11 +61,22 @@ const props = withDefaults(defineProps<Props>(), {
   decimals: null,
 })
 
-const model = useVModel(props, 'opened')
+const emit = defineEmits<{
+  (event: 'update:opened', opened: boolean): void
+  (event: 'finish'): void
+}>()
+
+const model = useVModel(props, 'opened', emit)
 const { address, result, decimals } = toRefs(props)
 
 // Display checkee account's address
 const addressTruncated = useAddressTruncated(address)
+
+// Not just close results, but return to setup contract
+const closeAndFinishChecking = (closeDialog: () => void) => {
+  emit('finish')
+  closeDialog()
+}
 
 // Display result's amounts
 const { balance, required } = refToRefs(result)
