@@ -5,6 +5,7 @@ actions:
   close: Close
   copy: Copy to clipboard
   ok: Ok
+  readMore: Read more
   setup: Setup
   use: Use
 contractCheck:
@@ -67,7 +68,7 @@ pages:
     description: >-
       Using the unique power of blockchain. Setup collection contract on any EVM
       blockchain, let your customer read the generated QR Code and check if he
-      ownes the specified token.
+      owns the specified token.
     title: Setup
   settings:
     title: Settings
@@ -76,8 +77,10 @@ result:
     amount: Required amount
     balance: Current balance
   failed:
+    message: Account doesn't own the token! | Account doesn't own required amount of tokens! | Account doesn't own required amount of tokens!
     title: Failed
   passed:
+    message: Account owns the token! | Account owns required amount of tokens!
     title: Passed
 state:
   amount: Amount

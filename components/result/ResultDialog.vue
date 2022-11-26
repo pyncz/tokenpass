@@ -83,13 +83,10 @@ const { balance, required } = refToRefs(result)
 const { commified: commifiedBalance } = useTokenAmount(balance, decimals)
 const { commified: commifiedRequiredAmount } = useTokenAmount(required, decimals)
 
+const { t } = useI18n()
 const description = computed(() => {
   return props.result.passed
-    ? props.result.required > 1
-      ? 'Account ownes required amount of tokens!'
-      : 'Account ownes the token!'
-    : props.result.balance > 1
-      ? 'Account doesn\'t own required amount of tokens!'
-      : 'Account doesn\'t own the token!'
+    ? t('result.passed.message', props.result.required)
+    : t('result.failed.message', props.result.balance)
 })
 </script>
