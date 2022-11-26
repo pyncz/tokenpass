@@ -1,7 +1,5 @@
 module.exports = ({ addBase, theme, addUtilities }) => {
-  const commonHeaderStyles = {
-    display: 'inline-block',
-  }
+  const commonHeaderStyles = {}
   const headerStyles = {
     ...commonHeaderStyles,
     fontFamily: theme('fontFamily.display'),

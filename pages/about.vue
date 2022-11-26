@@ -1,7 +1,5 @@
 <template>
-  <div>
-    About
-  </div>
+  <content-doc />
 </template>
 
 <script setup lang="ts">

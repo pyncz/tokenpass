@@ -47,6 +47,7 @@ export default defineNuxtConfig({
    * Modules config
    */
   modules: [
+    '@nuxt/content',
     'nuxt-icon',
     '@nuxtjs/color-mode',
     '@nuxtjs/i18n-edge',

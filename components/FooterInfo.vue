@@ -8,13 +8,13 @@
         {{ $t('about.title') }}
       </nuxt-link>
     </nav>
-    <p class="tw-text-xs">
+    <div class="tw-text-xs">
       {{ years }}.
 
       {{ $t('madeBy') }}
       <a-link class="tw-pb-0.5" blank href="https://github.com/pyncz"><icon name="github" />
         pyncz</a-link>
-    </p>
+    </div>
   </footer>
 </template>
 

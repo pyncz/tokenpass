@@ -11,9 +11,9 @@
           <div class="tw-space-y-4">
             <div>
               <h3>{{ $t('generate.title') }}</h3>
-              <p class="tw-text-dim-2">
+              <div class="tw-text-dim-2">
                 {{ $t('generate.description') }}
-              </p>
+              </div>
             </div>
             <lib-button class="tw-button-primary tw-mx-auto tw-free-button" @click="generate()">
               {{ $t('generate.submit') }}

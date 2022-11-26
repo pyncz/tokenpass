@@ -145,12 +145,12 @@
         </div>
 
         <div v-else class="tw-space-y-2">
-          <p v-if="isContract">
+          <div v-if="isContract">
             {{ $t('contractCheck.unknown') }}
-          </p>
-          <p v-else>
+          </div>
+          <div v-else>
             {{ $t('contractCheck.noCode') }}
-          </p>
+          </div>
 
           <lazy-lib-markdown
             :value="$t('contractCheck.disclaimer')"

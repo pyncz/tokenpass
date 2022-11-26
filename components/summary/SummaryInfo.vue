@@ -1,5 +1,5 @@
 <template>
-  <div class="tw-px-4 tw-py-3 tw-rounded tw-bg-dim-1 sm:tw-p-0 sm:tw-bg-opacity-0">
+  <div class="tw-px-4 md:tw-mt-3 tw-py-3 tw-rounded tw-bg-dim-1 sm:tw-p-0 sm:tw-bg-opacity-0">
     <lazy-lib-disclosure v-if="smScreen">
       <template #toggle>
         <summary-title show-icon />

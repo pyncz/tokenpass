@@ -1,5 +1,5 @@
 <template>
-  <app-layout>
+  <app-layout class="tw-section">
     <div class="tw-hidden sm:tw-block tw-fixed tw-z-[2] tw-top-4 sm:tw-top-8">
       <logo-main-link />
     </div>
@@ -10,9 +10,9 @@
           {{ error.statusCode ?? $t('errors.default') }}
         </div>
 
-        <p class="tw-h4 tw-text-dim-2">
+        <div class="tw-h4 tw-text-dim-2">
           {{ isNotFoundError ? $t('errors.notFound') : error.message }}
-        </p>
+        </div>
       </div>
     </div>
   </app-layout>

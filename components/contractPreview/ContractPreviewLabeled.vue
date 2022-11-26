@@ -1,8 +1,8 @@
 <template>
   <div class="tw-space-y-1">
-    <p class="tw-text-xs tw-text-dim-3">
+    <div class="tw-text-xs tw-text-dim-3">
       {{ $t('contractCheck.type', { type: type ?? 'NFT' }) }}
-    </p>
+    </div>
 
     <slot />
   </div>

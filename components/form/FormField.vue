@@ -9,9 +9,9 @@
     </slot>
     <slot v-bind="{ id }" />
 
-    <p v-if="error" class="field-meta tw-form-error">
+    <div v-if="error" class="field-meta tw-form-error">
       {{ error }}
-    </p>
+    </div>
   </div>
 </template>
 

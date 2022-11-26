@@ -40,4 +40,14 @@
   *:disabled {
     @apply tw-pointer-events-none tw-cursor-not-allowed tw-opacity-muted;
   }
+
+  // Headers-anchors (probably in rendered markdown)
+  h1, h2, h3, h4, h5, h6 {
+    & > a {
+      @apply tw-relative;
+      color: rgb(var(--c-color-base)) !important;
+      text-decoration: none !important;
+      @apply before:tw-absolute before:tw-left-[-0.625em] xs:before:tw-left-[-0.75em] before:tw-opacity-0 before:tw-duration-fast before:tw-pr-1 before:tw-text-accent-primary hover:before:tw-opacity-soft active:before:tw-opacity-full active:before:tw-scale-click before:tw-content-['#'];
+    }
+  }
 }

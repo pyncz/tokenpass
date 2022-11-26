@@ -8,9 +8,9 @@
           <h2 class="tw-mb-3">
             {{ result.passed ? $t('result.passed.title') : $t('result.failed.title') }}
           </h2>
-          <p class="tw-text-dim-2">
+          <div class="tw-text-dim-2">
             {{ description }}
-          </p>
+          </div>
         </div>
 
         <copy-button
