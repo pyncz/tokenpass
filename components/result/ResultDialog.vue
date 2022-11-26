@@ -35,7 +35,7 @@
 
     <template #actions="{ close }">
       <lib-button class="tw-button-secondary" @click="closeAndFinishChecking(close)">
-        {{ $t('actions.ok') }}
+        {{ $t('actions.backToSetup') }}
       </lib-button>
       <lib-button class="tw-button-primary" @click="close()">
         {{ $t('actions.ok') }}

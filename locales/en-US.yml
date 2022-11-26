@@ -1,6 +1,7 @@
 about:
   title: About
 actions:
+  backToSetup: Set up another check
   close: Close
   copy: Copy to clipboard
   ok: Ok
