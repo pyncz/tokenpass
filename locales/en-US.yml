@@ -96,7 +96,7 @@ status:
 summary:
   body:
     - Tokenpass allows you to check, if your customer owns a
-      specific token. Set up a contract, share link and see results.
+      specific token. Set up a contract, share the link and see the results.
     - It works using [WalletConnect AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation),
       which has just been released and not many wallets support it yet,
       so you can try a [demo wallet](https://react-auth-wallet.walletconnect.com) for now.

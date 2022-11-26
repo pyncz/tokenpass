@@ -91,6 +91,7 @@ export const chainInfoMap: Record<ChainID, ChainInfoById> = {
   1313161555: {
     label: 'Aurora Testnet',
     rpcDomain: 'aurora-testnet',
+    test: true,
   },
 
   // TODO: Add networks?

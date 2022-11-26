@@ -4,7 +4,7 @@
       <div class="tw-flex">
         <logo-main-link />
       </div>
-      <div>
+      <div class="content">
         <slot />
       </div>
     </div>
@@ -15,13 +15,24 @@
   </teleport>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
+.content {
   h1, h2, h3, h4, h5, h6 {
-    @apply tw-mt-[1em];
+    @apply tw-mt-[1.25em];
   }
   p {
-    @apply tw-mb-[2em];
+    @apply tw-mb-[0.75em] tw-text-dim-1 tw-leading-md;
   }
+  ul, ol {
+    @apply tw-mt-[1.25em] tw-mb-[1.5em] tw-text-dim-1;
+  }
+  ol {
+    @apply tw-list-decimal tw-list-inside;
+  }
+  li {
+    @apply tw-mb-[0.75em];
+  }
+}
 </style>
 
 <style lang="scss">

@@ -109,6 +109,7 @@ module.exports = {
       1: 1,
       xs: 1.1,
       sm: 1.15,
+      md: 1.5,
       inherit: 'inherit',
     },
     // skins

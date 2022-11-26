@@ -8,6 +8,8 @@ export default defineAppConfig({
       'moon': 'ion:moon-outline',
       'open': 'ion:open-outline',
       'github': 'ion:logo-github',
+      'twitter': 'ion:logo-twitter',
+      'linkedin': 'ion:logo-linkedin',
       'link': 'ion:link-outline',
       'gem': 'ion:diamond-outline',
       'copy': 'ion:copy-outline',
