@@ -22,6 +22,9 @@ const isOnline = useNetwork()
 const { BASE_URL } = useRuntimeConfig()
 useHead({
   titleTemplate: 'tokenpass / %s',
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+  ],
 })
 
 useSeoMeta({
