@@ -15,30 +15,26 @@ Make sure to install the dependencies
 ni
 ```
 
+
 ## Development
 
-### Start the development server
+### Start the dev server
 
 ```
 nr dev
 ```
 > Default port is `:3000`
 
-### Start Vitest UI
-```
-nr test:ui
-```
-> Default path is `:51204/__vitest__`
 
 ## Build
 
-### Build the application for production
+### Build the app for production
 
 ```
 nr build
 ```
 
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
+Check the [deployment docs](https://nuxt.com/docs/getting-started/deployment).
 
 
 # Set up linting
@@ -69,8 +65,10 @@ After that your staged files will be checked and fixed locally on commit.
 
 ## VS Code Setup
 
-Get and use [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [`stylelint.vscode-stylelint`](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint) (don't forget to [config](https://kumardeepak.xyz/blog/stylelint-scss-and-visual-studio-code/) it) extensions.
+Get and use [`dbaeumer.vscode-eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+But you've probably installed it within all the other recommended extensions already, haven't you?
 
 ---
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+...And ofc keep the [nuxt docs](https://nuxt.com) opened ;)
