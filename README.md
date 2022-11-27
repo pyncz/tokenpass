@@ -4,7 +4,7 @@
 
 Using the unique power of blockchain.
 
-[See demo](https://tokenpass.vercel.com)
+[See demo](https://tokenpass.vercel.app)
 
 
 ## Stack

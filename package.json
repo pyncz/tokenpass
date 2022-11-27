@@ -14,9 +14,7 @@
   "scripts": {
     "postinstall": "nuxi prepare",
     "dev": "nuxi dev",
-    "build": "nuxi build",
-    "start": "node .output/server/index.mjs",
-    "generate": "nuxi generate",
+    "build": "nuxi generate",
     "test": "vitest --run",
     "lint": "eslint .",
     "lintfix": "nr lint --fix"
