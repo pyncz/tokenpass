@@ -7,31 +7,35 @@
     </with-label>
 
     <with-label v-if="!isIERC1155" :label="$t('state.contract')" class="tw-py-3">
-      <lazy-erc721-contract-preview
-        v-if="isIERC721 && isIERC721Metadata"
-        :chain-id="setupState.chainId"
-        :address="setupState.address"
-      />
-      <lazy-erc20-contract-preview
-        v-if="isIERC20"
-        :chain-id="setupState.chainId"
-        :address="setupState.address"
-      />
+      <with-skeleton :evaluating="evaluating">
+        <lazy-erc721-contract-preview
+          v-if="isIERC721 && isIERC721Metadata"
+          :chain-id="setupState.chainId"
+          :address="setupState.address"
+        />
+        <lazy-erc20-contract-preview
+          v-if="isIERC20"
+          :chain-id="setupState.chainId"
+          :address="setupState.address"
+        />
+      </with-skeleton>
     </with-label>
 
     <with-label v-if="setupState.tokenId" :label="$t('state.token')" class="tw-py-3">
-      <lazy-erc721-token-preview
-        v-if="isIERC721 && isIERC721Metadata"
-        :chain-id="setupState.chainId"
-        :address="setupState.address"
-        :token-id="setupState.tokenId"
-      />
-      <lazy-erc1155-token-preview
-        v-if="isIERC1155 && isIERC1155MetadataURI"
-        :chain-id="setupState.chainId"
-        :address="setupState.address"
-        :token-id="setupState.tokenId"
-      />
+      <with-skeleton :evaluating="evaluating">
+        <lazy-erc721-token-preview
+          v-if="isIERC721 && isIERC721Metadata"
+          :chain-id="setupState.chainId"
+          :address="setupState.address"
+          :token-id="setupState.tokenId"
+        />
+        <lazy-erc1155-token-preview
+          v-if="isIERC1155 && isIERC1155MetadataURI"
+          :chain-id="setupState.chainId"
+          :address="setupState.address"
+          :token-id="setupState.tokenId"
+        />
+      </with-skeleton>
     </with-label>
 
     <with-label
@@ -55,5 +59,6 @@ const {
   isIERC20,
   isIERC721,
   isIERC721Metadata,
+  evaluating,
 } = storeToRefs(useSetupStore())
 </script>
