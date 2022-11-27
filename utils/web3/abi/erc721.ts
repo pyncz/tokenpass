@@ -49,11 +49,6 @@ export const IERC721MetadataAbi = [
 ]
 
 export const IERC721Abi = [
-  {
-    inputs: [],
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-  },
   ...ERC165Abi,
 
   {
