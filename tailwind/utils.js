@@ -37,16 +37,6 @@ module.exports = ({ addUtilities, matchUtilities, theme }) => {
     '.transition-nobg-normal': {
       transition: `all ${theme('transitionDuration.normal')}, background 0s`,
     },
-    '.bordered': {
-      'position': 'relative',
-      '&::before': {
-        content: '" "',
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        border: `1px solid ${theme('borderColor.text.dim.2')}`,
-      },
-    },
     '.duration-onhover-fast': {
       'transitionDuration': theme('transitionDuration.normal'),
       '&:hover': {

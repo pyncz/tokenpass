@@ -9,7 +9,7 @@
 
     <div v-else class="tw-space-y-3">
       <summary-title />
-      <summary-content />
+      <summary-content class="tw-pb-3 md:tw-pb-0" />
     </div>
   </div>
 </template>

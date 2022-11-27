@@ -47,8 +47,8 @@ const model = useVModel(props, 'opened')
   .dialog {
     @apply tw-flex tw-flex-col tw-fixed tw--bottom-4 tw-inset-x-0;
     @screen sm {
-      @apply tw-relative tw-bordered tw-width-dialog;
-      @apply before:tw-rounded-lg before:tw-opacity-muted;
+      @apply tw-relative tw-width-dialog;
+      @apply before:tw-absolute before:tw-inset-0 before:tw-pointer-events-none before:tw-rounded-lg before:tw-opacity-muted before:tw-border before:tw-border-solid before:tw-border-text-dim-2;
       &::before {
         mask-image: radial-gradient(50% 50% at top center, rgba(white, 0.5), rgba(white, 0.2));
       }
