@@ -28,53 +28,53 @@ export const useCheckingStore = defineStore('checking', () => {
     }
   }
 
-  const checkingOwnership = ref(false)
-
-  const result = computedAsync<Nullable<CheckOwnershipResults>>(
-    async () => {
-      // Go checking, if got address and already know what token it is
-      if (contract.value && address.value) {
-        switch (true) {
-          case isIERC20.value: {
+  const result = ref<Nullable<CheckOwnershipResults>>(null)
+  const {
+    decoratedMethod: check,
+    loading: checkingOwnership,
+  } = useLoading(async () => {
+    // Go checking, if got address and already know what token it is
+    if (contract.value && address.value) {
+      switch (true) {
+        case isIERC20.value: {
+          const balance = await contract.value.balanceOf(address.value)
+          result.value = makeResult(balance)
+          return
+        }
+        case isIERC721.value: {
+          if (tokenId.value) {
+            // check the token's owner and compare addresses
+            const ownerOf = await contract.value.ownerOf(tokenId.value)
+            result.value = makeResult(ownerOf === address.value ? 1 : 0)
+          } else {
+            // just check the balance
             const balance = await contract.value.balanceOf(address.value)
-            return makeResult(balance)
+            result.value = makeResult(balance)
           }
-          case isIERC721.value: {
-            if (tokenId.value) {
-              // check the token's owner and compare addresses
-              const ownerOf = await contract.value.ownerOf(tokenId.value)
-              return makeResult(ownerOf === address.value ? 1 : 0)
-            } else {
-              // just check the balance
-              const balance = await contract.value.balanceOf(address.value)
-              return makeResult(balance)
-            }
+          return
+        }
+        case isIERC1155.value: {
+          // `tokenId` is required for ERC-1155!
+          if (tokenId.value) {
+            const balance = await contract.value.balanceOf(address.value, tokenId.value)
+            result.value = makeResult(balance)
           }
-          case isIERC1155.value: {
-            // `tokenId` is required for ERC-1155!
-            if (tokenId.value) {
-              const balance = await contract.value.balanceOf(address.value, tokenId.value)
-              return makeResult(balance)
-            }
-            return null
-          }
-          default:
-            return null
+          return
         }
       }
-      return null
-    },
-    null,
-    {
-      evaluating: checkingOwnership,
-    },
-  )
+    }
+    result.value = null
+  })
+
+  watch([address, contract], check)
 
   const checking = computed(() => checkingOwnership.value || (address.value && !contract.value))
 
   return {
     checking,
     result,
+
+    check,
   }
 })
 

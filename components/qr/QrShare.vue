@@ -1,13 +1,18 @@
 <template>
   <div class="tw-flex-col tw-flex-center-y tw-text-center tw-space-y-8 lg:tw-pt-8">
-    <qr-code
-      :size="400"
-      background="transparent"
-      :foreground="foreground"
-      class="tw-mx-auto tw-aspect-1 !tw-w-full !tw-h-auto tw-duration-fast tw-origin-top"
-      :class="{ 'tw-scale-[0.9]': checking }"
-      :value="value"
-    />
+    <div class="tw-space-y-6">
+      <qr-code
+        :size="400"
+        background="transparent"
+        :foreground="foreground"
+        class="tw-mx-auto tw-aspect-1 !tw-w-full !tw-h-auto tw-duration-fast tw-origin-top"
+        :class="{ 'tw-scale-[0.9]': checking }"
+        :value="value"
+      />
+      <h4 class="tw-mb-0 xs:tw-px-4">
+        <lazy-lib-markdown :value="$t('qr.title')" />
+      </h4>
+    </div>
 
     <div class="tw-gap-y-2 tw-gap-x-3 tw-flex-wrap tw-flex-center tw-flex-col sm:tw-flex-row">
       <copy-button
@@ -76,6 +81,7 @@ const { checking, result } = storeToRefs(useCheckingStore())
 const showResult = ref(false)
 
 whenever(result, () => {
+  console.log('show new result')
   showResult.value = true
 })
 

@@ -1,5 +1,5 @@
 <template>
-  <with-skeleton :evaluating="evaluating">
+  <with-skeleton :evaluating="!metadata || evaluating">
     <div v-if="metadata" class="tw-flex-center-y tw-gap-1.5">
       <div class="tw-rounded-sm tw-overflow-hidden tw-border tw-border-separator-muted tw-flex-center tw-size-6 tw-relative">
         <img

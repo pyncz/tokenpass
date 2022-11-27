@@ -1,6 +1,6 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div v-if="initialized" class="tw-flex tw-flex-col tw-p-8 lg:tw-p-2">
+    <div v-if="initialized" class="tw-flex tw-flex-col tw-py-8 xs:tw-px-8 lg:tw-p-2">
       <transition name="fade" mode="out-in">
         <lazy-qr-share v-if="connectUri" :value="connectUri" class="tw-flex-1" />
 

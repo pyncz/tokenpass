@@ -28,8 +28,7 @@ feedback:
   copied: Copied!
 formatted: Formatted
 generate:
-  description: >-
-    To check another account, generate a link and share it to your customer
+  description: To check another account, generate a link and share it to your customer
   renew: Generate a new one
   submit: Generate link
   title: Generate connection link
@@ -71,6 +70,8 @@ pages:
     title: Setup
   settings:
     title: Settings
+qr:
+  title: Scan it with [AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation) compatible wallet
 result:
   attributes:
     amount: Required amount
@@ -95,11 +96,15 @@ status:
   initializing: Initializing
 summary:
   body:
-    - Tokenpass allows you to check, if your customer owns a
-      specific token. Set up a contract, share the link and see the results.
-    - It works using [WalletConnect AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation),
-      which has just been released and not many wallets support it yet,
-      so you can try a [demo wallet](https://react-auth-wallet.walletconnect.com) for now.
+    - >-
+      Tokenpass allows you to check, if your customer owns a specific token. Set
+      up a contract, share the link and see the results.
+    - >-
+      It works using [WalletConnect
+      AuthClient](https://docs.walletconnect.com/2.0/javascript/auth/installation),
+      which has just been released and not many wallets support it yet, so you
+      can try a [demo wallet](https://react-auth-wallet.walletconnect.com) for
+      now.
   title: How to use?
 theme:
   dark: Dark
