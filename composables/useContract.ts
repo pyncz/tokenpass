@@ -13,7 +13,7 @@ export function useContract(
     const providerValue = unref(provider)
     const abiValue = unref(abi)
 
-    if (addressValue && providerValue && abi) {
+    if (addressValue && providerValue && abiValue) {
       return new Contract(addressValue, abiValue, providerValue)
     }
     return null
