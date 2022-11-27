@@ -20,6 +20,7 @@ Tokenpass provides such a checking tool.
 1. The user connects with his wallet (use [demo wallet](https://react-auth-wallet.walletconnect.com) to test)
 1. Tokenpass checks the balance of the specified token and tells if the user owns the required amount!
 
+:video-preview{uri=/video/tokenpass.show.mp4}
 
 ### WalletConnect
 
