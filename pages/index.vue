@@ -27,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import { useSeoMeta } from '@unhead/vue'
 import { storeToRefs } from 'pinia'
 import { useSetupStore } from '../stores'
 
@@ -38,13 +39,12 @@ const { setupState } = storeToRefs(setupStore)
 const { t } = useI18n()
 
 useHead({
-  title: ` / ${t('pages.index.title')}`,
-  meta: [
-    {
-      hid: 'description',
-      name: 'description',
-      content: t('pages.index.description'),
-    },
-  ],
+  title: t('pages.index.title'),
+})
+
+useSeoMeta({
+  ogTitle: t('pages.index.title'),
+  description: t('pages.index.description'),
+  ogDescription: t('pages.index.description'),
 })
 </script>

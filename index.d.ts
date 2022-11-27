@@ -1,8 +1,8 @@
 declare module '@nuxt/schema' {
   interface RuntimeConfig {
     public: {
-      API_BASE: string
-      API_BASE_WS: string
+      BASE_URL: string
+      WALLETCONNECT_RELAY_URL: string
 
       // TODO: Move on private level?
       INFURA_PROJECT_ID: string

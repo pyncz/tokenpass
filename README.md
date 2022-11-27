@@ -1,4 +1,4 @@
-![gemcase](.github/banner.jpg)
+![gemcase](public/banner.jpg)
 
 # ✅ tokenpass
 

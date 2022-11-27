@@ -7,7 +7,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <g>
-      <path class="tw-fill-logo" d="M11.8311 75.3878L37.691 49.5279H89.4108L115.271 75.3878L63.5509 127.108L11.8311 75.3878Z" />
+      <path d="M11.8311 75.3878L37.691 49.5279H89.4108L115.271 75.3878L63.5509 127.108L11.8311 75.3878Z" fill="#16E3FF" />
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"

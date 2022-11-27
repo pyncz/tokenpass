@@ -12,13 +12,22 @@
 </template>
 
 <script setup lang="ts">
+import { useSeoMeta } from '@unhead/vue'
 import { storeToRefs } from 'pinia'
 import { useClientStore } from './stores'
 
 const isOnline = useNetwork()
 
+// Set up meta tags
+const { BASE_URL } = useRuntimeConfig()
 useHead({
-  titleTemplate: 'tokenpass %s',
+  titleTemplate: 'tokenpass / %s',
+})
+
+useSeoMeta({
+  ogImage: `${BASE_URL}/banner.jpg`,
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
 })
 
 // Init WalletConnect things

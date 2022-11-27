@@ -35,7 +35,7 @@ export default defineNuxtConfig({
        * NOTE: Nuxt's native syncing envs are not used because of vars' nuxt-specific prefixes
        * https://v3.nuxtjs.org/guide/features/runtime-config/#environment-variables
        */
-      APP_DOMAIN: process.env.APP_DOMAIN ?? 'localhost:3000',
+      BASE_URL: process.env.BASE_URL ?? 'localhost:3000',
 
       WALLETCONNECT_PROJECT_ID: process.env.WALLETCONNECT_PROJECT_ID ?? '',
       WALLETCONNECT_RELAY_URL: process.env.WALLETCONNECT_RELAY_URL ?? 'wss://relay.walletconnect.com',

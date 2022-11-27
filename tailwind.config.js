@@ -154,7 +154,6 @@ module.exports = {
       normal: '1',
     },
     fill: theme => ({
-      logo: co('--c-logo'),
       ...theme('backgroundColor'),
     }),
     stroke: theme => ({
