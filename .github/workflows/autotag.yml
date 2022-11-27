@@ -13,13 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Bump version and push tag
         uses: mathieudutour/github-tag-action@v6.0
         with:
           default_bump: false
           default_prerelease_bump: false
-          # Use custom token instead of GITHUB_TOKEN to trigger subsequent workflows
+          # Use custom PAT token instead of GITHUB_TOKEN if you trigger subsequent workflows!
           # https://stackoverflow.com/questions/67550727/push-event-doesnt-trigger-workflow-on-push-paths-github-actions
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
