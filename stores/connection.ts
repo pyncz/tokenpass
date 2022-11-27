@@ -9,13 +9,7 @@ export const useConnectionStore = defineStore('connection', () => {
   const { error, setError } = useStoreError()
   const { client } = storeToRefs(useClientStore())
 
-  // Use selected chain to re-request connection on change
   const { setupState } = storeToRefs(useSetupStore())
-
-  const chain = computed(() => setupState.value
-    ? `eip155:${+setupState.value.chainId}`
-    : null,
-  )
 
   /*
    * Connection specific fields
@@ -24,7 +18,7 @@ export const useConnectionStore = defineStore('connection', () => {
   const address = ref<Nullable<HexString>>(null)
 
   // Listen for connections
-  watchEffect(() => {
+  watch(client, () => {
     if (client.value) {
       client.value.on('auth_response', ({ params }) => {
         if ('code' in params) {
@@ -36,7 +30,7 @@ export const useConnectionStore = defineStore('connection', () => {
         address.value = params.result.p.iss.split(':')[4] as HexString
       })
     }
-  })
+  }, { immediate: true })
 
   // Reset specific connected client's data
   const reset = () => {
@@ -46,6 +40,11 @@ export const useConnectionStore = defineStore('connection', () => {
   }
 
   // Generate connection link to consume by a checkee
+  const chain = computed(() => setupState.value
+    ? `eip155:${+setupState.value.chainId}`
+    : null,
+  )
+
   const {
     decoratedMethod: generate,
     loading: generating,
@@ -67,12 +66,15 @@ export const useConnectionStore = defineStore('connection', () => {
   })
 
   // Immediately generate on client is initialized
-  // + re-generate on chain changed
-  watchEffect(() => {
-    if (chain.value && client.value) {
+  // + re-generate on specified token is changed
+  const canGenerate = computed(() => !!client.value && !!setupState.value)
+  watch(canGenerate, () => {
+    if (client.value && setupState.value) {
       generate()
+    } else {
+      reset()
     }
-  })
+  }, { immediate: true })
 
   // Waiting for user to connect with the shared link
   const pending = computed(() => !!connectUri.value && !address.value)

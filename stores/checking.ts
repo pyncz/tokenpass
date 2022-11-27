@@ -66,11 +66,14 @@ export const useCheckingStore = defineStore('checking', () => {
     result.value = null
   })
 
-  watchEffect(() => {
+  const canCheck = computed(() => !!address.value && !!contract.value)
+  watch(canCheck, () => {
     if (address.value && contract.value) {
       check()
+    } else {
+      result.value = null
     }
-  })
+  }, { immediate: true })
 
   const checking = computed(() => checkingOwnership.value || (address.value && !contract.value))
 

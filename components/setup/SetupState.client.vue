@@ -39,7 +39,7 @@
     </with-label>
 
     <with-label
-      v-if="isIERC1155 || isIERC20"
+      v-if="!isSpecificErc721TokenCheck"
       :label="$t('state.amount')"
       class="tw-py-3"
     >
@@ -61,4 +61,6 @@ const {
   isIERC721Metadata,
   evaluating,
 } = storeToRefs(useSetupStore())
+
+const isSpecificErc721TokenCheck = computed(() => isIERC721 && !!setupState.value?.tokenId)
 </script>

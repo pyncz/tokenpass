@@ -80,8 +80,10 @@ const { decimals } = refToRefs(erc20Metadata)
 const { checking, result } = storeToRefs(useCheckingStore())
 const showResult = ref(false)
 
-whenever(result, () => {
-  showResult.value = true
+watchEffect(() => {
+  if (result.value) {
+    showResult.value = true
+  }
 })
 
 // QR code theming
