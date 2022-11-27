@@ -81,7 +81,6 @@ const { checking, result } = storeToRefs(useCheckingStore())
 const showResult = ref(false)
 
 whenever(result, () => {
-  console.log('show new result')
   showResult.value = true
 })
 

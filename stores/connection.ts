@@ -24,16 +24,18 @@ export const useConnectionStore = defineStore('connection', () => {
   const address = ref<Nullable<HexString>>(null)
 
   // Listen for connections
-  whenever(client, (initializedClient) => {
-    initializedClient.on('auth_response', ({ params }) => {
-      if ('code' in params) {
-        return setError(params)
-      }
-      if ('error' in params) {
-        return setError(params)
-      }
-      address.value = params.result.p.iss.split(':')[4] as HexString
-    })
+  watchEffect(() => {
+    if (client.value) {
+      client.value.on('auth_response', ({ params }) => {
+        if ('code' in params) {
+          return setError(params)
+        }
+        if ('error' in params) {
+          return setError(params)
+        }
+        address.value = params.result.p.iss.split(':')[4] as HexString
+      })
+    }
   })
 
   // Reset specific connected client's data
