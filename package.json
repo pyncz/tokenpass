@@ -7,6 +7,9 @@
     "email": "pyncz.dev@gmail.com",
     "url": "https://github.com/pyncz"
   },
+  "engines": {
+    "node": ">=14 <17"
+  },
   "license": "MIT",
   "scripts": {
     "postinstall": "nuxi prepare",
