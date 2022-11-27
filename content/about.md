@@ -51,7 +51,7 @@ The list of available chains is dictated by [Infura provider](https://docs.infur
 - :chain{id=1313161554}
 - :chain{id=1313161555}
 
-So, yes, there's no BSC yet. But you can fork [the project](https://github.com/voire/tokenpass) and extend the used chains / RPCs, for example.
+So, yes, there's no BSC yet. But you can fork [the project](https://github.com/pyncz/tokenpass) and extend the used chains / RPCs, for example.
 
 
 ## See ya!
