@@ -61,7 +61,7 @@
     "nuxt": "^3.0.0",
     "nuxt-icon": "^0.1.7",
     "postcss": "^8.4.19",
-    "simple-git": "^2.47.0",
+    "simple-git": "^3.5.0",
     "simple-git-hooks": "^2.7.0",
     "vitest": "^0.25.2"
   },
