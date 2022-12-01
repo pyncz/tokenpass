@@ -5,7 +5,7 @@
         <template v-if="setupState">
           <h1 class="tw-relative tw-mb-2">
             <div class="tw-absolute tw-w-0 tw-left-2.5 tw--top-2 tw-flex-center">
-              <return-button @click="resetSetupState()" />
+              <lazy-return-button @click="resetSetupState()" />
             </div>
             <span class="tw-ml-10">{{ $t('index.title.share') }}</span>
           </h1>
@@ -21,6 +21,12 @@
       <client-only>
         <lazy-qr-view v-if="setupState" class="md:tw-min-h-[18rem]" />
         <lazy-setup-form v-else />
+
+        <template #fallback>
+          <div class="tw-flex-center tw-min-h-[14rem]">
+            <loading-spinner />
+          </div>
+        </template>
       </client-only>
     </card-container>
   </checker-layout>
