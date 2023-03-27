@@ -1,4 +1,4 @@
-![gemcase](public/banner.jpg)
+![tokenpass](public/banner.jpg)
 
 # ✅ tokenpass
 
@@ -16,8 +16,6 @@ Using the unique power of blockchain.
 - Icons: [`ionicons`](https://ionic.io/ionicons)
 - UI: [`headless-ui`](https://headlessui.com/vue/menu)
 - Validation: [`vuelidate`](https://vuelidate-next.netlify.app)
-- Testing:
-  - Unit: [`vitest`](https://vitest.dev)
 
 
 ## Contributing
