@@ -1,3 +1,5 @@
+import { HexString } from "../hex";
+
 export enum ContractInterface {
   IERC165 = 'IERC165',
 
@@ -10,7 +12,7 @@ export enum ContractInterface {
   IERC20 = 'IERC20',
 }
 
-export const ContractInterfaceId: Record<ContractInterface, string> = {
+export const ContractInterfaceId: Record<ContractInterface, HexString> = {
   [ContractInterface.IERC165]: '0x01ffc9a7',
 
   [ContractInterface.IERC721]: '0x80ac58cd',
