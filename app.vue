@@ -16,7 +16,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { storeToRefs } from 'pinia'
 import { useClientStore } from './stores'
 
-const isOnline = useNetwork()
+const { isOnline } = useNetwork()
 
 // Set up meta tags
 const { BASE_URL } = useRuntimeConfig()
